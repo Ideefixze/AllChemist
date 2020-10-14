@@ -20,6 +20,8 @@ namespace AllChemist
 
         public event System.EventHandler<OnWorldStepArgs> OnWorldStep; //Observer pattern
 
+        public static int steps=0;
+
         public void Step()
         {
             for(int i = 0; i<TableSize.x;i++)
@@ -31,15 +33,17 @@ namespace AllChemist
             }
 
             CurrentTable = NextIterationTable;
-            NextIterationTable = new CellTable(TableSize, CurrentTable.NullCell);
+            NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType, CurrentTable.DefaultMetaCellType);
             OnWorldStep.Invoke(this, new OnWorldStepArgs(this));
+            steps++;
+            System.Console.WriteLine(steps);
         }
 
-        public World(Vector2Int tableSize, ExistingCell nullCell)
+        public World(Vector2Int tableSize, CellType defaultCellType, CellType defaultMetaCellType)
         {
             this.TableSize = tableSize;
-            CurrentTable = new CellTable(this.TableSize, nullCell);
-            NextIterationTable = new CellTable(this.TableSize, nullCell);
+            CurrentTable = new CellTable(this.TableSize, defaultCellType, defaultMetaCellType);
+            NextIterationTable = new CellTable(CurrentTable);
         }
     }
 }

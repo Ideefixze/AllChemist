@@ -7,8 +7,9 @@ namespace AllChemist
 {
     public struct CellType
     {
-        private readonly string art;
+        
         private readonly int id;
+        public readonly string art;
         static private int idCounter=0;
 
         public CellBehaviour CellBehaviour { get; private set; }
@@ -57,7 +58,7 @@ namespace AllChemist
         public Vector2Int Position { get; set; }
         
 
-        public Cell(CellType cellType, Vector2Int startingPosition)
+        public Cell(CellType cellType, Vector2Int startingPosition = new Vector2Int())
         {
             CellType = cellType;
             Position = startingPosition;

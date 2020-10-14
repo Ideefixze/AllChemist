@@ -11,7 +11,7 @@ namespace AllChemist
     public class ExistingCell : Cell
     {
 
-        public ExistingCell(CellType cellType, Vector2Int startingPosition) : base(cellType, startingPosition)
+        public ExistingCell(CellType cellType, Vector2Int startingPosition=new Vector2Int()) : base(cellType, startingPosition)
         {
             
         }

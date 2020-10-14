@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,7 +10,7 @@ namespace AllChemist
     {
         public int x, y;
 
-        public Vector2Int(int x, int y)
+        public Vector2Int(int x=0, int y=0)
         {
             this.x = x;
             this.y = y;
@@ -20,5 +21,17 @@ namespace AllChemist
             this.x = v.x;
             this.y = v.y;
         }
+
+        public static bool operator==(Vector2Int a, Vector2Int b)
+        {
+            return a.x == b.x && a.y == b.y;
+        }
+
+        public static bool operator !=(Vector2Int a, Vector2Int b)
+        {
+            return !(a==b);
+        }
+
+
     }
 }
