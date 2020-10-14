@@ -5,8 +5,18 @@ using System.Text;
 
 namespace AllChemist
 {
-class CellBehaviour
+    public class CellBehaviour
     {
-        public List<IRule> rules { get; private set; } //Strategy pattern
+        public List<IRule> Rules { get; private set; } //Strategy pattern
+
+        public CellBehaviour(CellBehaviour cb)
+        {
+            Rules = new List<IRule>(cb.Rules);
+        }
+
+        public CellBehaviour()
+        {
+            Rules = new List<IRule>();
+        }
     }
 }

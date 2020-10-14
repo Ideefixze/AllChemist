@@ -8,18 +8,17 @@ namespace AllChemist
     /// <summary>
     /// Existing Cell that is used to be filled in the World's grid.
     /// </summary>
-    class ExistingCell : Cell
+    public class ExistingCell : Cell
     {
-        public string cellArt { get; private set; }
 
-        public ExistingCell(Vector2Int startingPosition, string cellArt) : base(startingPosition)
+        public ExistingCell(CellType cellType, Vector2Int startingPosition) : base(cellType, startingPosition)
         {
-            this.cellArt = cellArt;
+            
         }
 
-        public ExistingCell(ExistingCell cell) : base(cell.position)
+        public ExistingCell(ExistingCell cell) : base(cell.CellType, cell.Position)
         {
-            this.cellArt = new string(cell.cellArt);
+            
         }
 
         public override Cell Clone()

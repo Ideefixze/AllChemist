@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+
 namespace AllChemist
 {
-    class World
+    public class OnWorldStepArgs
     {
-        public Vector2Int tableSize { get; private set; }
-        public CellTable currentTable { get; private set; }
-        public CellTable nextIterationTable { get; private set; }
+        public World World { get; set; }
+
+        public OnWorldStepArgs(World w) { World = w; }
+    }
+    public class World
+    {
+        public Vector2Int TableSize { get; private set; }
+        public CellTable CurrentTable { get; private set; }
+        public CellTable NextIterationTable { get; private set; }
+
+        public event System.EventHandler<OnWorldStepArgs> OnWorldStep; //Observer pattern
 
         public void Step()
         {
-            for(int i = 0; i<tableSize.x;i++)
+            for(int i = 0; i<TableSize.x;i++)
             {
-                for(int j = 0; j<tableSize.y;j++)
+                for(int j = 0; j<TableSize.y;j++)
                 {
-                    currentTable.cells[i, j].ExecuteRules(this);
+                    CurrentTable.Cells[i, j].ExecuteRules(this);
                 }
             }
 
-            currentTable = nextIterationTable;
-            nextIterationTable = new CellTable(tableSize, currentTable.nullCell);
+            CurrentTable = NextIterationTable;
+            NextIterationTable = new CellTable(TableSize, CurrentTable.NullCell);
+            OnWorldStep.Invoke(this, new OnWorldStepArgs(this));
         }
 
         public World(Vector2Int tableSize, ExistingCell nullCell)
         {
-            this.tableSize = tableSize;
-            currentTable = new CellTable(this.tableSize, nullCell);
-            nextIterationTable = new CellTable(this.tableSize, nullCell);
+            this.TableSize = tableSize;
+            CurrentTable = new CellTable(this.TableSize, nullCell);
+            NextIterationTable = new CellTable(this.TableSize, nullCell);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,19 +16,20 @@ using System.Windows.Shapes;
 
 namespace AllChemist
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public class WorldGridView
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            this.Title = "AllChemist "+App.Version+"v";
-            CreateWorldGrid();
-        }
 
-        public void CreateWorldGrid(int sizeX = 600, int sizeY = 600, int columns = 20, int rows = 20)
+        private Vector2Int size;
+        private Grid mainGrid;
+        private World world;
+
+        public WorldGridView(World world, Grid mainGrid)
+        {
+            this.size = world.TableSize;
+            this.world = world;
+            this.mainGrid = mainGrid;
+        }
+        public void CreateWorldGrid(int sizeX = 600, int sizeY = 600)
         {
             Grid worldGrid = new Grid();
             worldGrid.Width = sizeX;
@@ -37,35 +39,35 @@ namespace AllChemist
             worldGrid.ShowGridLines = true;
 
 
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < size.x; i++)
             {
                 ColumnDefinition cd = new ColumnDefinition();
-                cd.MaxWidth = sizeX / columns;
+                cd.MaxWidth = sizeX / size.x;
                 worldGrid.ColumnDefinitions.Add(cd);
             }
 
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < size.y; i++)
             {
                 RowDefinition rd = new RowDefinition();
-                rd.MaxHeight = sizeY / rows;
+                rd.MaxHeight = sizeY / size.y;
                 worldGrid.RowDefinitions.Add(rd);
             }
 
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < size.x; i++)
             {
-                for (int j = 0; j < rows; j++)
+                for (int j = 0; j < size.y; j++)
                 {
                     Grid g = new Grid();
                     g.HorizontalAlignment = HorizontalAlignment.Stretch;
                     g.VerticalAlignment = VerticalAlignment.Center;
-                    
+
 
                     Emoji.Wpf.TextBlock textBlock = new Emoji.Wpf.TextBlock();
-                    textBlock.Text = "◼";
+                    textBlock.Text = world.CurrentTable.Cells[i,j].CellArt;
                     textBlock.FontSize = 16;
                     textBlock.TextAlignment = TextAlignment.Center;
-                    textBlock.MaxHeight = sizeY / rows;
-                    textBlock.MaxWidth = sizeX / columns;
+                    textBlock.MaxHeight = sizeY / size.y;
+                    textBlock.MaxWidth = sizeX / size.x;
 
                     g.Children.Add(textBlock);
 
@@ -75,7 +77,25 @@ namespace AllChemist
                 }
             }
 
-            MainGrid.Children.Add(worldGrid);
+            mainGrid.Children.Add(worldGrid);
         }
     }
+
+
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            this.Title = "AllChemist " + App.Version + "v";
+            World w = new World(new Vector2Int(20, 20), new ExistingCell(new Vector2Int(0, 0), "x"));
+            WorldGridView wgv = new WorldGridView(w,MainGrid);
+            wgv.CreateWorldGrid();
+        }
+    }
+
+
 }

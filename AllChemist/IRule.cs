@@ -1,6 +1,6 @@
 namespace AllChemist
 {
-    interface IRule
+    public interface IRule
     {
         /// <summary>
         /// Rule of a cell that will change world.
