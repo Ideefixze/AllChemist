@@ -10,15 +10,24 @@ namespace AllChemist
     /// </summary>
     public class ExistingCell : Cell
     {
+        public CellType CellType { get; protected set; }
 
-        public ExistingCell(CellType cellType, Vector2Int startingPosition=new Vector2Int()) : base(cellType, startingPosition)
+        public ExistingCell(CellType cellType, Vector2Int startingPosition=new Vector2Int()) : base(startingPosition)
         {
-            
+            CellType = cellType;
         }
 
-        public ExistingCell(ExistingCell cell) : base(cell.CellType, cell.Position)
+        public ExistingCell(ExistingCell cell) : base(cell.Position)
         {
-            
+            CellType = cell.CellType;
+        }
+
+        public override void ExecuteRules(World world)
+        {
+            foreach (IRule rule in CellType.CellBehaviour.Rules)
+            {
+                rule.ExecuteRule(world, this); //Execute all strategies that this cell type has
+            }
         }
 
         public override Cell Clone()

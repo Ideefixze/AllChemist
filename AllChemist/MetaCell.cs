@@ -13,13 +13,18 @@ namespace AllChemist
         public string tag; //Tag that describes this MetaCell, e.g.: "Temperature (Celcius)"
         public Dictionary<string, double> properties { get; private set; }
 
-        public MetaCell(CellType cellType, Vector2Int startingPosition) : base(cellType, startingPosition) 
+        public MetaCell(CellType cellType, Vector2Int startingPosition) : base(startingPosition) 
         {
             properties = new Dictionary<string, double>();
         }
-        public MetaCell(MetaCell cell) : base(cell.CellType, cell.Position)
+        public MetaCell(MetaCell cell) : base(cell.Position)
         {
             this.properties = new Dictionary<string, double>(cell.properties);
+        }
+
+        public override void ExecuteRules(World world)
+        {
+            throw new NotImplementedException();
         }
 
         public override Cell Clone()

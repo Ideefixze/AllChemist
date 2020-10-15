@@ -33,17 +33,30 @@ namespace AllChemist
             }
 
             CurrentTable = NextIterationTable;
-            NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType, CurrentTable.DefaultMetaCellType);
+            NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
             OnWorldStep.Invoke(this, new OnWorldStepArgs(this));
             steps++;
             System.Console.WriteLine(steps);
         }
 
-        public World(Vector2Int tableSize, CellType defaultCellType, CellType defaultMetaCellType)
+        public World(Vector2Int tableSize, CellType defaultCellType)
         {
             this.TableSize = tableSize;
-            CurrentTable = new CellTable(this.TableSize, defaultCellType, defaultMetaCellType);
+            CurrentTable = new CellTable(this.TableSize, defaultCellType);
             NextIterationTable = new CellTable(CurrentTable);
+        }
+
+        //Memento Design Pattern
+        //TODO: Caretaker or maybe separate class for snapshot
+        public CellTable CreateSnapshot()
+        {
+            return new CellTable(CurrentTable);
+        }
+
+        public void RestoreSnapshot(CellTable memento)
+        {
+            CurrentTable = memento;
+            NextIterationTable = new CellTable(this.TableSize, memento.DefaultCellType);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Media;
 
 namespace AllChemist
 {
@@ -9,14 +10,26 @@ namespace AllChemist
     {
         
         private readonly int id;
-        public readonly string art;
+        public readonly Color color;
         static private int idCounter=0;
+
 
         public CellBehaviour CellBehaviour { get; private set; }
 
-        public CellType(string art)
+        public CellType(Color color)
         {
-            this.art = art;
+            this.color = color;
+            this.id = idCounter++;
+            CellBehaviour = new CellBehaviour();
+        }
+
+        public CellType(byte R, byte G, byte B)
+        {
+            this.color = new Color();
+            this.color.R = R;
+            this.color.G = G;
+            this.color.B = B;
+            this.color.A = 255;
             this.id = idCounter++;
             CellBehaviour = new CellBehaviour();
         }
@@ -35,7 +48,7 @@ namespace AllChemist
             else
             {
                 CellType ct = (CellType)obj;
-                return ct.id == this.id && ct.art == this.art;
+                return ct.id == this.id && ct.color == this.color;
             } 
         }
 
@@ -54,23 +67,15 @@ namespace AllChemist
     /// </summary>
     abstract public class Cell 
     {
-        public CellType CellType { get; protected set; }
+
         public Vector2Int Position { get; set; }
         
-
-        public Cell(CellType cellType, Vector2Int startingPosition = new Vector2Int())
+        public Cell(Vector2Int startingPosition = new Vector2Int())
         {
-            CellType = cellType;
             Position = startingPosition;
         }
 
-        public void ExecuteRules(World world)
-        {
-            foreach (IRule rule in CellType.CellBehaviour.Rules)
-            {
-                rule.ExecuteRule(world, this); //Execute all strategies that this cell type has
-            }
-        }
+        public abstract void ExecuteRules(World world); //Execute some kind of rule of this cell for a world
         public abstract Cell Clone();
     }
 }
