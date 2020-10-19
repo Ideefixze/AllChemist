@@ -9,22 +9,25 @@ namespace AllChemist
     public struct CellType
     {
         
-        private readonly int id;
+        public readonly int id;
+        public readonly string name;
         public readonly Color color;
         static private int idCounter=0;
 
 
         public CellBehaviour CellBehaviour { get; private set; }
 
-        public CellType(Color color)
+        public CellType(string name, Color color)
         {
+            this.name = name;
             this.color = color;
             this.id = idCounter++;
             CellBehaviour = new CellBehaviour();
         }
 
-        public CellType(byte R, byte G, byte B)
+        public CellType(string name, byte R, byte G, byte B)
         {
+            this.name = name;
             this.color = new Color();
             this.color.R = R;
             this.color.G = G;
