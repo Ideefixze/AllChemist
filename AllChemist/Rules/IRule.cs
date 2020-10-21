@@ -1,5 +1,8 @@
+using Newtonsoft.Json;
+
 namespace AllChemist
 {
+    [JsonObject]
     public interface IRule
     {
         /// <summary>

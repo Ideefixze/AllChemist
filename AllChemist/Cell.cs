@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Media;
+using Newtonsoft.Json;
 
 namespace AllChemist
 {
+    [JsonObject(MemberSerialization.Fields)]
     public struct CellType
     {
-        
+       
         public readonly int id;
+
         public readonly string name;
+
         public readonly Color color;
         static private int idCounter=0;
 
-
+        [JsonProperty]
         public CellBehaviour CellBehaviour { get; private set; }
 
         public CellType(string name, Color color)

@@ -6,11 +6,11 @@ using System.Text;
 
 namespace AllChemist
 {
-    public class OnWorldStepArgs
+    public class OnWorldChangeArgs
     {
         public World World { get; set; }
 
-        public OnWorldStepArgs(World w) { World = w; }
+        public OnWorldChangeArgs(World w) { World = w; }
     }
     public class World
     {
@@ -18,15 +18,18 @@ namespace AllChemist
         public CellTable CurrentTable { get; private set; }
         public CellTable NextIterationTable { get; private set; }
 
-        public event System.EventHandler<OnWorldStepArgs> OnWorldStep; //Observer pattern
+        public CellTypeBank CellTypeBank { get; set; }
+
+        public event System.EventHandler<OnWorldChangeArgs> OnWorldChange; //Observer pattern
+
 
         public static int steps=0;
 
         public void Step()
         {
-            for(int i = 0; i<TableSize.x;i++)
+            for(int i = 0; i<TableSize.X;i++)
             {
-                for(int j = 0; j<TableSize.y;j++)
+                for(int j = 0; j<TableSize.Y;j++)
                 {
                     CurrentTable.Cells[i, j].ExecuteRules(this);
                 }
@@ -34,15 +37,26 @@ namespace AllChemist
 
             CurrentTable = NextIterationTable;
             NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
-            OnWorldStep.Invoke(this, new OnWorldStepArgs(this));
+            OnWorldChange.Invoke(this, new OnWorldChangeArgs(this));
             steps++;
             System.Console.WriteLine(steps);
         }
 
-        public World(Vector2Int tableSize, CellType defaultCellType)
+        public void Paint(Vector2Int pos, CellType c)
         {
+            CurrentTable.PlaceCell(pos, c);
+        }
+
+        public void ApplyChanges()
+        {
+            OnWorldChange.Invoke(this, new OnWorldChangeArgs(this));
+        }
+
+        public World(Vector2Int tableSize, CellTypeBank ctb)
+        {
+            this.CellTypeBank = ctb;
             this.TableSize = tableSize;
-            CurrentTable = new CellTable(this.TableSize, defaultCellType);
+            CurrentTable = new CellTable(this.TableSize, CellTypeBank.GetDefaultCellType());
             NextIterationTable = new CellTable(CurrentTable);
         }
 

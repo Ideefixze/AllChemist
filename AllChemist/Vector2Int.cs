@@ -8,28 +8,33 @@ namespace AllChemist
 {
     public struct Vector2Int
     {
-        public int x, y;
+        public int X, Y;
 
         public Vector2Int(int x=0, int y=0)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         public Vector2Int(Vector2Int v)
         {
-            this.x = v.x;
-            this.y = v.y;
+            this.X = v.X;
+            this.Y = v.Y;
         }
 
         public static bool operator==(Vector2Int a, Vector2Int b)
         {
-            return a.x == b.x && a.y == b.y;
+            return a.X == b.X && a.Y == b.Y;
         }
 
         public static bool operator !=(Vector2Int a, Vector2Int b)
         {
             return !(a==b);
+        }
+
+        public override string ToString()
+        {
+            return $"({X} , {Y})";
         }
 
 
