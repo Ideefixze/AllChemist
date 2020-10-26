@@ -221,6 +221,34 @@ namespace AllChemist
         }
     }
 
+
+    public class SnapshotController
+    {
+        private World world;
+        private CellTable snapshot;
+
+        public SnapshotController(Button saveButton, Button loadButton, World w)
+        {
+            world = w;
+            saveButton.Click += SaveWorld;
+            loadButton.Click += LoadWorld;
+        }
+
+        private void SaveWorld(object sender, RoutedEventArgs e)
+        {
+            snapshot = world.CreateSnapshot();
+        }
+
+        private void LoadWorld(object sender, RoutedEventArgs e)
+        {
+            if(snapshot==null)
+            {
+                System.Windows.MessageBox.Show("Create a snapshot first.", "AllChemist", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+                world.RestoreSnapshot(snapshot);
+        }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -228,6 +256,7 @@ namespace AllChemist
     {
         private ModelSimulationController modelSimulationController;
         private CellPainterController cellPainterController;
+        private SnapshotController snapshotController;
 
         public MainWindow()
         {
@@ -273,10 +302,14 @@ namespace AllChemist
 
             //Initializing Controllers
             modelSimulationController = new ModelSimulationController(ToggleSimulationButton, DelayTextBox, w);
+            
             cellPainterController = new CellPainterController(CellColorPicker, w);
             wv.Canvas.MouseLeftButtonDown += cellPainterController.StartPainting;
             wv.Canvas.MouseLeftButtonUp += cellPainterController.StopPainting;
             wv.Canvas.MouseLeave += cellPainterController.StopPainting;
+
+            snapshotController = new SnapshotController(SaveButton, LoadButton, w);
+
 
         }
 

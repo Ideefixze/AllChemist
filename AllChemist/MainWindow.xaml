@@ -37,9 +37,8 @@
                     <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="4">500</TextBox>
                 </Grid>
             </StackPanel>
-            <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="False">
-
-            </Button>
+            <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="True"/>
+            <Button x:Name="LoadButton" Grid.Row="4" Content="Load" Height="32" Width="96" IsEnabled="True"/>
             <StackPanel Grid.Row="2">
                 <Grid>
                     <Grid.ColumnDefinitions>

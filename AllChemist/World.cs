@@ -22,9 +22,6 @@ namespace AllChemist
 
         public event System.EventHandler<OnWorldChangeArgs> OnWorldChange; //Observer pattern
 
-
-        public static int steps=0;
-
         public void Step()
         {
             for(int i = 0; i<TableSize.X;i++)
@@ -37,9 +34,7 @@ namespace AllChemist
 
             CurrentTable = NextIterationTable;
             NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
-            OnWorldChange.Invoke(this, new OnWorldChangeArgs(this));
-            steps++;
-            System.Console.WriteLine(steps);
+            ApplyChanges();
         }
 
         public void Paint(Vector2Int pos, CellType c)
@@ -71,6 +66,7 @@ namespace AllChemist
         {
             CurrentTable = memento;
             NextIterationTable = new CellTable(this.TableSize, memento.DefaultCellType);
+            ApplyChanges();
         }
     }
 }

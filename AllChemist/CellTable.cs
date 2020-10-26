@@ -73,7 +73,7 @@ namespace AllChemist
             {
                 for (int j = 0; j < Size.Y; j++)
                 {
-                    PlaceCell(new Vector2Int(i, j), DefaultCellType);
+                    PlaceCell(new Vector2Int(i, j), ct.Cells[i,j].CellType);
                 }
             }
         }
