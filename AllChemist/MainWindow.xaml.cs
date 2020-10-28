@@ -40,7 +40,10 @@ namespace AllChemist
             Canvas.Width = windowSizeX;
             Canvas.Height = windowSizeY;
 
+            main.Children.Clear();
             main.Children.Add(Canvas);
+            Console.WriteLine(main.Children.Count);
+            
         }
 
         public void InitCanvasRects(World w)
@@ -67,6 +70,7 @@ namespace AllChemist
                     rectangles[i, j] = rect;
                 }
             }
+            
         }
 
         public void Draw(object sender, OnWorldChangeArgs args)
@@ -93,12 +97,13 @@ namespace AllChemist
     
     public class SimulationLoop
     {
+        public bool RunThread = true;
         public bool Simulate = false;
         public int MilisecondsDelay=250;
 
         public void LoopThread(World w)
         {
-            while(true)
+            while(RunThread)
             {
                 if (Simulate)
                 {
@@ -110,41 +115,34 @@ namespace AllChemist
                 Thread.Sleep(10);
             }
         }
-
-        public void LoopThread2(World w, int milisecondsDelay)
-        {
-            while (true)
-            {
-                if (Simulate)
-                {
-                    w?.Step();
-                    Thread.Sleep(milisecondsDelay); //There is no way to wait for Render Thread thus we have to step
-                }
-                Thread.Sleep(100);
-            }
-        }
     }
 
     /// <summary>
     /// Controler that handles toggling simulation loop
     /// </summary>
-    public class ModelSimulationController
+    public class ModelSimulationController : IDisposable
     {
         private SimulationLoop simulationLoop;
         private Button toggleButton;
         private TextBox delayTextBox;
 
-        public ModelSimulationController(Button originalButton, TextBox delayTextBox, World w)
+        public ModelSimulationController(Button originalButton, TextBox delayTextBox)
         {
             this.delayTextBox = delayTextBox; 
             toggleButton = originalButton;
             toggleButton.IsEnabled = true;
             toggleButton.Click += ToggleSimulation;
+
+            DisplayButton();
+        }
+
+        public void InitializeWorldSimulationThread(World w)
+        {
             simulationLoop = new SimulationLoop();
-            
 
             Thread simulationThread = new Thread(() => { simulationLoop.LoopThread(w); });
             simulationThread.IsBackground = true;
+            simulationThread.Name = "Simulation";
             simulationThread.Start();
         }
 
@@ -152,10 +150,37 @@ namespace AllChemist
         {
             simulationLoop.Simulate = !simulationLoop.Simulate;
 
-            toggleButton.Content = simulationLoop.Simulate ? "Stop" : "Run";
-            delayTextBox.IsEnabled = !simulationLoop.Simulate;
+            DisplayButton();
 
             simulationLoop.MilisecondsDelay = Int32.Parse(delayTextBox.Text); 
+        }
+
+        /// <summary>
+        /// Modifies button content to look correctly 
+        /// </summary>
+        public void DisplayButton()
+        {
+            if(simulationLoop!=null)
+            {
+                toggleButton.Content = simulationLoop.Simulate ? "Stop" : "Run";
+                delayTextBox.IsEnabled = !simulationLoop.Simulate;
+            }
+            
+        }
+
+        public void Dispose()
+        {            
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                simulationLoop.RunThread = false;
+            }
+            
         }
     }
 
@@ -229,9 +254,13 @@ namespace AllChemist
 
         public SnapshotController(Button saveButton, Button loadButton, World w)
         {
-            world = w;
             saveButton.Click += SaveWorld;
             loadButton.Click += LoadWorld;
+        }
+
+        public void SetSource(World w)
+        {
+            world = w;
         }
 
         private void SaveWorld(object sender, RoutedEventArgs e)
@@ -249,21 +278,43 @@ namespace AllChemist
                 world.RestoreSnapshot(snapshot);
         }
     }
+
+    public class WorldSizeController
+    {
+        private TextBox textBoxX;
+        private TextBox textBoxY;
+
+        public WorldSizeController(TextBox x, TextBox y)
+        {
+            textBoxX = x;
+            textBoxY = y;
+        }
+
+        public Vector2Int GetWorldSize()
+        {
+            return new Vector2Int(Math.Max(int.Parse(textBoxX.Text), 1), Math.Max(int.Parse(textBoxX.Text), 1));
+        }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+        World model;
+        WorldViewCanvas worldView;
+
         private ModelSimulationController modelSimulationController;
         private CellPainterController cellPainterController;
         private SnapshotController snapshotController;
+        private WorldSizeController worldSizeController;
 
-        public MainWindow()
+        public void InitializeWorld()
         {
-            InitializeComponent();
-            this.Title = "AllChemist " + App.Version + "v";
-
-
+            Console.WriteLine("Initializing a new world...");
+ 
+            
             //Initializing Cell Types and World
             /*
             CellType typeA = new CellType("Red",255,0,0);
@@ -292,26 +343,55 @@ namespace AllChemist
             aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 2));
             aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 3));
 
-            World w = new World(new Vector2Int(50, 50), ctb);
+            model = new World(worldSizeController.GetWorldSize(), ctb);
 
             //Initializing view
-            WorldViewCanvas wv = new WorldViewCanvas(WorldGrid, 600, 600);
-            wv.InitCanvasRects(w);
-            w.OnWorldChange += wv.Draw;
-            wv.Draw(this, new OnWorldChangeArgs(w));
+            worldView = new WorldViewCanvas(WorldGrid, 600, 600);
+            worldView.InitCanvasRects(model);
+            model.OnWorldChange += worldView.Draw;
+            worldView.Draw(this, new OnWorldChangeArgs(model));
 
             //Initializing Controllers
-            modelSimulationController = new ModelSimulationController(ToggleSimulationButton, DelayTextBox, w);
-            
-            cellPainterController = new CellPainterController(CellColorPicker, w);
-            wv.Canvas.MouseLeftButtonDown += cellPainterController.StartPainting;
-            wv.Canvas.MouseLeftButtonUp += cellPainterController.StopPainting;
-            wv.Canvas.MouseLeave += cellPainterController.StopPainting;
+            modelSimulationController.InitializeWorldSimulationThread(model);
 
-            snapshotController = new SnapshotController(SaveButton, LoadButton, w);
+            cellPainterController = new CellPainterController(CellColorPicker, model);
+            worldView.Canvas.MouseLeftButtonDown += cellPainterController.StartPainting;
+            worldView.Canvas.MouseLeftButtonUp += cellPainterController.StopPainting;
+            worldView.Canvas.MouseLeave += cellPainterController.StopPainting;
 
-
+            snapshotController.SetSource(model);
         }
+
+        public void CleanUpWorld()
+        {
+            Console.WriteLine("Cleaning world...");
+            CellType.ResetCounter();
+            modelSimulationController?.Dispose();
+
+            model.OnWorldChange -= worldView.Draw;
+            worldView.Canvas.MouseLeftButtonDown -= cellPainterController.StartPainting;
+            worldView.Canvas.MouseLeftButtonUp -= cellPainterController.StopPainting;
+            worldView.Canvas.MouseLeave -= cellPainterController.StopPainting;
+
+            GC.Collect();
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            this.Title = "AllChemist " + App.Version + "v";
+
+            modelSimulationController = new ModelSimulationController(ToggleSimulationButton, DelayTextBox);
+
+            snapshotController = new SnapshotController(SaveButton, LoadButton, model);
+
+            worldSizeController = new WorldSizeController(SizeXTextBox, SizeYTextBox);
+            NewGridButton.Click += (s,e) => { CleanUpWorld(); InitializeWorld(); };
+
+            InitializeWorld();
+        }
+
+
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {

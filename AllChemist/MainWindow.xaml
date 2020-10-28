@@ -11,7 +11,7 @@
     <Grid x:Name="MainGrid" Background="LightGray">
         <Grid x:Name="WorldGrid" Height="600" Width="600" Margin="0,0,150,0">
         </Grid>
-        <Grid x:Name="GUIGrid" Height="600" Width="128" HorizontalAlignment="Right" Margin="0,9,15,15">
+        <Grid x:Name="GUIGrid" Height="540" Width="128" HorizontalAlignment="Right" Margin="0,9,15,15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="128"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -22,8 +22,10 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <Button x:Name="ToggleSimulationButton" Grid.Row="0" Content="Run" Height="32" Width="96" IsEnabled="False">
 
             </Button>
@@ -49,7 +51,23 @@
                     <xctk:ColorPicker x:Name="CellColorPicker" Grid.Column="1"></xctk:ColorPicker>
                 </Grid>
             </StackPanel>
-            
+            <StackPanel Grid.Row="6">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Margin="5">Size X:</Label>
+                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">50</TextBox>
+                    <Label Margin="5" Grid.Row="1">Size Y:</Label>
+                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">50</TextBox>
+                </Grid>
+            </StackPanel>
+            <Button x:Name="NewGridButton" Grid.Row="7" Content="New Grid"></Button>
         </Grid>
     </Grid>
 </Window>

@@ -19,6 +19,11 @@ namespace AllChemist
         public readonly Color color;
         static private int idCounter=0;
 
+        public static void ResetCounter()
+        {
+            idCounter = 0;
+        }
+
         [JsonProperty]
         public CellBehaviour CellBehaviour { get; private set; }
 

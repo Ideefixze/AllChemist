@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -49,6 +50,7 @@ namespace AllChemist
 
         public World(Vector2Int tableSize, CellTypeBank ctb)
         {
+            this.OnWorldChange = null;
             this.CellTypeBank = ctb;
             this.TableSize = tableSize;
             CurrentTable = new CellTable(this.TableSize, CellTypeBank.GetDefaultCellType());
