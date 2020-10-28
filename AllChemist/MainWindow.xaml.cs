@@ -42,7 +42,6 @@ namespace AllChemist
 
             main.Children.Clear();
             main.Children.Add(Canvas);
-            Console.WriteLine(main.Children.Count);
             
         }
 
@@ -139,11 +138,13 @@ namespace AllChemist
         public void InitializeWorldSimulationThread(World w)
         {
             simulationLoop = new SimulationLoop();
-
+            
             Thread simulationThread = new Thread(() => { simulationLoop.LoopThread(w); });
             simulationThread.IsBackground = true;
             simulationThread.Name = "Simulation";
             simulationThread.Start();
+
+            DisplayButton();
         }
 
         public void ToggleSimulation(object sender, RoutedEventArgs args)
@@ -252,7 +253,7 @@ namespace AllChemist
         private World world;
         private CellTable snapshot;
 
-        public SnapshotController(Button saveButton, Button loadButton, World w)
+        public SnapshotController(Button saveButton, Button loadButton)
         {
             saveButton.Click += SaveWorld;
             loadButton.Click += LoadWorld;
@@ -261,6 +262,7 @@ namespace AllChemist
         public void SetSource(World w)
         {
             world = w;
+            snapshot = null; 
         }
 
         private void SaveWorld(object sender, RoutedEventArgs e)
@@ -383,7 +385,7 @@ namespace AllChemist
 
             modelSimulationController = new ModelSimulationController(ToggleSimulationButton, DelayTextBox);
 
-            snapshotController = new SnapshotController(SaveButton, LoadButton, model);
+            snapshotController = new SnapshotController(SaveButton, LoadButton);
 
             worldSizeController = new WorldSizeController(SizeXTextBox, SizeYTextBox);
             NewGridButton.Click += (s,e) => { CleanUpWorld(); InitializeWorld(); };
