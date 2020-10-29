@@ -27,7 +27,8 @@ namespace AllChemist
         {
             return JsonConvert.SerializeObject(CellTypes, new JsonSerializerSettings()
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto,
+                Formatting = Formatting.Indented
             });
         }
 
@@ -35,9 +36,15 @@ namespace AllChemist
         {
             CellTypes = (Dictionary<int, CellType>)JsonConvert.DeserializeObject(json,typeof(Dictionary<int,CellType>), new JsonSerializerSettings()
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto,
+                Formatting = Formatting.Indented
+                
             });
-            
+            Console.WriteLine("Loaded Cell Types:");
+            foreach(var v in CellTypes)
+            {
+                Console.WriteLine(v.Value);
+            }
             return CellTypes != null;
 
         }

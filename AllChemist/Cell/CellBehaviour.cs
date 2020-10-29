@@ -20,5 +20,15 @@ namespace AllChemist
         {
             Rules = new List<IRule>();
         }
+
+        public override string ToString()
+        {
+            string s = "";
+            foreach(IRule rule in Rules)
+            {
+                s += rule.ToString() + "\n";
+            }
+            return s;
+        }
     }
 }

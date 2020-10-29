@@ -15,6 +15,7 @@ namespace AllChemist
     {
         [JsonProperty]
         private int neighbourId;
+        [JsonProperty]
         private int neighbourCount;
         public NeighbourChangeTo(int id, int n)
         {
@@ -32,6 +33,11 @@ namespace AllChemist
                 }
             }
             return true;
+        }
+
+        public override string ToString()
+        {
+            return $"NeighbourChangeTo {neighbourId} if count {neighbourCount}";
         }
     }
 }

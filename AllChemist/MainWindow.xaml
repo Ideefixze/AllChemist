@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Margin="5">Delay:</Label>
-                    <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="4">500</TextBox>
+                    <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="4">200</TextBox>
                 </Grid>
             </StackPanel>
             <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="True"/>
@@ -51,6 +51,9 @@
                     <xctk:ColorPicker x:Name="CellColorPicker" Grid.Column="1"></xctk:ColorPicker>
                 </Grid>
             </StackPanel>
+            <DockPanel Grid.Row="5">
+                <Button Name="RulesetLoadButton" Height="32" Width="96" Content="Load Ruleset"></Button>
+            </DockPanel>
             <StackPanel Grid.Row="6">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -62,12 +65,12 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="5">Size X:</Label>
-                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">50</TextBox>
+                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">25</TextBox>
                     <Label Margin="5" Grid.Row="1">Size Y:</Label>
-                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">50</TextBox>
+                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" PreviewTextInput="NumberValidationTextBox" MaxLength="2">25</TextBox>
                 </Grid>
             </StackPanel>
-            <Button x:Name="NewGridButton" Grid.Row="7" Content="New Grid"></Button>
+            <Button x:Name="NewGridButton" Grid.Row="7" Height="32" Width="96" Content="New Grid"></Button>
         </Grid>
     </Grid>
 </Window>

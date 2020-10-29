@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -74,21 +74,10 @@ namespace AllChemist
         {
             return cta.id != ctb.id;
         }
-    }
-    /// <summary>
-    /// Base Cell class for all cells. Uses Prototype Design Pattern and Strategy for rules.
-    /// </summary>
-    abstract public class Cell 
-    {
 
-        public Vector2Int Position { get; set; }
-        
-        public Cell(Vector2Int startingPosition = new Vector2Int())
+        public override string ToString()
         {
-            Position = startingPosition;
+            return this.id + " " + this.name + " " + this.color + "\n" + CellBehaviour.ToString();
         }
-
-        public abstract void ExecuteRules(World world); //Execute some kind of rule of this cell for a world
-        public abstract Cell Clone();
     }
 }

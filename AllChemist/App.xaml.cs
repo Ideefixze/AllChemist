@@ -13,12 +13,13 @@ namespace AllChemist
     /// </summary>
     public partial class App : Application
     {
-        public static readonly string Version = "0.0.1";
+        public static readonly string Version = "0.0.2";
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             //TODO: Something for better logging etc.
             System.Console.WriteLine($"Starting AllChemist {Version}");
+            
         }
     }
 }

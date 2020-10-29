@@ -24,5 +24,10 @@ namespace AllChemist
             world.NextIterationTable.Cells[cell.Position.X, cell.Position.Y] = new ExistingCell(world.CellTypeBank.CellTypes[cellToSwapId], cell.Position);
             return true;
         }
+
+        public override string ToString()
+        {
+            return "SwapToRule " + cellToSwapId.ToString();
+        }
     }
 }
