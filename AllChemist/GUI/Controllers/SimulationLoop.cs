@@ -31,16 +31,17 @@ public class SimulationLoop
 
         public void LoopThread(World w)
         {
+            bool DispatcherSync = true;
             while(RunThread)
             {
-                if (Simulate)
+                if (Simulate && DispatcherSync)
                 {
                     w?.Step();
-                    Simulate = false;
-                    Application.Current.Dispatcher.Invoke(() => { Simulate = true; });
+                    DispatcherSync = false;
+                    Application.Current.Dispatcher.Invoke(() => { DispatcherSync = true; });
                     Thread.Sleep(MilisecondsDelay);
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(5);
             }
         }
     }

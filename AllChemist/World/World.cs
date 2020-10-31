@@ -82,6 +82,13 @@ namespace AllChemist
         {
             CurrentTable = memento;
             NextIterationTable = new CellTable(this.TableSize, memento.DefaultCellType);
+            for (int i = 0; i < TableSize.X; i++)
+            {
+                for (int j = 0; j < TableSize.Y; j++)
+                {
+                    Delta.Add(new Vector2Int(i, j));
+                }
+            }
             ApplyChanges();
         }
     }
