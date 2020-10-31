@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -7,11 +8,12 @@ using System.Text;
 
 namespace AllChemist
 {
-    public class OnWorldChangeArgs
+    public class DrawWorldArgs
     {
-        public World World { get; set; }
+        public CellTable CellTable;
+        public HashSet<Vector2Int> Delta;
 
-        public OnWorldChangeArgs(World w) { World = w; }
+        public DrawWorldArgs(World world) { CellTable = new CellTable(world.CurrentTable); Delta = new HashSet<Vector2Int>(world.Delta); }
     }
     public class World
     {
@@ -21,10 +23,13 @@ namespace AllChemist
 
         public CellTypeBank CellTypeBank { get; set; }
 
-        public event System.EventHandler<OnWorldChangeArgs> OnWorldChange; //Observer pattern
+        public HashSet<Vector2Int> Delta { get; private set; }
+
+        public event System.EventHandler<DrawWorldArgs> OnWorldChange; //Observer pattern
 
         public void Step()
         {
+            
             for(int i = 0; i<TableSize.X;i++)
             {
                 for(int j = 0; j<TableSize.Y;j++)
@@ -41,11 +46,19 @@ namespace AllChemist
         public void Paint(Vector2Int pos, CellType c)
         {
             CurrentTable.PlaceCell(pos, c);
+            Delta.Add(pos);
+        }
+
+        public void PaintNextStep(Vector2Int pos, CellType c)
+        {
+            NextIterationTable.PlaceCell(pos, c);
+            Delta.Add(pos);
         }
 
         public void ApplyChanges()
         {
-            OnWorldChange.Invoke(this, new OnWorldChangeArgs(this));
+            OnWorldChange.Invoke(this, new DrawWorldArgs(this));
+            Delta.Clear();
         }
 
         public World(Vector2Int tableSize, CellTypeBank ctb)
@@ -55,6 +68,7 @@ namespace AllChemist
             this.TableSize = tableSize;
             CurrentTable = new CellTable(this.TableSize, CellTypeBank.GetDefaultCellType());
             NextIterationTable = new CellTable(CurrentTable);
+            Delta = new HashSet<Vector2Int>();
         }
 
         //Memento Design Pattern

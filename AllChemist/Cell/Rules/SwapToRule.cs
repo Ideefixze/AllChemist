@@ -21,7 +21,7 @@ namespace AllChemist
         }
         public bool ExecuteRule(World world, Cell cell)
         {
-            world.NextIterationTable.Cells[cell.Position.X, cell.Position.Y] = new ExistingCell(world.CellTypeBank.CellTypes[cellToSwapId], cell.Position);
+            world.PaintNextStep(cell.Position, world.CellTypeBank.CellTypes[cellToSwapId]);
             return true;
         }
 

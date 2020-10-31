@@ -79,7 +79,7 @@ namespace AllChemist
             worldView = new WorldViewCanvas(WorldGrid, 600, 600);
             worldView.InitCanvasRects(model);
             model.OnWorldChange += worldView.Draw;
-            worldView.Draw(this, new OnWorldChangeArgs(model));
+            worldView.Draw(this, new DrawWorldArgs(model));
 
             //Initializing Controllers
             modelSimulationController.InitializeWorldSimulationThread(model);
@@ -103,7 +103,7 @@ namespace AllChemist
             worldView.Canvas.MouseLeftButtonUp -= cellPainterController.StopPainting;
             worldView.Canvas.MouseLeave -= cellPainterController.StopPainting;
 
-            GC.Collect();
+            //GC.Collect();
         }
 
         public MainWindow()

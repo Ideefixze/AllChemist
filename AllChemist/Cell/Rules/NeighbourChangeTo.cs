@@ -29,7 +29,7 @@ namespace AllChemist
             {
                 if(neighbours[neighbourId]==neighbourCount)
                 {
-                    world.NextIterationTable.PlaceCell(cell.Position, world.CellTypeBank.CellTypes[neighbourId]);
+                    world.PaintNextStep(cell.Position, world.CellTypeBank.CellTypes[neighbourId]);
                 }
             }
             return true;

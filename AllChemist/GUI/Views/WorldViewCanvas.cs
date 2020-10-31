@@ -72,9 +72,10 @@ public class WorldViewCanvas
             
         }
 
-        public void Draw(object sender, OnWorldChangeArgs args)
+        public void Draw(object sender, DrawWorldArgs args)
         {
-            Canvas.Dispatcher.Invoke(() => { 
+            Canvas.Dispatcher.Invoke(() => {
+                /*
                 for (int i = 0; i < args.World.CurrentTable.Size.X; i++)
                 {
                     for (int j = 0; j < args.World.CurrentTable.Size.Y; j++)
@@ -88,6 +89,16 @@ public class WorldViewCanvas
                     }
                 
                 }
+                */
+                foreach(Vector2Int pos in args.Delta)
+                {
+                    //SolidColorBrush solidColorBrush = new SolidColorBrush();
+                    //solidColorBrush.Color = args.World.CurrentTable.Cells[pos.X, pos.Y].CellType.color;
+                    ((SolidColorBrush)rectangles[pos.X, pos.Y].Fill).Color = args.CellTable.Cells[pos.X, pos.Y].CellType.color;
+
+                    rectangles[pos.X, pos.Y].ToolTip = $"{args.CellTable.Cells[pos.X, pos.Y].CellType.name} ({args.CellTable.Cells[pos.X, pos.Y].CellType.id})\nAt position ({pos.Y},{args.CellTable.Size.X - pos.X - 1})";
+                }
+                
             });
         }
     }

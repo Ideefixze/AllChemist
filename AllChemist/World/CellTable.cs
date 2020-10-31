@@ -29,12 +29,6 @@ namespace AllChemist
                     }
                 }
             }
-            /*
-            Console.WriteLine("In position " + position + " there are neighbours: ");
-            foreach(KeyValuePair<int,int> pair in neighbours)
-            {
-                Console.WriteLine(pair);
-            }*/
             return neighbours;
             
         }

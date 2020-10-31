@@ -12,7 +12,7 @@ namespace AllChemist
     {
         public bool ExecuteRule(World world, Cell cell)
         {
-            world.NextIterationTable.Cells[cell.Position.X, cell.Position.Y] = new ExistingCell(world.CurrentTable.Cells[cell.Position.X, cell.Position.Y]);
+            world.PaintNextStep(cell.Position, world.CurrentTable.Cells[cell.Position.X, cell.Position.Y].CellType);
             return true;
         }
     }
