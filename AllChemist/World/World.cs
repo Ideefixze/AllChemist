@@ -29,18 +29,20 @@ namespace AllChemist
 
         public void Step()
         {
-            
-            for(int i = 0; i<TableSize.X;i++)
+            lock (this)
             {
-                for(int j = 0; j<TableSize.Y;j++)
+                for (int i = 0; i < TableSize.X; i++)
                 {
-                    CurrentTable.Cells[i, j].ExecuteRules(this);
+                    for (int j = 0; j < TableSize.Y; j++)
+                    {
+                        CurrentTable.Cells[i, j].ExecuteRules(this);
+                    }
                 }
-            }
 
-            CurrentTable = NextIterationTable;
-            NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
-            ApplyChanges();
+                CurrentTable = NextIterationTable;
+                NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
+                ApplyChanges();
+            }
         }
 
         public void Paint(Vector2Int pos, CellType c)
@@ -57,7 +59,7 @@ namespace AllChemist
 
         public void ApplyChanges()
         {
-            OnWorldChange.Invoke(this, new DrawWorldArgs(this));
+            OnWorldChange?.Invoke(this, new DrawWorldArgs(this));
             Delta.Clear();
         }
 

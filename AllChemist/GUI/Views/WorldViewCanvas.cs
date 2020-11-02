@@ -47,6 +47,7 @@ public class WorldViewCanvas
 
         public void InitCanvasRects(World w)
         {
+            bool drawGrid = (w.TableSize.X * w.TableSize.Y) < 1000;
             rectangles = new Rectangle[w.CurrentTable.Size.X, w.CurrentTable.Size.Y];
             for (int i = 0; i < w.CurrentTable.Size.X; i++)
             {
@@ -59,7 +60,10 @@ public class WorldViewCanvas
                     SolidColorBrush solidColorBrush = new SolidColorBrush();
                     solidColorBrush.Color = w.CurrentTable.Cells[i, j].CellType.color;
                     rect.Fill = solidColorBrush;
-                    rect.Stroke = Brushes.Black;
+                    
+                    if(drawGrid)
+                        rect.Stroke = Brushes.Black;
+                    
                     rect.ToolTip = $"{w.CurrentTable.Cells[i, j].CellType.name} ({w.CurrentTable.Cells[i, j].CellType.id})\nAt position ({j},{w.CurrentTable.Size.X - i - 1})";
                     Canvas.Children.Add(rect);
 
@@ -90,6 +94,7 @@ public class WorldViewCanvas
                 
                 }
                 */
+                
                 foreach(Vector2Int pos in args.Delta)
                 {
                     //SolidColorBrush solidColorBrush = new SolidColorBrush();

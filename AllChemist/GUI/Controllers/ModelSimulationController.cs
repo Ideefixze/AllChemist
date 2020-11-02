@@ -32,9 +32,11 @@ namespace AllChemist
         private Button toggleButton;
         private TextBox delayTextBox;
 
+        public bool IsCurrentlySimulated { get => simulationLoop.Simulate; }
         public ModelSimulationController(Button originalButton, TextBox delayTextBox)
         {
-            this.delayTextBox = delayTextBox; 
+            this.delayTextBox = delayTextBox;
+            this.delayTextBox.PreviewTextInput += TextValidator.NumberValidationTextBox;
             toggleButton = originalButton;
             toggleButton.IsEnabled = true;
             toggleButton.Click += ToggleSimulation;

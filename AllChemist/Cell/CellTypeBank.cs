@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using AllChemist.GUI.Controllers;
 using Newtonsoft.Json;
 namespace AllChemist
 {
-    public class CellTypeBank
+    public class CellTypeBank : ISerializable<CellTypeBank>
     {
         /// <summary>
         /// All available CellTypes in this CellTypeBank.
@@ -23,7 +24,7 @@ namespace AllChemist
             return CellTypes[0];
         }
 
-        public string SaveToJson()
+        public string Serialize()
         {
             return JsonConvert.SerializeObject(CellTypes, new JsonSerializerSettings()
             {
@@ -32,7 +33,7 @@ namespace AllChemist
             });
         }
 
-        public bool LoadFromJson(string json)
+        public CellTypeBank Deserialize(string json)
         {
             CellTypes = (Dictionary<int, CellType>)JsonConvert.DeserializeObject(json,typeof(Dictionary<int,CellType>), new JsonSerializerSettings()
             {
@@ -45,8 +46,7 @@ namespace AllChemist
             {
                 Console.WriteLine(v.Value);
             }
-            return CellTypes != null;
-
+            return this;
         }
 
         public override bool Equals(object obj)
@@ -59,7 +59,7 @@ namespace AllChemist
             else
             {
                 CellTypeBank ctb = (CellTypeBank)obj;
-                return SaveToJson() == ctb.SaveToJson();
+                return Serialize() == ctb.Serialize();
             }
         }
 

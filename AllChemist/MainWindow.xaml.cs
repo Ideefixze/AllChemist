@@ -33,46 +33,28 @@ namespace AllChemist
         WorldViewCanvas worldView;
 
         private ModelSimulationController modelSimulationController;
-        private CellPainterController cellPainterController;
+        private WorldPainterController cellPainterController;
         private SnapshotController snapshotController;
         private WorldSizeController worldSizeController;
-        private CellTypeBankJSONDataLoadController cellTypeBankController;
+        private JSONFileDeserializer<CellTypeBank> cellTypeBankFileLoader;
 
         public void InitializeWorld()
         {
-            Console.WriteLine("Initializing a new world...");
 
-
-            //Initializing Cell Types and World
-            /*
-            CellType typeA = new CellType("Red",255,0,0);
-            CellType typeB = new CellType("Green",0,255,0);
-
-            typeA.CellBehaviour.Rules.Add(new SwapToRule(1));
-            typeB.CellBehaviour.Rules.Add(new SwapToRule(0));
-
-            CellTypeBank ctb = new CellTypeBank();
-            ctb.CellTypes.Add(typeA.id, typeA);
-            ctb.CellTypes.Add(typeB.id, typeB);
-
-            ctb.LoadFromJson(ctb.SaveToJson());
-            */
             //Game of Life
             /*CellType deadType = new CellType("Dead", 255, 255, 255);
             CellType aliveType = new CellType("Alive", 0, 0, 0);
-
             CellTypeBank ctb = new CellTypeBank();
             ctb.CellTypes.Add(deadType.id, deadType);
             ctb.CellTypes.Add(aliveType.id, aliveType);
-
             deadType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 3));
-
             aliveType.CellBehaviour.Rules.Add(new SwapToRule(0));
             aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 2));
             aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 3));
-            ctb.LoadFromJson(ctb.SaveToJson());
-            Console.WriteLine(ctb.SaveToJson());*/
-            CellTypeBank ctb = cellTypeBankController.GetData();
+            */
+            Console.WriteLine("Initializing a new world...");
+
+            CellTypeBank ctb = cellTypeBankFileLoader.GetData();
             model = new World(worldSizeController.GetWorldSize(), ctb);
 
             //Initializing view
@@ -84,7 +66,8 @@ namespace AllChemist
             //Initializing Controllers
             modelSimulationController.InitializeWorldSimulationThread(model);
 
-            cellPainterController = new CellPainterController(CellColorPicker, model);
+            cellPainterController = new WorldPainterController(CellColorPicker, model);
+
             worldView.Canvas.MouseLeftButtonDown += cellPainterController.StartPainting;
             worldView.Canvas.MouseLeftButtonUp += cellPainterController.StopPainting;
             worldView.Canvas.MouseLeave += cellPainterController.StopPainting;
@@ -94,7 +77,7 @@ namespace AllChemist
 
         public void CleanUpWorld()
         {
-            Console.WriteLine("Cleaning world...");
+            Console.WriteLine("Cleaning up the world...");
             CellType.ResetCounter();
             modelSimulationController?.Dispose();
 
@@ -103,7 +86,7 @@ namespace AllChemist
             worldView.Canvas.MouseLeftButtonUp -= cellPainterController.StopPainting;
             worldView.Canvas.MouseLeave -= cellPainterController.StopPainting;
 
-            //GC.Collect();
+            GC.Collect();
         }
 
         public MainWindow()
@@ -118,20 +101,14 @@ namespace AllChemist
             worldSizeController = new WorldSizeController(SizeXTextBox, SizeYTextBox);
             NewGridButton.Click += (s,e) => { CleanUpWorld(); InitializeWorld(); };
 
-            cellTypeBankController = new CellTypeBankJSONDataLoadController("default.json");
-            cellTypeBankController.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
-            RulesetLoadButton.Click += (s,e) => { cellTypeBankController.ShowOpenFileDialog(); };
+            cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
+            cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
+            RulesetLoadButton.Click += (s,e) => { cellTypeBankFileLoader.ShowOpenFileDialog(); };
 
             InitializeWorld();
         }
 
 
-
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
 
     }
 

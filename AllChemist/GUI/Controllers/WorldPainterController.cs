@@ -23,13 +23,13 @@ using Xceed.Wpf.Toolkit;
 
 namespace AllChemist
 {
-public class CellPainterController
+    public class WorldPainterController
     {
         private World world;
         private ColorPicker colorPicker;
         private Thread paintingThread;
         private bool isPainting;
-        public CellPainterController(ColorPicker cp, World w)
+        public WorldPainterController(ColorPicker cp, World w)
         {
             world = w;
             colorPicker = cp;
@@ -61,21 +61,23 @@ public class CellPainterController
         public void StopPainting(object sender, RoutedEventArgs args)
         {
             isPainting = false;
-            
         }
 
         public void PaintWorld(Canvas canvas)
         {
-            while(isPainting)
+            while (isPainting)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                lock (world)
                 {
-                    Point mousePoint = Mouse.GetPosition(canvas);
-                    Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)canvas.Width / world.TableSize.X), (int)mousePoint.Y / ((int)canvas.Height / world.TableSize.Y));
-                    this.PaintWorld(worldPos);
-                    world.ApplyChanges();
-                });
-                Thread.Sleep(20);
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Point mousePoint = Mouse.GetPosition(canvas);
+                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)canvas.Width / world.TableSize.X), (int)mousePoint.Y / ((int)canvas.Height / world.TableSize.Y));
+                        this.PaintWorld(worldPos);
+                        world.ApplyChanges();
+                    });
+                    Thread.Sleep(20);
+                }
             }
             
         }
