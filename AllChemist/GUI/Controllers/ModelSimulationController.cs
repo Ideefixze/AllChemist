@@ -40,8 +40,6 @@ namespace AllChemist
             toggleButton = originalButton;
             toggleButton.IsEnabled = true;
             toggleButton.Click += ToggleSimulation;
-
-            DisplayButton();
         }
 
         public void InitializeWorldSimulationThread(World w)
@@ -52,30 +50,12 @@ namespace AllChemist
             simulationThread.IsBackground = true;
             simulationThread.Name = "Simulation";
             simulationThread.Start();
-
-            DisplayButton();
         }
 
         public void ToggleSimulation(object sender, RoutedEventArgs args)
         {
             simulationLoop.Simulate = !simulationLoop.Simulate;
-
-            DisplayButton();
-
             simulationLoop.MilisecondsDelay = Int32.Parse(delayTextBox.Text); 
-        }
-
-        /// <summary>
-        /// Modifies button content to look correctly 
-        /// </summary>
-        public void DisplayButton()
-        {
-            if(simulationLoop!=null)
-            {
-                toggleButton.Content = simulationLoop.Simulate ? "Stop" : "Run";
-                delayTextBox.IsEnabled = !simulationLoop.Simulate;
-            }
-            
         }
 
         public void Dispose()

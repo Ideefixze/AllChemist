@@ -9,9 +9,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
     <Grid x:Name="MainGrid" Background="LightGray">
-        <Grid x:Name="WorldGrid" Height="600" Width="600" Margin="0,0,150,0">
+        <Grid x:Name="WorldGrid" Height="600" Width="600" Margin="0,0,150,0" x:FieldModifier="public">
         </Grid>
-        <Grid x:Name="GUIGrid" Height="540" Width="128" HorizontalAlignment="Right" Margin="0,9,15,15">
+        <Grid x:Name="GUIGrid" Height="540" Width="128" HorizontalAlignment="Right" Margin="0,9,15,15" x:FieldModifier="public">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="128"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button x:Name="ToggleSimulationButton" Grid.Row="0" Content="Run" Height="32" Width="96" IsEnabled="False">
+            <Button x:Name="ToggleSimulationButton" Grid.Row="0" Content="Run" Height="32" Width="96" IsEnabled="False" x:FieldModifier="public">
 
             </Button>
             <StackPanel Grid.Row="1">
@@ -39,8 +39,8 @@
                     <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" MaxLength="4">200</TextBox>
                 </Grid>
             </StackPanel>
-            <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="True"/>
-            <Button x:Name="LoadButton" Grid.Row="4" Content="Load" Height="32" Width="96" IsEnabled="True"/>
+            <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="True" x:FieldModifier="public"/>
+            <Button x:Name="LoadButton" Grid.Row="4" Content="Load" Height="32" Width="96" IsEnabled="True" x:FieldModifier="public"/>
             <StackPanel Grid.Row="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -48,11 +48,11 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Margin="5">Cell Paint:</Label>
-                    <xctk:ColorPicker x:Name="CellColorPicker" Grid.Column="1"></xctk:ColorPicker>
+                    <xctk:ColorPicker x:Name="CellColorPicker" Grid.Column="1" x:FieldModifier="public"></xctk:ColorPicker>
                 </Grid>
             </StackPanel>
             <DockPanel Grid.Row="5">
-                <Button Name="RulesetLoadButton" Height="32" Width="96" Content="Load Ruleset"></Button>
+                <Button Name="RulesetLoadButton" Height="32" Width="96" Content="Load Ruleset" x:FieldModifier="public"></Button>
             </DockPanel>
             <StackPanel Grid.Row="6">
                 <Grid>
@@ -65,12 +65,12 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="5">Size X:</Label>
-                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" MaxLength="3">25</TextBox>
+                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" MaxLength="3" x:FieldModifier="public">25</TextBox>
                     <Label Margin="5" Grid.Row="1">Size Y:</Label>
-                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" MaxLength="3">25</TextBox>
+                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" MaxLength="3" x:FieldModifier="public">25</TextBox>
                 </Grid>
             </StackPanel>
-            <Button x:Name="NewGridButton" Grid.Row="7" Height="32" Width="96" Content="New Grid"></Button>
+            <Button x:Name="NewGridButton" Grid.Row="7" Height="32" Width="96" Content="New Grid" x:FieldModifier="public"></Button>
         </Grid>
     </Grid>
 </Window>

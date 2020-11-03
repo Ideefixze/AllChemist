@@ -45,16 +45,17 @@ namespace AllChemist
             }
         }
 
+        //TODO: make one paint method and ENUM to controll what to paint
         public void Paint(Vector2Int pos, CellType c)
         {
-            CurrentTable.PlaceCell(pos, c);
-            Delta.Add(pos);
+            if(CurrentTable.PlaceCell(pos, c))
+                Delta.Add(pos);
         }
 
         public void PaintNextStep(Vector2Int pos, CellType c)
         {
-            NextIterationTable.PlaceCell(pos, c);
-            Delta.Add(pos);
+            if(NextIterationTable.PlaceCell(pos, c))
+                Delta.Add(pos);
         }
 
         public void ApplyChanges()
@@ -82,16 +83,21 @@ namespace AllChemist
 
         public void RestoreSnapshot(CellTable memento)
         {
-            CurrentTable = memento;
-            NextIterationTable = new CellTable(this.TableSize, memento.DefaultCellType);
-            for (int i = 0; i < TableSize.X; i++)
+            lock(this)
             {
-                for (int j = 0; j < TableSize.Y; j++)
+                Delta.Clear();
+                CurrentTable = memento;
+                NextIterationTable = new CellTable(this.TableSize, memento.DefaultCellType);
+                for (int i = 0; i < TableSize.X; i++)
                 {
-                    Delta.Add(new Vector2Int(i, j));
+                    for (int j = 0; j < TableSize.Y; j++)
+                    {
+                        Delta.Add(new Vector2Int(i, j));
+                    }
                 }
+                ApplyChanges();
             }
-            ApplyChanges();
+
         }
     }
 }

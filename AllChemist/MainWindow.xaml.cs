@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using Xceed.Wpf;
 using Xceed.Wpf.Toolkit;
 using AllChemist.GUI.Controllers;
+using AllChemist.GUI.GUIStates;
 
 namespace AllChemist
 {
@@ -31,6 +32,8 @@ namespace AllChemist
     {
         World model;
         WorldViewCanvas worldView;
+
+        public GUIStateMachine GUIStateMachine;
 
         private ModelSimulationController modelSimulationController;
         private WorldPainterController cellPainterController;
@@ -73,6 +76,9 @@ namespace AllChemist
             worldView.Canvas.MouseLeave += cellPainterController.StopPainting;
 
             snapshotController.SetSource(model);
+
+
+            GUIStateMachine = new GUIStateMachine(this);
         }
 
         public void CleanUpWorld()
@@ -104,6 +110,8 @@ namespace AllChemist
             cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
             cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
             RulesetLoadButton.Click += (s,e) => { cellTypeBankFileLoader.ShowOpenFileDialog(); };
+
+            
 
             InitializeWorld();
         }

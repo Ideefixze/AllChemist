@@ -33,13 +33,15 @@ namespace AllChemist
             
         }
 
-        public void PlaceCell(Vector2Int position, CellType cellType)
+        public bool PlaceCell(Vector2Int position, CellType cellType)
         {
             if (position.X >= 0 && position.X < Size.X && position.Y >= 0 && position.Y < Size.Y)
             {
                 Cells[position.X, position.Y] = new ExistingCell(cellType);
                 Cells[position.X, position.Y].Position = position;
+                return true;
             }
+            return false;
         }
         public CellTable(Vector2Int size, CellType cellType)
         {
