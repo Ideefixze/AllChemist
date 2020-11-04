@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AllChemist.Properties;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -20,6 +21,12 @@ namespace AllChemist
             //TODO: Something for better logging etc.
             System.Console.WriteLine($"Starting AllChemist {Version}");
             
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            Settings.Default.Save();
         }
     }
 }

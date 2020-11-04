@@ -31,15 +31,21 @@ namespace AllChemist.GUI.GUIStates
         public override void StateChanged()
         {
             mainWindow.ToggleSimulationButton.Content = "Run";
+
             mainWindow.ToggleSimulationButton.IsEnabled = true;
+            mainWindow.DelayTextBox.Text = Properties.Settings.Default.Delay;
+
             mainWindow.SaveButton.IsEnabled = true;
             mainWindow.LoadButton.IsEnabled = mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave");//(mainWindow.GUIStateMachine!=null?mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave"):false); //Quick fix, because IdleGUIState is always the first state
             mainWindow.RulesetLoadButton.IsEnabled = true;
             mainWindow.CellColorPicker.IsEnabled = true;
             mainWindow.NewGridButton.IsEnabled = true;
             mainWindow.DelayTextBox.IsEnabled = true;
+
             mainWindow.SizeXTextBox.IsEnabled = true;
+            mainWindow.SizeXTextBox.Text = Properties.Settings.Default.SizeX;
             mainWindow.SizeYTextBox.IsEnabled = true;
+            mainWindow.SizeYTextBox.Text = Properties.Settings.Default.SizeY;
 
             mainWindow.ToggleSimulationButton.Click += runSimulation;
             mainWindow.SaveButton.Click += save;

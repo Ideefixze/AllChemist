@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:AllChemist.Properties"
         xmlns:local="clr-namespace:AllChemist"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
@@ -36,7 +37,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Margin="5">Delay:</Label>
-                    <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" MaxLength="4">200</TextBox>
+                    <TextBox x:Name="DelayTextBox" Grid.Column="1" Margin="5" MaxLength="4" Text="{Binding Source={x:Static p:Settings.Default}, Path=Delay, Mode=TwoWay}"></TextBox>
                 </Grid>
             </StackPanel>
             <Button x:Name="SaveButton" Grid.Row="3" Content="Save" Height="32" Width="96" IsEnabled="True" x:FieldModifier="public"/>
@@ -65,9 +66,9 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Margin="5">Size X:</Label>
-                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" MaxLength="3" x:FieldModifier="public">25</TextBox>
+                    <TextBox x:Name="SizeXTextBox" Grid.Column="1" Grid.Row="0" Margin="5" MaxLength="3" x:FieldModifier="public" Text="{Binding Source={x:Static p:Settings.Default}, Path=SizeX, Mode=TwoWay}"></TextBox>
                     <Label Margin="5" Grid.Row="1">Size Y:</Label>
-                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" MaxLength="3" x:FieldModifier="public">25</TextBox>
+                    <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" MaxLength="3" x:FieldModifier="public" Text="{Binding Source={x:Static p:Settings.Default}, Path=SizeY, Mode=TwoWay}"></TextBox>
                 </Grid>
             </StackPanel>
             <Button x:Name="NewGridButton" Grid.Row="7" Height="32" Width="96" Content="New Grid" x:FieldModifier="public"></Button>

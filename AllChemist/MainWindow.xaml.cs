@@ -30,6 +30,8 @@ namespace AllChemist
         public void InitializeWorld()
         {
 
+
+
             //Game of Life
             /*CellType deadType = new CellType("Dead", 255, 255, 255);
             CellType aliveType = new CellType("Alive", 0, 0, 0);
@@ -64,9 +66,9 @@ namespace AllChemist
 
             snapshotController.SetSource(model);
 
-
             GUIStateMachine = new GUIStateMachine(this);
             GUIStateMachine.GUIState = new IdleGUIState(this);
+           
         }
 
         public void CleanUpWorld()
