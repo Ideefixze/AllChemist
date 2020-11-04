@@ -1,9 +1,11 @@
+using AllChemist.Cells.Rules;
+using AllChemist.Model;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace AllChemist
+namespace AllChemist.Cells
 {
     /// <summary>
     /// Existing Cell that is used to be filled in the World's grid.

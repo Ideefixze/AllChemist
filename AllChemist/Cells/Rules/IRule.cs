@@ -1,6 +1,7 @@
+using AllChemist.Model;
 using Newtonsoft.Json;
 
-namespace AllChemist
+namespace AllChemist.Cells.Rules
 {
     [JsonObject]
     public interface IRule

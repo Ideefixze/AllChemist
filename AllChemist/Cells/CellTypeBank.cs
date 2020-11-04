@@ -5,9 +5,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using AllChemist.GUI.Controllers;
 using Newtonsoft.Json;
-namespace AllChemist
+
+namespace AllChemist.Cells
 {
-    public class CellTypeBank : ISerializable<CellTypeBank>
+    public class CellTypeBank
     {
         /// <summary>
         /// All available CellTypes in this CellTypeBank.
@@ -24,6 +25,7 @@ namespace AllChemist
             return CellTypes[0];
         }
 
+        /*
         public string Serialize()
         {
             return JsonConvert.SerializeObject(CellTypes, new JsonSerializerSettings()
@@ -47,8 +49,9 @@ namespace AllChemist
                 Console.WriteLine(v.Value);
             }
             return this;
-        }
+        }*/
 
+        /*
         public override bool Equals(object obj)
         {
 
@@ -62,6 +65,7 @@ namespace AllChemist
                 return Serialize() == ctb.Serialize();
             }
         }
+        */
 
     }
 }

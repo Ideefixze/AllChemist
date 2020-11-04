@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AllChemist.GUI.Controllers
+namespace AllChemist.Serialization
 {
     /*
      * Returns some kind of data 

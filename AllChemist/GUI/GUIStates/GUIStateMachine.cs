@@ -13,7 +13,7 @@ namespace AllChemist.GUI.GUIStates
         {
             window.GUIStateMachine?.GUISharedState.RemoveAllFlags();
             GUISharedState = new GUISharedState();
-            GUIState = new IdleGUIState(window);
+            
         }
     }
 }

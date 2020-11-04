@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using AllChemist.Cells.Rules;
 using Newtonsoft.Json;
 
-namespace AllChemist
+namespace AllChemist.Cells
 {
     [JsonObject]
     public class CellBehaviour

@@ -4,9 +4,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Media;
+using AllChemist.Model;
 using Newtonsoft.Json;
 
-namespace AllChemist
+namespace AllChemist.Cells
 {
     /// <summary>
     /// Base Cell class for all cells. Uses Prototype Design Pattern and Strategy for rules.

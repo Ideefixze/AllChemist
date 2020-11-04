@@ -1,3 +1,4 @@
+using AllChemist.Cells;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +7,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 
-namespace AllChemist
+namespace AllChemist.Model
 {
+
+    public enum EPaintType
+    {
+        PAINT_CURRENT,
+        PAINT_NEXT
+    }
     public class DrawWorldArgs
     {
         public CellTable CellTable;
@@ -46,15 +53,20 @@ namespace AllChemist
         }
 
         //TODO: make one paint method and ENUM to controll what to paint
-        public void Paint(Vector2Int pos, CellType c)
+        public void Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
         {
-            if(CurrentTable.PlaceCell(pos, c))
-                Delta.Add(pos);
-        }
+            bool result = false;
+            switch(paintType)
+            {
+                case EPaintType.PAINT_NEXT:
+                    result = NextIterationTable.PlaceCell(pos, c);
+                    break;
+                case EPaintType.PAINT_CURRENT:
+                    result = CurrentTable.PlaceCell(pos, c);
+                    break;
+            }
 
-        public void PaintNextStep(Vector2Int pos, CellType c)
-        {
-            if(NextIterationTable.PlaceCell(pos, c))
+            if(result)
                 Delta.Add(pos);
         }
 

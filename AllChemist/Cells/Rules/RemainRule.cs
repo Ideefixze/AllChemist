@@ -1,9 +1,11 @@
+using AllChemist.Cells.Rules;
+using AllChemist.Model;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace AllChemist
+namespace AllChemist.Cells.Rules
 {
     /// <summary>
     /// In next interation this cell remains as it is.
@@ -12,7 +14,7 @@ namespace AllChemist
     {
         public bool ExecuteRule(World world, Cell cell)
         {
-            world.PaintNextStep(cell.Position, world.CurrentTable.Cells[cell.Position.X, cell.Position.Y].CellType);
+            world.Paint(cell.Position, world.CurrentTable.Cells[cell.Position.X, cell.Position.Y].CellType);
             return true;
         }
     }

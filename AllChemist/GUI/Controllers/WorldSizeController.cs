@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace AllChemist
+namespace AllChemist.GUI.Controllers
 {
     public class WorldSizeController
     {

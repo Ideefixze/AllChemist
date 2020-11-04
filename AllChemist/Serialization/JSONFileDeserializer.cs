@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
+using Newtonsoft.Json;
+using AllChemist.Serialization;
 
-namespace AllChemist.GUI.Controllers
+namespace AllChemist.Serialization
 {
-    class JSONFileDeserializer<T> : IJSONDeserializer<T> where T : ISerializable<T>, new()
+    public class JSONFileDeserializer<T> : IJSONDeserializer<T>
     {
         public OpenFileDialog fileDialog;
 
@@ -31,8 +33,7 @@ namespace AllChemist.GUI.Controllers
             }
 
             fileStream.Close();
-            T toBeDeserialized = new T();
-            toBeDeserialized.Deserialize(fileContent);
+            T toBeDeserialized = JSONHandler.Load<T>(fileContent);
             return toBeDeserialized;
         }
 

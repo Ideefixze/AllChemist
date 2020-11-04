@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Media;
 using Newtonsoft.Json;
 
-namespace AllChemist
+namespace AllChemist.Cells
 {
     [JsonObject(MemberSerialization.Fields)]
     public struct CellType

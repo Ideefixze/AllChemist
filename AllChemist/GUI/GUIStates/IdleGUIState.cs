@@ -33,7 +33,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.ToggleSimulationButton.Content = "Run";
             mainWindow.ToggleSimulationButton.IsEnabled = true;
             mainWindow.SaveButton.IsEnabled = true;
-            mainWindow.LoadButton.IsEnabled = (mainWindow.GUIStateMachine!=null?mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave"):false); //Quick fix, because IdleGUIState is always the first state
+            mainWindow.LoadButton.IsEnabled = mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave");//(mainWindow.GUIStateMachine!=null?mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave"):false); //Quick fix, because IdleGUIState is always the first state
             mainWindow.RulesetLoadButton.IsEnabled = true;
             mainWindow.CellColorPicker.IsEnabled = true;
             mainWindow.NewGridButton.IsEnabled = true;

@@ -20,8 +20,10 @@ using System.Windows.Threading;
 using System.Text.RegularExpressions;
 using Xceed.Wpf;
 using Xceed.Wpf.Toolkit;
+using AllChemist.Model;
+using AllChemist.Cells;
 
-namespace AllChemist
+namespace AllChemist.GUI.Controllers
 {
     public class WorldPainterController
     {
@@ -84,7 +86,7 @@ namespace AllChemist
 
         private void PaintWorld(Vector2Int pos)
         {
-             world.Paint(pos, GetCurrentCellType(world.CellTypeBank));
+             world.Paint(pos, GetCurrentCellType(world.CellTypeBank), EPaintType.PAINT_CURRENT);
         }
     }
 }

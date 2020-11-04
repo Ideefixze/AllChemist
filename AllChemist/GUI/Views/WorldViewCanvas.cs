@@ -20,8 +20,9 @@ using System.Windows.Threading;
 using System.Text.RegularExpressions;
 using Xceed.Wpf;
 using Xceed.Wpf.Toolkit;
+using AllChemist.Model;
 
-namespace AllChemist
+namespace AllChemist.GUI.Views
 {
 public class WorldViewCanvas
     {
@@ -79,26 +80,8 @@ public class WorldViewCanvas
         public void Draw(object sender, DrawWorldArgs args)
         {
             Canvas.Dispatcher.Invoke(() => {
-                /*
-                for (int i = 0; i < args.World.CurrentTable.Size.X; i++)
-                {
-                    for (int j = 0; j < args.World.CurrentTable.Size.Y; j++)
-                    {
-
-                        SolidColorBrush solidColorBrush = new SolidColorBrush();
-                        solidColorBrush.Color = args.World.CurrentTable.Cells[i, j].CellType.color;
-                        rectangles[i,j].Fill = solidColorBrush;
-
-                        rectangles[i, j].ToolTip = $"{args.World.CurrentTable.Cells[i, j].CellType.name} ({args.World.CurrentTable.Cells[i, j].CellType.id})\nAt position ({j},{args.World.CurrentTable.Size.X-i-1})";
-                    }
-                
-                }
-                */
-                
                 foreach(Vector2Int pos in args.Delta)
                 {
-                    //SolidColorBrush solidColorBrush = new SolidColorBrush();
-                    //solidColorBrush.Color = args.World.CurrentTable.Cells[pos.X, pos.Y].CellType.color;
                     ((SolidColorBrush)rectangles[pos.X, pos.Y].Fill).Color = args.CellTable.Cells[pos.X, pos.Y].CellType.color;
 
                     rectangles[pos.X, pos.Y].ToolTip = $"{args.CellTable.Cells[pos.X, pos.Y].CellType.name} ({args.CellTable.Cells[pos.X, pos.Y].CellType.id})\nAt position ({pos.Y},{args.CellTable.Size.X - pos.X - 1})";

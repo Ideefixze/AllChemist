@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AllChemist.Cells.Rules;
+using AllChemist.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AllChemist.Rules
+namespace AllChemist.Cells.Rules
 {
     [Serializable]
     public abstract class CellRule : IRule

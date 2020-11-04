@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using System.Text.RegularExpressions;
-using Xceed.Wpf;
-using Xceed.Wpf.Toolkit;
+﻿using AllChemist.Cells;
+using AllChemist.Cells.Ruleset;
 using AllChemist.GUI.Controllers;
 using AllChemist.GUI.GUIStates;
+using AllChemist.GUI.Views;
+using AllChemist.Model;
+using AllChemist.Serialization;
+using System;
+using System.Windows;
 
 namespace AllChemist
 {
@@ -39,7 +24,8 @@ namespace AllChemist
         private WorldPainterController cellPainterController;
         private SnapshotController snapshotController;
         private WorldSizeController worldSizeController;
-        private JSONFileDeserializer<CellTypeBank> cellTypeBankFileLoader;
+
+        private IRulesetCreator rulesetCreator;
 
         public void InitializeWorld()
         {
@@ -57,7 +43,8 @@ namespace AllChemist
             */
             Console.WriteLine("Initializing a new world...");
 
-            CellTypeBank ctb = cellTypeBankFileLoader.GetData();
+            CellTypeBank ctb = rulesetCreator.CreateRuleset().CellTypeBank;
+            Console.WriteLine(JSONHandler.Save(ctb));
             model = new World(worldSizeController.GetWorldSize(), ctb);
 
             //Initializing view
@@ -79,6 +66,7 @@ namespace AllChemist
 
 
             GUIStateMachine = new GUIStateMachine(this);
+            GUIStateMachine.GUIState = new IdleGUIState(this);
         }
 
         public void CleanUpWorld()
@@ -107,11 +95,11 @@ namespace AllChemist
             worldSizeController = new WorldSizeController(SizeXTextBox, SizeYTextBox);
             NewGridButton.Click += (s,e) => { CleanUpWorld(); InitializeWorld(); };
 
-            cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
-            cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
-            RulesetLoadButton.Click += (s,e) => { cellTypeBankFileLoader.ShowOpenFileDialog(); };
+            rulesetCreator = new ConwayRulesetCreator("23/3");
 
-            
+            //cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
+            //cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
+            //RulesetLoadButton.Click += (s,e) => { cellTypeBankFileLoader.ShowOpenFileDialog(); };
 
             InitializeWorld();
         }

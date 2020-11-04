@@ -1,9 +1,10 @@
+using AllChemist.Model;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace AllChemist
+namespace AllChemist.Cells
 {
     /// <summary>
     /// Theoretical cell that doesn't "occupy" space in the world but can be used for description of different world cells.
