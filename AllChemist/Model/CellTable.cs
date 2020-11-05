@@ -21,12 +21,12 @@ namespace AllChemist.Model
                 {
                     if (x >= 0 && x < Size.X && y >= 0 && y < Size.Y && !(x==position.X && y==position.Y))
                     {
-                        if(neighbours.ContainsKey(Cells[x, y].CellType.id))
+                        if(neighbours.ContainsKey(Cells[x, y].CellType.Id))
                         {
-                            neighbours[Cells[x, y].CellType.id]++;
+                            neighbours[Cells[x, y].CellType.Id]++;
                         }
                         else
-                            neighbours.Add(Cells[x, y].CellType.id, 1);
+                            neighbours.Add(Cells[x, y].CellType.Id, 1);
                     }
                 }
             }
@@ -43,7 +43,7 @@ namespace AllChemist.Model
                 {
                     if (x >= 0 && x < Size.X && y >= 0 && y < Size.Y && !(x == position.X && y == position.Y))
                     {
-                        if (Cells[x, y].CellType.id==neighbourId)
+                        if (Cells[x, y].CellType.Id==neighbourId)
                         {
                             i++;
                         }

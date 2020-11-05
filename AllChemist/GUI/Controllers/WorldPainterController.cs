@@ -41,7 +41,7 @@ namespace AllChemist.GUI.Controllers
             colorPicker.AvailableColors.Clear();
             foreach(KeyValuePair<int, CellType> kv in world.CellTypeBank.CellTypes)
             {
-                colorPicker.AvailableColors.Add(new ColorItem(kv.Value.color, kv.Value.name));
+                colorPicker.AvailableColors.Add(new ColorItem(kv.Value.Color, kv.Value.Name));
             }
             colorPicker.SelectedColor = colorPicker.AvailableColors[0].Color;
             
@@ -50,13 +50,13 @@ namespace AllChemist.GUI.Controllers
         public CellType GetCurrentCellType(CellTypeBank cellTypeBank)
         {
             //WARNING: No duplicate colors in CellTypeBank please
-            return cellTypeBank.CellTypes.FirstOrDefault(t => t.Value.color == colorPicker.SelectedColor).Value;
+            return cellTypeBank.CellTypes.FirstOrDefault(t => t.Value.Color == colorPicker.SelectedColor).Value;
         }
 
         public void StartPainting(object sender, RoutedEventArgs args)
         {
             isPainting = true;
-            paintingThread = new Thread(() => { PaintWorld((Canvas)sender); });
+            paintingThread = new Thread(() => { PaintWorld((FrameworkElement)sender); });
             paintingThread.Start();
         }
 
@@ -65,7 +65,7 @@ namespace AllChemist.GUI.Controllers
             isPainting = false;
         }
 
-        public void PaintWorld(Canvas canvas)
+        public void PaintWorld(FrameworkElement on)
         {
             while (isPainting)
             {
@@ -73,13 +73,14 @@ namespace AllChemist.GUI.Controllers
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        Point mousePoint = Mouse.GetPosition(canvas);
-                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)canvas.Width / world.TableSize.X), (int)mousePoint.Y / ((int)canvas.Height / world.TableSize.Y));
+                        Point mousePoint = Mouse.GetPosition(on);
+                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)on.Width / world.TableSize.X), (int)mousePoint.Y / ((int)on.Height / world.TableSize.Y));
                         this.PaintWorld(worldPos);
                         world.ApplyChanges();
                     });
-                    Thread.Sleep(20);
+                    
                 }
+                Thread.Sleep(50);
             }
             
         }

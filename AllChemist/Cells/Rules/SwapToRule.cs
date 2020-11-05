@@ -23,8 +23,7 @@ namespace AllChemist.Cells.Rules
         }
         public bool ExecuteRule(World world, Cell cell)
         {
-            world.Paint(cell.Position, world.CellTypeBank.CellTypes[cellToSwapId]);
-            return true;
+            return world.Paint(cell.Position, world.CellTypeBank.CellTypes[cellToSwapId]);
         }
 
         public override string ToString()

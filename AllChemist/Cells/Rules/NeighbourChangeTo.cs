@@ -33,8 +33,10 @@ namespace AllChemist.Cells.Rules
             if (neighbourCounts.Contains(c))
             {
                 world.Paint(cell.Position, world.CellTypeBank.CellTypes[neighbourIdToChange]);
+                return true;
             }
-            return true;
+            return false;
+            
         }
 
         public override string ToString()

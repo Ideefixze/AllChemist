@@ -16,7 +16,7 @@ namespace AllChemist
     public partial class MainWindow : Window
     {
         World model;
-        WorldViewCanvas worldView;
+        WorldViewBitmap worldView;
 
         public GUIStateMachine GUIStateMachine;
 
@@ -29,20 +29,6 @@ namespace AllChemist
 
         public void InitializeWorld()
         {
-
-
-
-            //Game of Life
-            /*CellType deadType = new CellType("Dead", 255, 255, 255);
-            CellType aliveType = new CellType("Alive", 0, 0, 0);
-            CellTypeBank ctb = new CellTypeBank();
-            ctb.CellTypes.Add(deadType.id, deadType);
-            ctb.CellTypes.Add(aliveType.id, aliveType);
-            deadType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 3));
-            aliveType.CellBehaviour.Rules.Add(new SwapToRule(0));
-            aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 2));
-            aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, 3));
-            */
             Console.WriteLine("Initializing a new world...");
 
             CellTypeBank ctb = rulesetCreator.CreateRuleset().CellTypeBank;
@@ -50,19 +36,19 @@ namespace AllChemist
             model = new World(worldSizeController.GetWorldSize(), ctb);
 
             //Initializing view
-            worldView = new WorldViewCanvas(WorldGrid, 600, 600);
-            worldView.InitCanvasRects(model);
-            model.OnWorldChange += worldView.Draw;
-            worldView.Draw(this, new DrawWorldArgs(model));
+            worldView = new WorldViewBitmap(WorldGrid, new Vector2Int(600,600));
+            worldView.InitModel(model);
+            model.OnWorldChange += worldView.DeltaDraw;
+            worldView.FullDraw(this, new DrawWorldArgs(model));
 
             //Initializing Controllers
             modelSimulationController.InitializeWorldSimulationThread(model);
 
             cellPainterController = new WorldPainterController(CellColorPicker, model);
 
-            worldView.Canvas.MouseLeftButtonDown += cellPainterController.StartPainting;
-            worldView.Canvas.MouseLeftButtonUp += cellPainterController.StopPainting;
-            worldView.Canvas.MouseLeave += cellPainterController.StopPainting;
+            worldView.Image.MouseLeftButtonDown += cellPainterController.StartPainting;
+            worldView.Image.MouseLeftButtonUp += cellPainterController.StopPainting;
+            worldView.Image.MouseLeave += cellPainterController.StopPainting;
 
             snapshotController.SetSource(model);
 
@@ -77,10 +63,10 @@ namespace AllChemist
             CellType.ResetCounter();
             modelSimulationController?.Dispose();
 
-            model.OnWorldChange -= worldView.Draw;
-            worldView.Canvas.MouseLeftButtonDown -= cellPainterController.StartPainting;
-            worldView.Canvas.MouseLeftButtonUp -= cellPainterController.StopPainting;
-            worldView.Canvas.MouseLeave -= cellPainterController.StopPainting;
+            model.OnWorldChange -= worldView.DeltaDraw;
+            worldView.Image.MouseLeftButtonDown -= cellPainterController.StartPainting;
+            worldView.Image.MouseLeftButtonUp -= cellPainterController.StopPainting;
+            worldView.Image.MouseLeave -= cellPainterController.StopPainting;
 
             GC.Collect();
         }

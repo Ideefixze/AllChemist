@@ -12,11 +12,11 @@ namespace AllChemist.Cells
     public struct CellType
     {
        
-        public readonly int id;
+        public readonly int Id;
 
-        public readonly string name;
+        public readonly string Name;
 
-        public readonly Color color;
+        public readonly Color Color;
         static private int idCounter=0;
 
         public static void ResetCounter()
@@ -29,27 +29,27 @@ namespace AllChemist.Cells
 
         public CellType(string name, Color color)
         {
-            this.name = name;
-            this.color = color;
-            this.id = idCounter++;
+            this.Name = name;
+            this.Color = color;
+            this.Id = idCounter++;
             CellBehaviour = new CellBehaviour();
         }
 
         public CellType(string name, byte R, byte G, byte B)
         {
-            this.name = name;
-            this.color = new Color();
-            this.color.R = R;
-            this.color.G = G;
-            this.color.B = B;
-            this.color.A = 255;
-            this.id = idCounter++;
+            this.Name = name;
+            this.Color = new Color();
+            this.Color.R = R;
+            this.Color.G = G;
+            this.Color.B = B;
+            this.Color.A = 255;
+            this.Id = idCounter++;
             CellBehaviour = new CellBehaviour();
         }
 
         public override int GetHashCode()
         {
-            return id.GetHashCode();
+            return Id.GetHashCode();
         }
 
         public override bool Equals(Object obj)
@@ -61,23 +61,23 @@ namespace AllChemist.Cells
             else
             {
                 CellType ct = (CellType)obj;
-                return ct.id == this.id && ct.color == this.color;
+                return ct.Id == this.Id && ct.Color == this.Color;
             } 
         }
 
         public static bool operator==(CellType cta, CellType ctb)
         {
-            return cta.id == ctb.id;
+            return cta.Id == ctb.Id;
         }
 
         public static bool operator!=(CellType cta, CellType ctb)
         {
-            return cta.id != ctb.id;
+            return cta.Id != ctb.Id;
         }
 
         public override string ToString()
         {
-            return this.id + " " + this.name + " " + this.color + "\n" + CellBehaviour.ToString();
+            return this.Id + " " + this.Name + " " + this.Color + "\n" + CellBehaviour.ToString();
         }
     }
 }

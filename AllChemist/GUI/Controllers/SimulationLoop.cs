@@ -33,8 +33,9 @@ public class SimulationLoop
         public void LoopThread(World w)
         {
             bool DispatcherSync = true;
+            Stopwatch timer = new Stopwatch();
             while(RunThread)
-            {
+            { 
                 if (Simulate && DispatcherSync)
                 {
                     w?.Step();

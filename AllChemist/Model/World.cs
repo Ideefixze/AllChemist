@@ -20,7 +20,10 @@ namespace AllChemist.Model
         public CellTable CellTable;
         public HashSet<Vector2Int> Delta;
 
-        public DrawWorldArgs(World world) { CellTable = new CellTable(world.CurrentTable); Delta = new HashSet<Vector2Int>(world.Delta); }
+        public DrawWorldArgs(World world) { 
+            CellTable = world.CurrentTable; 
+            Delta = new HashSet<Vector2Int>(world.Delta); 
+        }
     }
     public class World
     {
@@ -38,6 +41,8 @@ namespace AllChemist.Model
         {
             lock (this)
             {
+                Stopwatch t = new Stopwatch();
+                t.Start();
                 for (int i = 0; i < TableSize.X; i++)
                 {
                     for (int j = 0; j < TableSize.Y; j++)
@@ -46,16 +51,26 @@ namespace AllChemist.Model
                     }
                 }
 
+                HashSet<Vector2Int> CellTypeChange = new HashSet<Vector2Int>();
+                foreach(Vector2Int change in Delta)
+                {
+                    if (CurrentTable.Cells[change.X, change.Y].CellType != NextIterationTable.Cells[change.X, change.Y].CellType)
+                        CellTypeChange.Add(change);
+                }
+                Delta = new HashSet<Vector2Int>(CellTypeChange);
+
                 CurrentTable = NextIterationTable;
                 NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
                 ApplyChanges();
+                t.Stop();
+                Console.WriteLine("Model has been updated in " + t.Elapsed.TotalSeconds + "s");
             }
         }
 
-        //TODO: make one paint method and ENUM to controll what to paint
-        public void Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
+        public bool Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
         {
             bool result = false;
+            CellType previous=CurrentTable.Cells[pos.X,pos.Y].CellType;
             switch(paintType)
             {
                 case EPaintType.PAINT_NEXT:
@@ -66,8 +81,13 @@ namespace AllChemist.Model
                     break;
             }
 
-            if(result)
+            if (result && previous!=c)
+            {
                 Delta.Add(pos);
+                return true;
+            }
+            return false;
+                
         }
 
         public void ApplyChanges()

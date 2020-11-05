@@ -37,8 +37,8 @@ namespace AllChemist.Cells.Ruleset
             aliveType.CellBehaviour.Rules.Add(new SwapToRule(0));
             aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, aliveNCounts, 1));
 
-            ruleset.CellTypeBank.CellTypes.Add(deadType.id, deadType);
-            ruleset.CellTypeBank.CellTypes.Add(aliveType.id, aliveType);
+            ruleset.CellTypeBank.CellTypes.Add(deadType.Id, deadType);
+            ruleset.CellTypeBank.CellTypes.Add(aliveType.Id, aliveType);
 
             CellType.ResetCounter();
 

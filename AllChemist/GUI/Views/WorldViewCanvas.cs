@@ -24,7 +24,7 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Views
 {
-public class WorldViewCanvas
+    public class WorldViewCanvas
     {
         public Canvas Canvas;
 
@@ -59,13 +59,13 @@ public class WorldViewCanvas
                     rect.Height = Canvas.Height/w.CurrentTable.Size.Y;
 
                     SolidColorBrush solidColorBrush = new SolidColorBrush();
-                    solidColorBrush.Color = w.CurrentTable.Cells[i, j].CellType.color;
+                    solidColorBrush.Color = w.CurrentTable.Cells[i, j].CellType.Color;
                     rect.Fill = solidColorBrush;
                     
                     if(drawGrid)
                         rect.Stroke = Brushes.Black;
                     
-                    rect.ToolTip = $"{w.CurrentTable.Cells[i, j].CellType.name} ({w.CurrentTable.Cells[i, j].CellType.id})\nAt position ({j},{w.CurrentTable.Size.X - i - 1})";
+                    rect.ToolTip = $"{w.CurrentTable.Cells[i, j].CellType.Name} ({w.CurrentTable.Cells[i, j].CellType.Id})\nAt position ({j},{w.CurrentTable.Size.X - i - 1})";
                     Canvas.Children.Add(rect);
 
                     Canvas.SetLeft(rect, i * Canvas.Width / w.CurrentTable.Size.X);
@@ -82,9 +82,9 @@ public class WorldViewCanvas
             Canvas.Dispatcher.Invoke(() => {
                 foreach(Vector2Int pos in args.Delta)
                 {
-                    ((SolidColorBrush)rectangles[pos.X, pos.Y].Fill).Color = args.CellTable.Cells[pos.X, pos.Y].CellType.color;
+                    ((SolidColorBrush)rectangles[pos.X, pos.Y].Fill).Color = args.CellTable.Cells[pos.X, pos.Y].CellType.Color;
 
-                    rectangles[pos.X, pos.Y].ToolTip = $"{args.CellTable.Cells[pos.X, pos.Y].CellType.name} ({args.CellTable.Cells[pos.X, pos.Y].CellType.id})\nAt position ({pos.Y},{args.CellTable.Size.X - pos.X - 1})";
+                    rectangles[pos.X, pos.Y].ToolTip = $"{args.CellTable.Cells[pos.X, pos.Y].CellType.Name} ({args.CellTable.Cells[pos.X, pos.Y].CellType.Id})\nAt position ({pos.Y},{args.CellTable.Size.X - pos.X - 1})";
                 }
                 
             });
