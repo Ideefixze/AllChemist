@@ -1,5 +1,7 @@
 ﻿using AllChemist.Cells;
+using AllChemist.GUI.Controllers;
 using AllChemist.Model;
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,6 +43,20 @@ namespace AllChemist.GUI.Views
 
             FullDraw(null, new DrawWorldArgs(w));
             Image.Source = bitmap;
+        }
+
+        public void SetPainter(IPainter painter)
+        {
+            Image.MouseLeftButtonDown += painter.StartPainting;
+            Image.MouseLeftButtonUp += painter.StopPainting;
+            Image.MouseLeave += painter.StopPainting;
+        }
+
+        public void UnsetPainter(IPainter painter)
+        {
+            Image.MouseLeftButtonDown -= painter.StartPainting;
+            Image.MouseLeftButtonUp -= painter.StopPainting;
+            Image.MouseLeave -= painter.StopPainting;
         }
 
         public void FullDraw(object sender, DrawWorldArgs args)

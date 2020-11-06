@@ -32,7 +32,6 @@ namespace AllChemist
             Console.WriteLine("Initializing a new world...");
 
             CellTypeBank ctb = rulesetCreator.CreateRuleset().CellTypeBank;
-            Console.WriteLine(JSONHandler.Save(ctb));
             model = new World(worldSizeController.GetWorldSize(), ctb);
 
             //Initializing view
@@ -46,9 +45,7 @@ namespace AllChemist
 
             cellPainterController = new WorldPainterController(CellColorPicker, model);
 
-            worldView.Image.MouseLeftButtonDown += cellPainterController.StartPainting;
-            worldView.Image.MouseLeftButtonUp += cellPainterController.StopPainting;
-            worldView.Image.MouseLeave += cellPainterController.StopPainting;
+            worldView.SetPainter(cellPainterController);
 
             snapshotController.SetSource(model);
 
@@ -64,9 +61,7 @@ namespace AllChemist
             modelSimulationController?.Dispose();
 
             model.OnWorldChange -= worldView.DeltaDraw;
-            worldView.Image.MouseLeftButtonDown -= cellPainterController.StartPainting;
-            worldView.Image.MouseLeftButtonUp -= cellPainterController.StopPainting;
-            worldView.Image.MouseLeave -= cellPainterController.StopPainting;
+            worldView.UnsetPainter(cellPainterController);
 
             GC.Collect();
         }
@@ -87,7 +82,12 @@ namespace AllChemist
 
             //cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
             //cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
-            //RulesetLoadButton.Click += (s,e) => { cellTypeBankFileLoader.ShowOpenFileDialog(); };
+            
+            RulesetLoadButton.Click += (s,e) => {
+                rulesetCreator = new FromFileRulesetCreator();
+                CleanUpWorld(); 
+                InitializeWorld();
+            };
 
             InitializeWorld();
         }

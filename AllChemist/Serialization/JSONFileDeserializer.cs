@@ -31,7 +31,7 @@ namespace AllChemist.Serialization
             {
                 fileContent = reader.ReadToEnd();
             }
-
+           
             fileStream.Close();
             T toBeDeserialized = JSONHandler.Load<T>(fileContent);
             return toBeDeserialized;

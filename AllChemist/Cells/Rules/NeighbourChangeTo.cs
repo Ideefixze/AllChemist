@@ -18,14 +18,19 @@ namespace AllChemist.Cells.Rules
         [JsonProperty]
         private int neighbourId;
         [JsonProperty]
-        private HashSet<int> neighbourCounts;
+        public HashSet<int> neighbourCounts;
         [JsonProperty]
         private int neighbourIdToChange;
-        public NeighbourChangeTo(int id, HashSet<int> set, int to)
+
+        public NeighbourChangeTo(int id, IEnumerable<int> list, int to)
         {
             neighbourId = id;
-            neighbourCounts = new HashSet<int>(set);
+            neighbourCounts = new HashSet<int>(list);
             neighbourIdToChange = to;
+        }
+        public NeighbourChangeTo()
+        {
+
         }
         public bool ExecuteRule(World world, Cell cell)
         {

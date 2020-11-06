@@ -25,7 +25,7 @@ using AllChemist.Cells;
 
 namespace AllChemist.GUI.Controllers
 {
-    public class WorldPainterController
+    public class WorldPainterController : IPainter
     {
         private World world;
         private ColorPicker colorPicker;

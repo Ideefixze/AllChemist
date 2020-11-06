@@ -16,13 +16,13 @@ namespace AllChemist.Cells.Ruleset
         {
             string[] rules = conwayRules.Trim().Split('/');
 
-            HashSet<int> aliveNCounts = new HashSet<int>();
+            List<int> aliveNCounts = new List<int>();
             foreach(char c in rules[0])
             {
                 aliveNCounts.Add(c -'0') ;
             }
 
-            HashSet<int> deadNCounts = new HashSet<int>();
+            List<int> deadNCounts = new List<int>();
             foreach (char c in rules[1])
             {
                 deadNCounts.Add(c - '0');
