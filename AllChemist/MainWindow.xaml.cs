@@ -79,9 +79,6 @@ namespace AllChemist
             NewGridButton.Click += (s,e) => { CleanUpWorld(); InitializeWorld(); };
 
             rulesetCreator = new ConwayRulesetCreator("23/3");
-
-            //cellTypeBankFileLoader = new JSONFileDeserializer<CellTypeBank>("rulesets","default.json");
-            //cellTypeBankFileLoader.fileDialog.FileOk += (s, e) => { CleanUpWorld(); InitializeWorld(); };
             
             RulesetLoadButton.Click += (s,e) => {
                 rulesetCreator = new FromFileRulesetCreator();
