@@ -25,27 +25,32 @@ using AllChemist.Cells;
 
 namespace AllChemist.GUI.Controllers
 {
-    public class WorldPainterController : IPainter
+    public class WorldPainterController : GUIContextController, IPainter
     {
         private World world;
         private ColorPicker colorPicker;
         private Thread paintingThread;
         private bool isPainting;
-        public WorldPainterController(ColorPicker cp, World w)
+        public WorldPainterController(MainWindow context) : base(context)
         {
-            world = w;
-            colorPicker = cp;
+            colorPicker = context.CellColorPicker;
+        }
+
+        public override void SetUpModel(World world)
+        {
+            this.world = world;
+
             colorPicker.ShowRecentColors = false;
             colorPicker.ShowStandardColors = false;
             colorPicker.ShowTabHeaders = false;
             colorPicker.AvailableColors.Clear();
-            foreach(KeyValuePair<int, CellType> kv in world.CellTypeBank.CellTypes)
+            foreach (KeyValuePair<int, CellType> kv in world.CellTypeBank.CellTypes)
             {
                 colorPicker.AvailableColors.Add(new ColorItem(kv.Value.Color, kv.Value.Name));
             }
             colorPicker.SelectedColor = colorPicker.AvailableColors[0].Color;
-            
         }
+
 
         public CellType GetCurrentCellType(CellTypeBank cellTypeBank)
         {
@@ -89,5 +94,7 @@ namespace AllChemist.GUI.Controllers
         {
              world.Paint(pos, GetCurrentCellType(world.CellTypeBank), EPaintType.PAINT_CURRENT);
         }
+
+
     }
 }

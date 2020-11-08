@@ -1,25 +1,32 @@
+using AllChemist.Model;
 using System;
 using System.Windows.Controls;
 
 namespace AllChemist.GUI.Controllers
 {
-    public class WorldSizeController
+    public class WorldSizeController : GUIContextController
     {
-        private TextBox textBoxX;
-        private TextBox textBoxY;
+        private TextBox XTextBox;
+        private TextBox YTextBox;
 
-        public WorldSizeController(TextBox x, TextBox y)
+        public WorldSizeController(MainWindow context) : base(context)
         {
-            textBoxX = x;
-            textBoxY = y;
+            XTextBox = context.SizeXTextBox;
+            YTextBox = context.SizeYTextBox;
 
-            textBoxX.PreviewTextInput += TextValidator.NumberValidationTextBox;
-            textBoxY.PreviewTextInput += TextValidator.NumberValidationTextBox;
+            XTextBox.PreviewTextInput += TextValidator.NumberValidationTextBox;
+            YTextBox.PreviewTextInput += TextValidator.NumberValidationTextBox;
+        }
+
+        public override void SetUpModel(World world)
+        {
+
         }
 
         public Vector2Int GetWorldSize()
         {
-            return new Vector2Int(Math.Max(int.Parse(textBoxX.Text), 1), Math.Max(int.Parse(textBoxY.Text), 1));
+            return new Vector2Int(Math.Max(int.Parse(XTextBox.Text), 1), Math.Max(int.Parse(YTextBox.Text), 1));
         }
+
     }
 }

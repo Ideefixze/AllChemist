@@ -8,7 +8,7 @@
         xmlns:p="clr-namespace:AllChemist.Properties"
         xmlns:local="clr-namespace:AllChemist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="MainWindow" Height="640" Width="800" x:ClassModifier="public">
     <Grid x:Name="MainGrid" Background="LightGray">
         <Grid x:Name="WorldGrid" Height="600" Width="600" Margin="0,0,150,0" x:FieldModifier="public">
         </Grid>

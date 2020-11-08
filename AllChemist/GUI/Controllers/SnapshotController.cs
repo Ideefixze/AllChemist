@@ -24,22 +24,23 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Controllers
 {
-public class SnapshotController
+public class SnapshotController : GUIContextController
     {
         private World world;
         private CellTable snapshot;
 
-        public SnapshotController(Button saveButton, Button loadButton)
+        public SnapshotController(MainWindow context) : base(context)
         {
-            saveButton.Click += SaveWorld;
-            loadButton.Click += LoadWorld;
+            context.SaveButton.Click += SaveWorld;
+            context.LoadButton.Click += LoadWorld;
         }
 
-        public void SetSource(World w)
+        public override void SetUpModel(World w)
         {
             world = w;
             snapshot = null; 
         }
+
 
         private void SaveWorld(object sender, RoutedEventArgs e)
         {

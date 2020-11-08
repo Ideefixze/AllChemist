@@ -27,23 +27,22 @@ namespace AllChemist.GUI.Controllers
 /// <summary>
     /// Controler that handles toggling simulation loop
     /// </summary>
-    public class ModelSimulationController : IDisposable
+    public class ModelSimulationController : GUIContextController, IDisposable
     {
         private SimulationLoop simulationLoop;
         private Button toggleButton;
         private TextBox delayTextBox;
 
         public bool IsCurrentlySimulated { get => simulationLoop.Simulate; }
-        public ModelSimulationController(Button originalButton, TextBox delayTextBox)
+        public ModelSimulationController(MainWindow context) : base(context)
         {
-            this.delayTextBox = delayTextBox;
+            this.delayTextBox = context.DelayTextBox;
             this.delayTextBox.PreviewTextInput += TextValidator.NumberValidationTextBox;
-            toggleButton = originalButton;
-            toggleButton.IsEnabled = true;
+            toggleButton = context.ToggleSimulationButton;
             toggleButton.Click += ToggleSimulation;
         }
 
-        public void InitializeWorldSimulationThread(World w)
+        public override void SetUpModel(World w)
         {
             simulationLoop = new SimulationLoop();
             
@@ -51,6 +50,11 @@ namespace AllChemist.GUI.Controllers
             simulationThread.IsBackground = true;
             simulationThread.Name = "Simulation";
             simulationThread.Start();
+        }
+
+        public override void CleanUpModel(World world)
+        {
+            Dispose();
         }
 
         public void ToggleSimulation(object sender, RoutedEventArgs args)
@@ -73,5 +77,7 @@ namespace AllChemist.GUI.Controllers
             }
             
         }
+
+
     }
 }

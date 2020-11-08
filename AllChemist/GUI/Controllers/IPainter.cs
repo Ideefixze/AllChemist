@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace AllChemist.GUI.Controllers
 {
-    interface IPainter
+    public interface IPainter
     {
         public void StartPainting(object sender, RoutedEventArgs args);
         public void StopPainting(object sender, RoutedEventArgs args);

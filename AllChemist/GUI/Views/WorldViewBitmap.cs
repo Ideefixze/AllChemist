@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace AllChemist.GUI.Views
 {
-    class WorldViewBitmap
+    public class WorldViewBitmap
     {
         private Vector2Int originalSize;
         private WriteableBitmap bitmap;
