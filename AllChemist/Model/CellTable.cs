@@ -34,6 +34,30 @@ namespace AllChemist.Model
             
         }
 
+        public List<ExistingCell> GetNeighbours(Vector2Int position, Func<ExistingCell, bool> predicate = null)
+        {
+            List<ExistingCell> neighbours = new List<ExistingCell>();
+            if(predicate == null)
+            {
+                predicate = a => a!=null; 
+            }
+            for (int x = position.X - 1; x <= position.X + 1; x++)
+            {
+                for (int y = position.Y - 1; y <= position.Y + 1; y++)
+                {
+                    if (x >= 0 && x < Size.X && y >= 0 && y < Size.Y && !(x == position.X && y == position.Y))
+                    {
+                        if (predicate(Cells[x, y]))
+                        {
+                            neighbours.Add(Cells[x, y]);
+                        }
+                    }
+                }
+            }
+
+            return neighbours;
+        }
+
         public int GetNeighboursOfIdCount(Vector2Int position, int neighbourId)
         {
             int i = 0;

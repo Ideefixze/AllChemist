@@ -30,6 +30,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.SaveButton.IsEnabled = false;
             mainWindow.LoadButton.IsEnabled = false;
             mainWindow.RulesetLoadButton.IsEnabled = false;
+            mainWindow.ConwayRulesetLoadButton.IsEnabled = false;
             mainWindow.CellColorPicker.IsEnabled = true;
             mainWindow.NewGridButton.IsEnabled = false;
             mainWindow.DelayTextBox.IsEnabled = false;

@@ -13,7 +13,7 @@ namespace AllChemist.Cells.Rules
     /// </summary>
 
     [JsonObject]
-    public class NeighbourChangeTo : IRule
+    public class NeighbourChangeToRule : IRule
     {
         [JsonProperty]
         private int neighbourId;
@@ -22,13 +22,13 @@ namespace AllChemist.Cells.Rules
         [JsonProperty]
         private int neighbourIdToChange;
 
-        public NeighbourChangeTo(int id, IEnumerable<int> list, int to)
+        public NeighbourChangeToRule(int id, IEnumerable<int> list, int to)
         {
             neighbourId = id;
             neighbourCounts = new HashSet<int>(list);
             neighbourIdToChange = to;
         }
-        public NeighbourChangeTo()
+        public NeighbourChangeToRule()
         {
 
         }

@@ -38,6 +38,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.SaveButton.IsEnabled = true;
             mainWindow.LoadButton.IsEnabled = mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave");//(mainWindow.GUIStateMachine!=null?mainWindow.GUIStateMachine.GUISharedState.HasFlag("HasSave"):false); //Quick fix, because IdleGUIState is always the first state
             mainWindow.RulesetLoadButton.IsEnabled = true;
+            mainWindow.ConwayRulesetLoadButton.IsEnabled = true;
             mainWindow.CellColorPicker.IsEnabled = true;
             mainWindow.NewGridButton.IsEnabled = true;
             mainWindow.DelayTextBox.IsEnabled = true;

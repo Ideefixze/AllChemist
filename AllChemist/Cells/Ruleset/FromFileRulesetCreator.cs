@@ -9,7 +9,7 @@ using System.Windows.Documents;
 
 namespace AllChemist.Cells.Ruleset
 {
-    public class FromFileRulesetCreator : IRulesetCreator
+    public class FromFileRulesetCreator : RulesetInterpreter
     {
         public JSONFileDeserializer<Ruleset> JSONFileDeserializer;
         private bool returned = false;
@@ -18,14 +18,13 @@ namespace AllChemist.Cells.Ruleset
         {
             JSONFileDeserializer = new JSONFileDeserializer<Ruleset>("rulesets", "default.json");
         }
-        public Ruleset CreateRuleset()
+
+        public override void LoadRuleset()
         {
-            if(!returned)
-            {
-                JSONFileDeserializer.ShowOpenFileDialog();
-            }
-            returned = true;
-            
+            JSONFileDeserializer.ShowOpenFileDialog();
+        }
+        public override Ruleset CreateRuleset()
+        { 
             return JSONFileDeserializer.GetData();
         }
     }

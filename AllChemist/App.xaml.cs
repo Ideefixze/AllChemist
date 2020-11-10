@@ -21,10 +21,11 @@ namespace AllChemist
     public partial class App : Application
     {
         public static readonly string Version = "0.0.4";
+        public static readonly Random Random = new Random();
 
         private World model;
         private ControllerContainter controllerInitializer;
-        private IRulesetCreator rulesetCreator;
+        private RulesetInterpreter rulesetInterpreter;
         private MainWindow mainWindow;
 
         public App()
@@ -42,14 +43,21 @@ namespace AllChemist
 
             mainWindow.NewGridButton.Click += (s, e) => { CleanUpModel(); InitializeModel(); };
             mainWindow.RulesetLoadButton.Click += (s, e) => {
-                rulesetCreator = new FromFileRulesetCreator();
+                rulesetInterpreter = new FromFileRulesetCreator();
+                rulesetInterpreter.LoadRuleset();
+                CleanUpModel();
+                InitializeModel();
+            };
+            mainWindow.ConwayRulesetLoadButton.Click += (s, e) => {
+                rulesetInterpreter = new ConwayRulesetCreator("23/3");
+                rulesetInterpreter.LoadRuleset();
                 CleanUpModel();
                 InitializeModel();
             };
 
             controllerInitializer = new ControllerContainter(mainWindow);
 
-            rulesetCreator = new ConwayRulesetCreator("23/3");
+            rulesetInterpreter = new ConwayRulesetCreator("23/3");
 
             InitializeModel();
         }
@@ -64,7 +72,7 @@ namespace AllChemist
 
         private void InitializeModel()
         {
-            model = new World(controllerInitializer.GetController<WorldSizeController>().GetWorldSize(), rulesetCreator.CreateRuleset().CellTypeBank);
+            model = new World(controllerInitializer.GetController<WorldSizeController>().GetWorldSize(), rulesetInterpreter.CreateRuleset().CellTypeBank);
             controllerInitializer.SetUpModel(model);
             mainWindow.InitializeView(model);
             model.OnWorldChange += mainWindow.WorldView.DeltaDraw;

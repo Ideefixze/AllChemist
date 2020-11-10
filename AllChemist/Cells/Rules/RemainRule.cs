@@ -14,8 +14,7 @@ namespace AllChemist.Cells.Rules
     {
         public bool ExecuteRule(World world, Cell cell)
         {
-            return world.Paint(cell.Position, world.CurrentTable.Cells[cell.Position.X, cell.Position.Y].CellType);
-            
+            return world.Paint(cell.Position, world.CurrentTable.Cells[cell.Position.X, cell.Position.Y].CellType); 
         }
     }
 }

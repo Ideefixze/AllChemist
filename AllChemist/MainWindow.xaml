@@ -25,6 +25,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Button x:Name="ToggleSimulationButton" Grid.Row="0" Content="Run" Height="32" Width="96" IsEnabled="False" x:FieldModifier="public">
@@ -55,7 +56,11 @@
             <DockPanel Grid.Row="5">
                 <Button Name="RulesetLoadButton" Height="32" Width="96" Content="Load Ruleset" x:FieldModifier="public"></Button>
             </DockPanel>
-            <StackPanel Grid.Row="6">
+            <DockPanel Grid.Row="6">
+                <Button Name="ConwayRulesetLoadButton" Height="32" Width="96" Content="Conway Ruleset" x:FieldModifier="public">
+                </Button>
+            </DockPanel>
+            <StackPanel Grid.Row="7">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -71,7 +76,7 @@
                     <TextBox x:Name="SizeYTextBox" Grid.Column="1" Grid.Row="1" Margin="5" MaxLength="3" x:FieldModifier="public" Text="{Binding Source={x:Static p:Settings.Default}, Path=SizeY, Mode=TwoWay}"></TextBox>
                 </Grid>
             </StackPanel>
-            <Button x:Name="NewGridButton" Grid.Row="7" Height="32" Width="96" Content="New Grid" x:FieldModifier="public"></Button>
+            <Button x:Name="NewGridButton" Grid.Row="8" Height="32" Width="96" Content="New Grid" x:FieldModifier="public"></Button>
         </Grid>
     </Grid>
 </Window>

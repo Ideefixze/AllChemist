@@ -1,18 +1,19 @@
 ﻿using AllChemist.Cells.Rules;
+using AllChemist.GUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AllChemist.Cells.Ruleset
 {
-    public class ConwayRulesetCreator : IRulesetCreator
+    public class ConwayRulesetCreator : RulesetInterpreter
     {
-        private string conwayRules;
+        protected string conwayRules;
         public ConwayRulesetCreator(string conwayRules)
         {
             this.conwayRules = conwayRules;
         }
-        public Ruleset CreateRuleset()
+        public override Ruleset CreateRuleset()
         {
             string[] rules = conwayRules.Trim().Split('/');
 
@@ -33,9 +34,9 @@ namespace AllChemist.Cells.Ruleset
             CellType deadType = new CellType("Dead", 255, 255, 255);
             CellType aliveType = new CellType("Alive", 0, 0, 0);
 
-            deadType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, deadNCounts, 1));
+            deadType.CellBehaviour.Rules.Add(new NeighbourChangeToRule(1, deadNCounts, 1));
             aliveType.CellBehaviour.Rules.Add(new SwapToRule(0));
-            aliveType.CellBehaviour.Rules.Add(new NeighbourChangeTo(1, aliveNCounts, 1));
+            aliveType.CellBehaviour.Rules.Add(new NeighbourChangeToRule(1, aliveNCounts, 1));
 
             ruleset.CellTypeBank.CellTypes.Add(deadType.Id, deadType);
             ruleset.CellTypeBank.CellTypes.Add(aliveType.Id, aliveType);
@@ -43,6 +44,11 @@ namespace AllChemist.Cells.Ruleset
             CellType.ResetCounter();
 
             return ruleset;
+        }
+
+        public override void LoadRuleset()
+        {
+            this.conwayRules = DialogInput.StringForm();
         }
     }
 }
