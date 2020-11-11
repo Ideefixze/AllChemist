@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 
 namespace AllChemist.Cells
 {
+    /// <summary>
+    /// Holds all CellTypes. First element in this container wrapper is a default CellType.
+    /// </summary>
     public class CellTypeBank
     {
         /// <summary>
@@ -19,53 +22,14 @@ namespace AllChemist.Cells
         {
             CellTypes = new Dictionary<int, CellType>();
         }
-
+        /// <summary>
+        /// Returns a default CellType in this CellTypeBank.
+        /// </summary>
+        /// <returns>First element from the container</returns>
         public CellType GetDefaultCellType()
         {
             return CellTypes[0];
         }
-
-        /*
-        public string Serialize()
-        {
-            return JsonConvert.SerializeObject(CellTypes, new JsonSerializerSettings()
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                Formatting = Formatting.Indented
-            });
-        }
-
-        public CellTypeBank Deserialize(string json)
-        {
-            CellTypes = (Dictionary<int, CellType>)JsonConvert.DeserializeObject(json,typeof(Dictionary<int,CellType>), new JsonSerializerSettings()
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                Formatting = Formatting.Indented
-                
-            });
-            Console.WriteLine("Loaded Cell Types:");
-            foreach(var v in CellTypes)
-            {
-                Console.WriteLine(v.Value);
-            }
-            return this;
-        }*/
-
-        /*
-        public override bool Equals(object obj)
-        {
-
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            {
-                return false;
-            }
-            else
-            {
-                CellTypeBank ctb = (CellTypeBank)obj;
-                return Serialize() == ctb.Serialize();
-            }
-        }
-        */
 
     }
 }

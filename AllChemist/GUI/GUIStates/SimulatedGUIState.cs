@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace AllChemist.GUI.GUIStates
 {
+    /// <summary>
+    /// Simulated state. Simulation is on and we can't do anything until we stop.
+    /// </summary>
     class SimulatedGUIState : GUIState
     {
         private RoutedEventHandler stopSimulation;
@@ -36,9 +39,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.DelayTextBox.IsEnabled = false;
             mainWindow.SizeXTextBox.IsEnabled = false;
             mainWindow.SizeYTextBox.IsEnabled = false;
-            
-            //TODO: Show number of steps
-
+ 
             mainWindow.ToggleSimulationButton.Click += stopSimulation;
         }
     }

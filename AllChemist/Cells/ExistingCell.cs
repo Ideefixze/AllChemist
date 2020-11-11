@@ -24,11 +24,15 @@ namespace AllChemist.Cells
             CellType = cell.CellType;
         }
 
+        /// <summary>
+        /// Executes rules associated with this CellType. Implementation of a Strategy Design Pattern (with a small twist because it uses composition).
+        /// </summary>
+        /// <param name="world">Model on which rules should be executed</param>
         public override void ExecuteRules(World world)
         {
             foreach (IRule rule in CellType.CellBehaviour.Rules)
             {
-                rule.ExecuteRule(world, this); //Execute all strategies that this cell type has
+                rule.ExecuteRule(world, this);
             }
         }
 

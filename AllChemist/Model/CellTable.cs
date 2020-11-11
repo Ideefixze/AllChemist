@@ -6,6 +6,9 @@ using System.Text;
 
 namespace AllChemist.Model
 {
+    /// <summary>
+    /// CellTable that contains a 2D array of ExistingCells
+    /// </summary>
     public class CellTable
     {
         public Vector2Int Size { get; private set; }
@@ -117,7 +120,5 @@ namespace AllChemist.Model
                 }
             }
         }
-
-
     }
 }

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace AllChemist.Cells.Ruleset
 {
+    /// <summary>
+    /// Simple ruleset class. Contains CellTypeBank and meta data.
+    /// </summary>
     public class Ruleset
     {
         public string AuthorName;

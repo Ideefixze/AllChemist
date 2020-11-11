@@ -4,6 +4,9 @@ using System.Windows.Controls;
 
 namespace AllChemist.GUI.Controllers
 {
+    /// <summary>
+    /// Controller for setting and getting the world size for a newly created model.
+    /// </summary>
     public class WorldSizeController : GUIContextController
     {
         private TextBox XTextBox;

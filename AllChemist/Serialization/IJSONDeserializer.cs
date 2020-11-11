@@ -5,7 +5,7 @@ using System.Text;
 namespace AllChemist.Serialization
 {
     /*
-     * Returns some kind of data 
+     * Returns some kind of data.
      */
     interface IJSONDeserializer<T>
     {

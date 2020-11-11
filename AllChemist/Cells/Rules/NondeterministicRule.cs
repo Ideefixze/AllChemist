@@ -6,6 +6,9 @@ using System.Text;
 
 namespace AllChemist.Cells.Rules
 {
+    /// <summary>
+    /// IRule extension. There will be some chance for a given rule to be executed.
+    /// </summary>
     [JsonObject]
     class NondeterministicRule : IRule
     {

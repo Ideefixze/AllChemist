@@ -7,6 +7,10 @@ using System.Windows;
 
 namespace AllChemist.GUI.Controllers
 {
+
+    /// <summary>
+    /// Contains all Controllers in our App and prepares them for usage.
+    /// </summary>
     public class ControllerContainter : GUIContextController
     {
         List<GUIContextController> controllers;

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AllChemist.GUI.GUIStates
 {
+    /// <summary>
+    /// GUIStateMachine has a current state and shared state (memory).
+    /// </summary>
     public class GUIStateMachine
     {
         public GUIState GUIState;

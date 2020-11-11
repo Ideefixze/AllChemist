@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 
 namespace AllChemist.Cells
 {
+    /// <summary>
+    /// Type of a cell. Instead of holding all data in a single cell, we use predefined types of cells.
+    /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public struct CellType
     {
@@ -17,7 +20,7 @@ namespace AllChemist.Cells
         public readonly string Name;
 
         public readonly Color Color;
-        static private int idCounter=0;
+        static private int idCounter=0; //All ids are accordingly set in the order they are initialized
 
         public static void ResetCounter()
         {

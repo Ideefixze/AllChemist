@@ -21,8 +21,8 @@ namespace AllChemist.Cells
         {
             Position = startingPosition;
         }
-
-        public abstract void ExecuteRules(World world); //Execute some kind of rule of this cell for a world
+        //Execute step change of this cell for a world.
+        public abstract void ExecuteRules(World world); 
         public abstract Cell Clone();
     }
 }

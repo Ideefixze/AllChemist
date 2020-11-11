@@ -9,7 +9,9 @@ using System.Text;
 
 namespace AllChemist.Model
 {
-
+    /// <summary>
+    /// Painting mode.
+    /// </summary>
     public enum EPaintType
     {
         PAINT_CURRENT,
@@ -19,30 +21,38 @@ namespace AllChemist.Model
     {
         public CellTable CellTable;
         public HashSet<Vector2Int> Delta;
+        public int Steps;
 
+        //We don't use original world because other components may modify it without our knowledge
         public DrawWorldArgs(World world) { 
             CellTable = world.CurrentTable; 
-            Delta = new HashSet<Vector2Int>(world.Delta); 
+            Delta = new HashSet<Vector2Int>(world.Delta);
+            Steps = world.Steps;
         }
     }
     public class World
     {
+        public int Steps;
         public Vector2Int TableSize { get; private set; }
         public CellTable CurrentTable { get; private set; }
         public CellTable NextIterationTable { get; private set; }
 
-        public CellTypeBank CellTypeBank { get; set; }
+        public CellTypeBank CellTypeBank { get; set; } //Bank of used CellTypes
 
-        public HashSet<Vector2Int> Delta { get; private set; }
+        public HashSet<Vector2Int> Delta { get; private set; } //Positions with all changes
 
         public event System.EventHandler<DrawWorldArgs> OnWorldChange; //Observer pattern
 
+        /// <summary>
+        /// Step for a simulation.
+        /// </summary>
         public void Step()
         {
             lock (this)
             {
                 Stopwatch t = new Stopwatch();
                 t.Start();
+                //Step and execution of all rules
                 for (int i = 0; i < TableSize.X; i++)
                 {
                     for (int j = 0; j < TableSize.Y; j++)
@@ -51,6 +61,7 @@ namespace AllChemist.Model
                     }
                 }
 
+                //Clears up all naive changes that turned out not to change anything
                 HashSet<Vector2Int> CellTypeChange = new HashSet<Vector2Int>();
                 foreach(Vector2Int change in Delta)
                 {
@@ -59,14 +70,18 @@ namespace AllChemist.Model
                 }
                 Delta = new HashSet<Vector2Int>(CellTypeChange);
 
+                //Sets up next iteration and sends all changes to the view
                 CurrentTable = NextIterationTable;
                 NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
+                Steps++;
                 ApplyChanges();
                 t.Stop();
-                Console.WriteLine("Model has been updated in " + t.Elapsed.TotalSeconds + "s");
+
+                //Console.WriteLine("Model has been updated in " + t.Elapsed.TotalSeconds + "s");
             }
         }
 
+        //Single pixel paint
         public bool Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
         {
             bool result = false;
@@ -90,6 +105,7 @@ namespace AllChemist.Model
                 
         }
 
+        //Sends all changes to the view
         public void ApplyChanges()
         {
             OnWorldChange?.Invoke(this, new DrawWorldArgs(this));
@@ -104,10 +120,10 @@ namespace AllChemist.Model
             CurrentTable = new CellTable(this.TableSize, CellTypeBank.GetDefaultCellType());
             NextIterationTable = new CellTable(CurrentTable);
             Delta = new HashSet<Vector2Int>();
+            Steps = 0;
         }
 
         //Memento Design Pattern
-        //TODO: Caretaker or maybe separate class for snapshot
         public CellTable CreateSnapshot()
         {
             return new CellTable(CurrentTable);
@@ -127,6 +143,7 @@ namespace AllChemist.Model
                         Delta.Add(new Vector2Int(i, j));
                     }
                 }
+                Steps = 0;
                 ApplyChanges();
             }
 

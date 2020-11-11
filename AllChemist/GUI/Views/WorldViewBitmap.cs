@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 
 namespace AllChemist.GUI.Views
 {
+    /// <summary>
+    /// Bitmap that is updated to display current model.
+    /// </summary>
     public class WorldViewBitmap
     {
         private Vector2Int originalSize;
@@ -23,13 +26,11 @@ namespace AllChemist.GUI.Views
         public WorldViewBitmap(Grid main, Vector2Int size)
         {
             originalSize = size;
-            //image = new System.Windows.Controls.Image();
+
             Image = new Image();
             Image.Width = size.X;
             Image.Height = size.Y;
             RenderOptions.SetBitmapScalingMode(Image, BitmapScalingMode.NearestNeighbor);
-            //Image.ActualWidth = size.X;
-            //Image.A
 
             main.Children.Clear();
             main.Children.Add(Image);
@@ -59,15 +60,15 @@ namespace AllChemist.GUI.Views
             Image.MouseLeave -= painter.StopPainting;
         }
 
+        /// <summary>
+        /// Draws a model from beginning to an end.
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="args">Args</param>
         public void FullDraw(object sender, DrawWorldArgs args)
         {
             bitmap.Dispatcher.Invoke(() => {
-                /*foreach (Vector2Int pos in args.Delta)
-                {
-                    ((SolidColorBrush)rectangles[pos.X, pos.Y].Fill).Color = args.CellTable.Cells[pos.X, pos.Y].CellType.color;
 
-                    rectangles[pos.X, pos.Y].ToolTip = $"{args.CellTable.Cells[pos.X, pos.Y].CellType.name} ({args.CellTable.Cells[pos.X, pos.Y].CellType.id})\nAt position ({pos.Y},{args.CellTable.Size.X - pos.X - 1})";
-                }*/
                 Stopwatch s = new Stopwatch();
                 s.Start();
                 byte[] color = new byte[args.CellTable.Size.X * args.CellTable.Size.Y * 4];
@@ -82,16 +83,20 @@ namespace AllChemist.GUI.Views
                         color[4 * p + 1] = c.Color.G;
                         color[4 * p + 2] = c.Color.R;
                         color[4 * p + 3] = c.Color.A;
-                        //Console.WriteLine($"{color[p]} and {uint.MaxValue}");
                     }
                 }
 
                 bitmap.WritePixels(new Int32Rect(0, 0, args.CellTable.Size.X, args.CellTable.Size.Y), color, args.CellTable.Size.X * 4, 0);
                 s.Stop();
-                Console.WriteLine("FullDraw of the model took: " + s.Elapsed.TotalSeconds + "s");
+                //Console.WriteLine("FullDraw of the model took: " + s.Elapsed.TotalSeconds + "s");
             });
         }
 
+        /// <summary>
+        /// Draws only changes of a model.
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="args">Args</param>
         public void DeltaDraw(object sender, DrawWorldArgs args)
         {
             bitmap.Dispatcher.Invoke(() =>
@@ -111,7 +116,7 @@ namespace AllChemist.GUI.Views
                     bitmap.WritePixels(new Int32Rect(pos.X, pos.Y, 1, 1), color, 4, 0);
                 }
                 s.Stop();
-                Console.WriteLine("DeltaDraw of the model took: " + s.Elapsed.TotalSeconds+"s");
+                //Console.WriteLine("DeltaDraw of the model took: " + s.Elapsed.TotalSeconds+"s");
             });
         }
     }

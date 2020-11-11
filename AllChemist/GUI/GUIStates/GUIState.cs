@@ -12,12 +12,12 @@ namespace AllChemist.GUI.GUIStates
     {
         protected MainWindow mainWindow;
 
-        public GUIState(MainWindow context)
+        public GUIState(MainWindow newContext)
         {
-            context.GUIStateMachine?.GUIState?.CleanUp();
-            mainWindow = context;
-            EventInitialization();
-            StateChanged();
+            newContext.GUIStateMachine?.GUIState?.CleanUp(); //Clean up previous state (unsubscribe events etc.)
+            mainWindow = newContext; //Set a new context
+            EventInitialization(); //Initializes all events
+            StateChanged(); //State was changed. Apply all changes for the GUI
         }
 
         public virtual void EventInitialization() { }

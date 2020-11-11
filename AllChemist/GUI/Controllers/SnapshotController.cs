@@ -24,7 +24,10 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Controllers
 {
-public class SnapshotController : GUIContextController
+    /// <summary>
+    /// Holds a temporary snapshot of the model so it can be restored later.
+    /// </summary>
+    public class SnapshotController : GUIContextController
     {
         private World world;
         private CellTable snapshot;

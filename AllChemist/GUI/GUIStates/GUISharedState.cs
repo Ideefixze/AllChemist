@@ -4,8 +4,12 @@ using System.Text;
 
 namespace AllChemist.GUI.GUIStates
 {
+    /// <summary>
+    /// Shared information for states. Extension for State Desing Pattern.
+    /// </summary>
     public class GUISharedState
     {
+        //Hashset of flags for some kind of memory
         private HashSet<string> flags;
 
         public GUISharedState()

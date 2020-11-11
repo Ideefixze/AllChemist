@@ -10,9 +10,13 @@ using System.Windows;
 
 namespace AllChemist
 {
+    /// <summary>
+    /// Main Window: used primarly as a container of all GUI elements and as a View wrapper.
+    /// </summary>
     public partial class MainWindow : Window
     {
         public WorldViewBitmap WorldView;
+        public WorldViewSteps WorldViewSteps;
 
         public GUIStateMachine GUIStateMachine;
 
@@ -29,13 +33,14 @@ namespace AllChemist
             
             WorldView.FullDraw(this, new DrawWorldArgs(model));
 
+            WorldViewSteps = new WorldViewSteps(StepsTextBlock);
         }
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = "AllChemist " + App.Version + "v";
-
+            this.Title = $"AllChemist {App.Version } v";
+            
         }
 
     }

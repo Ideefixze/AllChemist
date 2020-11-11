@@ -7,7 +7,7 @@ namespace AllChemist.Cells.Rules
     public interface IRule
     {
         /// <summary>
-        /// Rule of a cell that will change world.
+        /// Rule of a cell that will change the world.
         /// </summary>
         /// <param name="world">Game's world</param>
         /// <param name="cell">Cell this rule is attached to</param>

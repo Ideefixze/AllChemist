@@ -10,7 +10,7 @@ namespace AllChemist.Cells.Rules
     /// <summary>
     /// In next interation this cell remains as it is.
     /// </summary>
-    public class RemainRule:IRule
+    public class RemainRulex:IRule
     {
         public bool ExecuteRule(World world, Cell cell)
         {

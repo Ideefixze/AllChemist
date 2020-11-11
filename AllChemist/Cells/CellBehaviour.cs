@@ -7,10 +7,13 @@ using Newtonsoft.Json;
 
 namespace AllChemist.Cells
 {
+    /// <summary>
+    /// Contains all data related for a cell behaviour in a step-model such as rules.
+    /// </summary>
     [JsonObject]
     public class CellBehaviour
     {
-        public List<IRule> Rules { get; private set; } //Strategy pattern
+        public List<IRule> Rules { get; private set; } //Rule container.
 
         public CellBehaviour(CellBehaviour cb)
         {

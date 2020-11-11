@@ -6,6 +6,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace AllChemist.Serialization
 {
+    /// <summary>
+    /// Static class for unified serialization and deserialization.
+    /// </summary>
     public static class JSONHandler
     {
         public static T Load<T>(string json)

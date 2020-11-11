@@ -24,8 +24,8 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Controllers
 {
-/// <summary>
-    /// Controler that handles toggling simulation loop
+    /// <summary>
+    /// Controler that handles toggling simulation loop.
     /// </summary>
     public class ModelSimulationController : GUIContextController, IDisposable
     {
@@ -63,6 +63,9 @@ namespace AllChemist.GUI.Controllers
             simulationLoop.MilisecondsDelay = Int32.Parse(delayTextBox.Text); 
         }
 
+        /// <summary>
+        /// Cleans up a thread.
+        /// </summary>
         public void Dispose()
         {            
             Dispose(true);

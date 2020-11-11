@@ -6,6 +6,9 @@ using System.Text;
 
 namespace AllChemist
 {
+    /// <summary>
+    /// Simple 2D mathematical vector.
+    /// </summary>
     public struct Vector2Int
     {
         public int X, Y;

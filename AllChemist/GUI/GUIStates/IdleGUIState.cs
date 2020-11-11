@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace AllChemist.GUI.GUIStates
 {
+    /// <summary>
+    /// Idle state. Used when simulation is off.
+    /// </summary>
     class IdleGUIState : GUIState
     {
 

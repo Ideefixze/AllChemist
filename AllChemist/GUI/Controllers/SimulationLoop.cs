@@ -24,7 +24,10 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Controllers
 {
-public class SimulationLoop
+    /// <summary>
+    /// Handles a thread that runs for model simulation.
+    /// </summary>
+    public class SimulationLoop
     {
         public bool RunThread = true;
         public bool Simulate = false;
@@ -32,6 +35,7 @@ public class SimulationLoop
 
         public void LoopThread(World w)
         {
+            //DispatcherSync synchronizes loop with a GUI so that each step is displayed
             bool DispatcherSync = true;
             Stopwatch timer = new Stopwatch();
             while(RunThread)

@@ -9,6 +9,10 @@ using AllChemist.Serialization;
 
 namespace AllChemist.Serialization
 {
+    /// <summary>
+    /// Deserializes file content to the new object of type T.
+    /// </summary>
+    /// <typeparam name="T">Type of deserialized object</typeparam>
     public class JSONFileDeserializer<T> : IJSONDeserializer<T>
     {
         public OpenFileDialog fileDialog;

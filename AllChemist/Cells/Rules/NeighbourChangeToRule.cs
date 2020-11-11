@@ -22,12 +22,14 @@ namespace AllChemist.Cells.Rules
         [JsonProperty]
         private int neighbourIdToChange;
 
+        //In code constructor for Conway Generator
         public NeighbourChangeToRule(int id, IEnumerable<int> list, int to)
         {
             neighbourId = id;
             neighbourCounts = new HashSet<int>(list);
             neighbourIdToChange = to;
         }
+        //Json constructor because constructor above somehow doesn't like Newtonsoft's Json 
         public NeighbourChangeToRule()
         {
 

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AllChemist.GUI.Controllers
 {
+    /// <summary>
+    /// Abstract class for all Controllers that are somewhat associated with GUI
+    /// </summary>
     public abstract class GUIContextController : IController
     {
         public GUIContextController(MainWindow context)

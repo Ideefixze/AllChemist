@@ -9,6 +9,9 @@ using System.Windows.Documents;
 
 namespace AllChemist.Cells.Ruleset
 {
+    /// <summary>
+    /// Loads up a custom ruleset from a file.
+    /// </summary>
     public class FromFileRulesetCreator : RulesetInterpreter
     {
         public JSONFileDeserializer<Ruleset> JSONFileDeserializer;

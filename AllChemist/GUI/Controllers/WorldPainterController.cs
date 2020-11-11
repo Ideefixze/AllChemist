@@ -25,6 +25,9 @@ using AllChemist.Cells;
 
 namespace AllChemist.GUI.Controllers
 {
+    /// <summary>
+    /// Simple painter and controller for putting down cells on a canvas. Handles color picker so that it always shows colors from CellTypeBank
+    /// </summary>
     public class WorldPainterController : GUIContextController, IPainter
     {
         private World world;
@@ -79,7 +82,7 @@ namespace AllChemist.GUI.Controllers
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         Point mousePoint = Mouse.GetPosition(on);
-                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)on.Width / world.TableSize.X), (int)mousePoint.Y / ((int)on.Height / world.TableSize.Y));
+                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)on.ActualWidth / world.TableSize.X), (int)mousePoint.Y / ((int)on.ActualHeight / world.TableSize.Y));
                         this.PaintWorld(worldPos);
                         world.ApplyChanges();
                     });

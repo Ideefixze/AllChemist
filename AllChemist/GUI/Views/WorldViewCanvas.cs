@@ -24,6 +24,9 @@ using AllChemist.Model;
 
 namespace AllChemist.GUI.Views
 {
+    /// <summary>
+    /// Old, unused code. View that uses canvas instead of bitmap. This is very slow.
+    /// </summary>
     public class WorldViewCanvas
     {
         public Canvas Canvas;

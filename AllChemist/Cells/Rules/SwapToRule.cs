@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace AllChemist.Cells.Rules
 {
     /// <summary>
-    /// In next interation this cell remains as it is.
+    /// In next interation this cell swaps to a cell of a different id.
     /// </summary>
 
     [JsonObject]
