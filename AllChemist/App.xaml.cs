@@ -27,7 +27,7 @@ namespace AllChemist
         /// All important classes for MVC design pattern.
         /// </summary>
         private World model; //Model
-        private ControllerContainter controllerContainer; //Controllers - container and initializer
+        private DefaultControllerContainer controllerContainer; //Controllers - container and initializer
         private RulesetInterpreter rulesetInterpreter; //Controller that generates ruleset (Strategy Pattern)
         private MainWindow mainWindow; //View
 
@@ -59,7 +59,7 @@ namespace AllChemist
                 InitializeModel();
             };
 
-            controllerContainer = new ControllerContainter(mainWindow);
+            controllerContainer = new DefaultControllerContainer(mainWindow);
 
             rulesetInterpreter = new ConwayRulesetCreator("23/3");
 
@@ -84,6 +84,7 @@ namespace AllChemist
 
             //Prepare a new model
             model = new World(controllerContainer.GetController<WorldSizeController>().GetWorldSize(), ruleset.CellTypeBank);
+            Console.WriteLine(ruleset.CellTypeBank.GetDefaultCellType());
 
             //Sets up controllers to the newly created model
             controllerContainer.SetUpModel(model);

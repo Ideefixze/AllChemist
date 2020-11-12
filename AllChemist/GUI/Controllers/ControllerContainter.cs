@@ -11,16 +11,13 @@ namespace AllChemist.GUI.Controllers
     /// <summary>
     /// Contains all Controllers in our App and prepares them for usage.
     /// </summary>
-    public class ControllerContainter : GUIContextController
+    public class DefaultControllerContainter : GUIContextController
     {
-        List<GUIContextController> controllers;
-        public ControllerContainter(MainWindow context) : base(context)
+        protected List<GUIContextController> controllers;
+        public DefaultControllerContainter(MainWindow context) : base(context)
         {
             controllers = new List<GUIContextController>();
-            controllers.Add(new ModelSimulationController(context));
-            controllers.Add(new SnapshotController(context));
-            controllers.Add(new WorldPainterController(context));
-            controllers.Add(new WorldSizeController(context));
+           
         }
 
         public override void SetUpModel(World world)

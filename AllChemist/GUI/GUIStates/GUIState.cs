@@ -16,11 +16,9 @@ namespace AllChemist.GUI.GUIStates
         {
             newContext.GUIStateMachine?.GUIState?.CleanUp(); //Clean up previous state (unsubscribe events etc.)
             mainWindow = newContext; //Set a new context
-            EventInitialization(); //Initializes all events
             StateChanged(); //State was changed. Apply all changes for the GUI
         }
 
-        public virtual void EventInitialization() { }
         public virtual void CleanUp() { }
         public virtual void StateChanged() { }
 

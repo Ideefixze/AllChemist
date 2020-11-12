@@ -85,7 +85,6 @@ namespace AllChemist.Model
         public bool Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
         {
             bool result = false;
-            CellType previous=CurrentTable.Cells[pos.X,pos.Y].CellType;
             switch(paintType)
             {
                 case EPaintType.PAINT_NEXT:
@@ -96,13 +95,11 @@ namespace AllChemist.Model
                     break;
             }
 
-            if (result && previous!=c)
+            if (result)
             {
                 Delta.Add(pos);
-                return true;
             }
-            return false;
-                
+            return result;
         }
 
         //Sends all changes to the view

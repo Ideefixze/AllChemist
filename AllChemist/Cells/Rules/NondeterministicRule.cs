@@ -24,5 +24,10 @@ namespace AllChemist.Cells.Rules
             }
             return false;
         }
+
+        public override string ToString()
+        {
+            return $"NondeterministicRule ({chance}) on rule: {rule.ToString()}";
+        }
     }
 }

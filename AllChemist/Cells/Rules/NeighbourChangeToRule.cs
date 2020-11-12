@@ -36,7 +36,7 @@ namespace AllChemist.Cells.Rules
         }
         public bool ExecuteRule(World world, Cell cell)
         {
-            int c = world.CurrentTable.GetNeighboursOfIdCount(cell.Position, neighbourId);
+            int c = world.CurrentTable.GetNeighbours(cell.Position, cell => cell.CellType.Id==neighbourId).Count;
             if (neighbourCounts.Contains(c))
             {
                 world.Paint(cell.Position, world.CellTypeBank.CellTypes[neighbourIdToChange]);

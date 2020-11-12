@@ -16,11 +16,6 @@ namespace AllChemist.GUI.GUIStates
             
         }
 
-        public override void EventInitialization()
-        {
-            stopSimulation = new RoutedEventHandler((s, a) => { mainWindow.GUIStateMachine.GUIState = new IdleGUIState(mainWindow); });
-        }
-
         public override void CleanUp()
         {
             mainWindow.ToggleSimulationButton.Click -= stopSimulation;
@@ -28,6 +23,8 @@ namespace AllChemist.GUI.GUIStates
 
         public override void StateChanged() 
         {
+            stopSimulation = new RoutedEventHandler((s, a) => { mainWindow.GUIStateMachine.GUIState = new IdleGUIState(mainWindow); });
+
             mainWindow.ToggleSimulationButton.Content = "Stop";
             mainWindow.ToggleSimulationButton.IsEnabled = true;
             mainWindow.SaveButton.IsEnabled = false;

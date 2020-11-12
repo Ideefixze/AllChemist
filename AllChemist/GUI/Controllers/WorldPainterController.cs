@@ -82,7 +82,9 @@ namespace AllChemist.GUI.Controllers
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         Point mousePoint = Mouse.GetPosition(on);
-                        Vector2Int worldPos = new Vector2Int((int)mousePoint.X / ((int)on.ActualWidth / world.TableSize.X), (int)mousePoint.Y / ((int)on.ActualHeight / world.TableSize.Y));
+                        double xx = mousePoint.X / on.ActualWidth;
+                        double yy = mousePoint.Y / on.ActualHeight;
+                        Vector2Int worldPos = new Vector2Int((int)(xx * world.TableSize.X), (int)(yy * world.TableSize.Y));
                         this.PaintWorld(worldPos);
                         world.ApplyChanges();
                     });
