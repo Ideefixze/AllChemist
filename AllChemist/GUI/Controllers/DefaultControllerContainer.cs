@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AllChemist.GUI.Controllers
 {
-    public class DefaultControllerContainer : DefaultControllerContainter
+    public class DefaultControllerContainer : ControllerContainter
     {
 
         public DefaultControllerContainer(MainWindow context) : base(context)

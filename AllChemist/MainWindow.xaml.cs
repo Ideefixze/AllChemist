@@ -15,8 +15,6 @@ namespace AllChemist
     /// </summary>
     public partial class MainWindow : Window
     {
-        public WorldViewBitmap WorldView;
-        public WorldViewSteps WorldViewSteps;
 
         public GUIStateMachine GUIStateMachine;
 
@@ -26,21 +24,10 @@ namespace AllChemist
             GUIStateMachine.GUIState = new IdleGUIState(this);
         }
 
-        public void InitializeView(World model)
-        {
-            WorldView = new WorldViewBitmap(WorldGrid, new Vector2Int(600, 600));
-            WorldView.InitModel(model);
-            
-            WorldView.FullDraw(this, new DrawWorldArgs(model));
-
-            WorldViewSteps = new WorldViewSteps(StepsTextBlock);
-        }
-
         public MainWindow()
         {
             InitializeComponent();
             this.Title = $"AllChemist {App.Version } v";
-            
         }
 
     }

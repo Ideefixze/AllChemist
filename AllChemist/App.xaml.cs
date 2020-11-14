@@ -29,7 +29,9 @@ namespace AllChemist
         private World model; //Model
         private DefaultControllerContainer controllerContainer; //Controllers - container and initializer
         private RulesetInterpreter rulesetInterpreter; //Controller that generates ruleset (Strategy Pattern)
-        private MainWindow mainWindow; //View
+        
+        private MainWindow mainWindow; //Main GUI container
+        private DefaultViewContainer viewContainer; //Views
 
         public App()
         {
@@ -60,6 +62,7 @@ namespace AllChemist
             };
 
             controllerContainer = new DefaultControllerContainer(mainWindow);
+            viewContainer = new DefaultViewContainer(mainWindow);
 
             rulesetInterpreter = new ConwayRulesetCreator("23/3");
 
@@ -84,19 +87,17 @@ namespace AllChemist
 
             //Prepare a new model
             model = new World(controllerContainer.GetController<WorldSizeController>().GetWorldSize(), ruleset.CellTypeBank);
-            Console.WriteLine(ruleset.CellTypeBank.GetDefaultCellType());
 
             //Sets up controllers to the newly created model
             controllerContainer.SetUpModel(model);
 
-            //Initializes view so that it show the newest model and forces updates on it's change
-            mainWindow.InitializeView(model);
-            //TODO: interface for all views and mainWindow should contain them
-            model.OnWorldChange += mainWindow.WorldView.DeltaDraw;
-            model.OnWorldChange += mainWindow.WorldViewSteps.Update;
+            model.OnWorldChange += viewContainer.Update;
+
+            viewContainer.GetView<BitmapWorldView>().InitModel(model);
+            viewContainer.GetView<BitmapWorldView>().FullDraw(this, new DrawWorldArgs(model));
 
             //Sets up basic painter
-            mainWindow.WorldView.SetPainter(controllerContainer.GetController<WorldPainterController>());
+            viewContainer.GetView<BitmapWorldView>().SetPainter(controllerContainer.GetController<WorldPainterController>());
 
             //Sets up GUIStateMachine for different GUI States (State Design Pattern)
             mainWindow.InitializeGUIStateMachine();
@@ -113,9 +114,8 @@ namespace AllChemist
             //Unsets model from all controllers
             controllerContainer.CleanUpModel(model);
             //Unsubscribing so we won't have any memory leaks
-            model.OnWorldChange -= mainWindow.WorldView.DeltaDraw;
-            model.OnWorldChange -= mainWindow.WorldViewSteps.Update;
-            mainWindow.WorldView.UnsetPainter(controllerContainer.GetController<WorldPainterController>());
+            model.OnWorldChange -= viewContainer.Update;
+            viewContainer.GetView<BitmapWorldView>().UnsetPainter(controllerContainer.GetController<WorldPainterController>());
 
             GC.Collect();
         }

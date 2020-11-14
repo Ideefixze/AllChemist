@@ -11,5 +11,11 @@
     <Setting Name="SizeY" Type="System.String" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
+    <Setting Name="BitmapSizeX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
+    <Setting Name="BitmapSizeY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

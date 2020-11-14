@@ -17,23 +17,23 @@ namespace AllChemist.GUI.Views
     /// <summary>
     /// Bitmap that is updated to display current model.
     /// </summary>
-    public class WorldViewBitmap
+    public class BitmapWorldView : GUIContextView, IPaintable
     {
         private Vector2Int originalSize;
         private WriteableBitmap bitmap;
         public Image Image;
 
-        public WorldViewBitmap(Grid main, Vector2Int size)
+        public BitmapWorldView(MainWindow mainWindow) : base(mainWindow)
         {
-            originalSize = size;
+            originalSize = new Vector2Int(int.Parse(Properties.Settings.Default.BitmapSizeX), int.Parse(Properties.Settings.Default.BitmapSizeY));
 
             Image = new Image();
-            Image.Width = size.X;
-            Image.Height = size.Y;
+            Image.Width = originalSize.X;
+            Image.Height = originalSize.Y;
             RenderOptions.SetBitmapScalingMode(Image, BitmapScalingMode.NearestNeighbor);
 
-            main.Children.Clear();
-            main.Children.Add(Image);
+            mainWindow.WorldGrid.Children.Clear();
+            mainWindow.WorldGrid.Children.Add(Image);
 
         }
 
@@ -118,6 +118,11 @@ namespace AllChemist.GUI.Views
                 s.Stop();
                 //Console.WriteLine("DeltaDraw of the model took: " + s.Elapsed.TotalSeconds+"s");
             });
+        }
+
+        public override void Update(object sender, DrawWorldArgs args)
+        {
+            DeltaDraw(sender, args);
         }
     }
 }

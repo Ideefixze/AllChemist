@@ -11,10 +11,10 @@ namespace AllChemist.GUI.Controllers
     /// <summary>
     /// Contains all Controllers in our App and prepares them for usage.
     /// </summary>
-    public class DefaultControllerContainter : GUIContextController
+    public class ControllerContainter : GUIContextController
     {
         protected List<GUIContextController> controllers;
-        public DefaultControllerContainter(MainWindow context) : base(context)
+        public ControllerContainter(MainWindow context) : base(context)
         {
             controllers = new List<GUIContextController>();
            

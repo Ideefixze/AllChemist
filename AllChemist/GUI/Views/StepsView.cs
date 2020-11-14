@@ -7,15 +7,15 @@ using System.Windows.Threading;
 
 namespace AllChemist.GUI.Views
 {
-    public class WorldViewSteps
+    public class StepsView : GUIContextView
     {
         private TextBlock textBlock;
-        public WorldViewSteps(TextBlock textBlock)
+        public StepsView(MainWindow mainWindow) : base(mainWindow)
         {
-            this.textBlock = textBlock;
+            this.textBlock = mainWindow.StepsTextBlock;
             this.textBlock.Text = "Steps: 0";
         }
-        public void Update(object sender, DrawWorldArgs args)
+        public override void Update(object sender, DrawWorldArgs args)
         {
             textBlock.Dispatcher.Invoke(() => { textBlock.Text = "Steps: " + args.Steps.ToString(); });
         }
