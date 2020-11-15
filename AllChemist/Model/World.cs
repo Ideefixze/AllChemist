@@ -72,7 +72,7 @@ namespace AllChemist.Model
 
                 //Sets up next iteration and sends all changes to the view
                 CurrentTable = NextIterationTable;
-                NextIterationTable = new CellTable(TableSize, CurrentTable.DefaultCellType);
+                NextIterationTable = new CellTable(CurrentTable);
                 Steps++;
                 ApplyChanges();
                 t.Stop();
@@ -84,6 +84,10 @@ namespace AllChemist.Model
         //Single pixel paint
         public bool Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
         {
+            if (pos.X < 0 || pos.X >= TableSize.X || pos.Y < 0 || pos.Y >= TableSize.Y)
+                return false;
+
+            CellType prev = CurrentTable.Cells[pos.X, pos.Y].CellType;
             bool result = false;
             switch(paintType)
             {
@@ -95,7 +99,7 @@ namespace AllChemist.Model
                     break;
             }
 
-            if (result)
+            if (result && prev!=c)
             {
                 Delta.Add(pos);
             }

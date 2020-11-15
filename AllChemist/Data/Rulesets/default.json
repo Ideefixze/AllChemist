@@ -1,0 +1,47 @@
+{
+  "AuthorName": "Dominik Zimny",
+  "Name": "default",
+  "CellTypeBank": {
+    "CellTypes": {
+      "0": {
+        "Id": 0,
+        "Name": "Dead",
+        "Color": "#FFFFFFFF",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.NeighbourChangeToRule, AllChemist",
+              "neighbourId": 1,
+              "neighbourCounts": [
+                3
+              ],
+              "neighbourIdToChange": 1
+            }
+          ]
+        }
+      },
+      "1": {
+        "Id": 1,
+        "Name": "Alive",
+        "Color": "#FF000000",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+              "cellToSwapId": 0
+            },
+            {
+              "$type": "AllChemist.Cells.Rules.NeighbourChangeToRule, AllChemist",
+              "neighbourId": 1,
+              "neighbourCounts": [
+                2,
+                3
+              ],
+              "neighbourIdToChange": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ namespace AllChemist.Cells.Ruleset
 
         public FromFileRulesetCreator()
         {
-            JSONFileDeserializer = new JSONFileDeserializer<Ruleset>("rulesets", "default.json");
+            JSONFileDeserializer = new JSONFileDeserializer<Ruleset>("Data\\Rulesets", "default.json");
         }
 
         public override void LoadRuleset()

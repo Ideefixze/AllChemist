@@ -1,0 +1,123 @@
+{
+  "AuthorName": "Dominik Zimny",
+  "Name": "NoComposite",
+  "CellTypeBank": {
+    "CellTypes": {
+      "0": {
+        "Id": 0,
+        "Name": "NoComposite",
+        "Color": "#FFFFFFFF",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+              "rule": {
+                "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                "cellToSwapId": 1
+              },
+              "chance": 0.5
+            },
+            {
+              "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+              "rule": {
+                "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                "cellToSwapId": 2
+              },
+              "chance": 0.5
+            },
+            {
+              "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+              "rule": {
+                "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                "cellToSwapId": 3
+              },
+              "chance": 0.5
+            }
+          ]
+        }
+      },
+      "1": {
+        "Id": 1,
+        "Name": "Red",
+        "Color": "#FFFF0000",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+              "cellToSwapId": 1
+            }
+          ]
+        }
+      },
+      "2": {
+        "Id": 2,
+        "Name": "Green",
+        "Color": "#FF00FF00",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+              "cellToSwapId": 2
+            }
+          ]
+        }
+      },
+      "3": {
+        "Id": 3,
+        "Name": "Blue",
+        "Color": "#FF0000FF",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+              "cellToSwapId": 3
+            }
+          ]
+        }
+      },
+      "4": {
+        "Id": 4,
+        "Name": "Composite",
+        "Color": "#FF000000",
+        "<CellBehaviour>k__BackingField": {
+          "Rules": [
+            {
+              "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+              "cellToSwapId": 4
+            },
+            {
+              "$type": "AllChemist.Cells.Rules.UntilMadeChangesRule, AllChemist",
+              "childrenRules": [
+                {
+                  "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+                  "rule": {
+                    "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                    "cellToSwapId": 1
+                  },
+                  "chance": 0.5
+                },
+                {
+                  "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+                  "rule": {
+                    "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                    "cellToSwapId": 2
+                  },
+                  "chance": 0.5
+                },
+                {
+                  "$type": "AllChemist.Cells.Rules.NondeterministicRule, AllChemist",
+                  "rule": {
+                    "$type": "AllChemist.Cells.Rules.SwapToRule, AllChemist",
+                    "cellToSwapId": 3
+                  },
+                  "chance": 0.5
+                }
+              ],
+              "rulesMadeAnyChangesCountToEnd": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}
