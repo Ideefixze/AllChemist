@@ -3,6 +3,7 @@ using AllChemist.GUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace AllChemist.Cells.Ruleset
 {
@@ -21,7 +22,14 @@ namespace AllChemist.Cells.Ruleset
         {
             try
             {
+
+                if (conwayRules.Any(c => c != '/' && (c < '1' || c > '8')))
+                    throw new Exception();
+
                 string[] rules = conwayRules.Trim().Split('/');
+
+                if (rules.Length != 2)
+                    throw new Exception();
 
                 List<int> aliveNCounts = new List<int>();
                 foreach (char c in rules[0])
@@ -36,7 +44,7 @@ namespace AllChemist.Cells.Ruleset
                 }
 
                 Ruleset ruleset = new Ruleset(Environment.UserName, conwayRules);
-
+                CellType.ResetCounter();
                 CellType deadType = new CellType("Dead", 255, 255, 255);
                 CellType aliveType = new CellType("Alive", 0, 0, 0);
 
@@ -47,8 +55,6 @@ namespace AllChemist.Cells.Ruleset
                 ruleset.CellTypeBank.CellTypes.Add(deadType.Id, deadType);
                 ruleset.CellTypeBank.CellTypes.Add(aliveType.Id, aliveType);
 
-                CellType.ResetCounter();
-
                 return ruleset;
             }
             catch
@@ -58,6 +64,7 @@ namespace AllChemist.Cells.Ruleset
                 return CreateRuleset();
             }
         }
+
 
         /// <summary>
         /// Shows up a dialog for a user to input a ruleset.

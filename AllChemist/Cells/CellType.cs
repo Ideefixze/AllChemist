@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Media;
+using AllChemist.Serialization;
 using Newtonsoft.Json;
 
 namespace AllChemist.Cells
@@ -52,7 +53,7 @@ namespace AllChemist.Cells
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return JSONHandler.Save(this).GetHashCode();
         }
 
         public override bool Equals(Object obj)
