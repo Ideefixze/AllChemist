@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace AllChemist.GUI
@@ -12,9 +9,9 @@ namespace AllChemist.GUI
         /// Shows dialog that stops current program until we enter some input.
         /// </summary>
         /// <returns>String from user's input</returns>
-        public static string StringForm(string windowTitle="",string labelText="", string defaultTextBoxValue="")
+        public static string StringForm(string windowTitle = "", string labelText = "", string defaultTextBoxValue = "")
         {
-            string returnValue="";
+            string returnValue = "";
 
             Window form = new Window();
             form.Title = windowTitle;

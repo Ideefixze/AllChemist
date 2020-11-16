@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using AllChemist.Model;
 using AllChemist.Serialization;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AllChemist.Cells.Rules
 {
@@ -36,14 +33,14 @@ namespace AllChemist.Cells.Rules
         }
         public bool ExecuteRule(World world, Cell cell)
         {
-            int c = world.CurrentTable.GetNeighbours(cell.Position, cell => cell.CellType.Id==neighbourId).Count;
+            int c = world.CurrentTable.GetNeighbours(cell.Position, cell => cell.CellType.Id == neighbourId).Count;
             if (neighbourCounts.Contains(c))
             {
                 world.Paint(cell.Position, world.CellTypeBank.CellTypes[neighbourIdToChange]);
                 return true;
             }
             return false;
-            
+
         }
 
         public override string ToString()

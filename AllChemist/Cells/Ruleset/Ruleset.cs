@@ -1,11 +1,4 @@
-﻿using AllChemist.GUI.Controllers;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace AllChemist.Cells.Ruleset
+﻿namespace AllChemist.Cells.Ruleset
 {
     /// <summary>
     /// Simple ruleset class. Contains CellTypeBank and meta data.

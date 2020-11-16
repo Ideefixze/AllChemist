@@ -1,12 +1,7 @@
 ﻿using AllChemist.Cells;
 using AllChemist.GUI.Controllers;
 using AllChemist.Model;
-using Newtonsoft.Json.Bson;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,7 +15,7 @@ namespace AllChemist.GUI.Views
     public class BitmapWorldView : GUIContextView, IPaintable
     {
         private Vector2Int originalSize;
-        private WriteableBitmap bitmap;
+        public WriteableBitmap Bitmap;
         public Image Image;
 
         public BitmapWorldView(MainWindow mainWindow) : base(mainWindow)
@@ -39,11 +34,11 @@ namespace AllChemist.GUI.Views
 
         public void InitModel(World w)
         {
-            bitmap = new WriteableBitmap(w.TableSize.X, w.TableSize.Y, 72, 72, PixelFormats.Bgra32, null);
+            Bitmap = new WriteableBitmap(w.TableSize.X, w.TableSize.Y, 72, 72, PixelFormats.Bgra32, null);
             uint[] color = new uint[w.CurrentTable.Size.X * w.CurrentTable.Size.Y];
 
             FullDraw(null, new DrawWorldArgs(w));
-            Image.Source = bitmap;
+            Image.Source = Bitmap;
         }
 
         public void SetPainter(IPainter painter)
@@ -67,7 +62,8 @@ namespace AllChemist.GUI.Views
         /// <param name="args">Args</param>
         public void FullDraw(object sender, DrawWorldArgs args)
         {
-            bitmap.Dispatcher.Invoke(() => {
+            Bitmap.Dispatcher.Invoke(() =>
+            {
 
                 Stopwatch s = new Stopwatch();
                 s.Start();
@@ -86,7 +82,7 @@ namespace AllChemist.GUI.Views
                     }
                 }
 
-                bitmap.WritePixels(new Int32Rect(0, 0, args.CellTable.Size.X, args.CellTable.Size.Y), color, args.CellTable.Size.X * 4, 0);
+                Bitmap.WritePixels(new Int32Rect(0, 0, args.CellTable.Size.X, args.CellTable.Size.Y), color, args.CellTable.Size.X * 4, 0);
                 s.Stop();
                 //Console.WriteLine("FullDraw of the model took: " + s.Elapsed.TotalSeconds + "s");
             });
@@ -99,7 +95,7 @@ namespace AllChemist.GUI.Views
         /// <param name="args">Args</param>
         public void DeltaDraw(object sender, DrawWorldArgs args)
         {
-            bitmap.Dispatcher.Invoke(() =>
+            Bitmap.Dispatcher.Invoke(() =>
             {
                 Stopwatch s = new Stopwatch();
                 s.Start();
@@ -113,7 +109,7 @@ namespace AllChemist.GUI.Views
                     color[2] = c.Color.R;
                     color[3] = c.Color.A;
 
-                    bitmap.WritePixels(new Int32Rect(pos.X, pos.Y, 1, 1), color, 4, 0);
+                    Bitmap.WritePixels(new Int32Rect(pos.X, pos.Y, 1, 1), color, 4, 0);
                 }
                 s.Stop();
                 //Console.WriteLine("DeltaDraw of the model took: " + s.Elapsed.TotalSeconds+"s");

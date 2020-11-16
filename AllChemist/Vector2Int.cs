@@ -1,9 +1,3 @@
-using Microsoft.VisualBasic.CompilerServices;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-
 namespace AllChemist
 {
     /// <summary>
@@ -13,7 +7,7 @@ namespace AllChemist
     {
         public int X, Y;
 
-        public Vector2Int(int x=0, int y=0)
+        public Vector2Int(int x = 0, int y = 0)
         {
             this.X = x;
             this.Y = y;
@@ -25,14 +19,14 @@ namespace AllChemist
             this.Y = v.Y;
         }
 
-        public static bool operator==(Vector2Int a, Vector2Int b)
+        public static bool operator ==(Vector2Int a, Vector2Int b)
         {
             return a.X == b.X && a.Y == b.Y;
         }
 
         public static bool operator !=(Vector2Int a, Vector2Int b)
         {
-            return !(a==b);
+            return !(a == b);
         }
 
         public override string ToString()

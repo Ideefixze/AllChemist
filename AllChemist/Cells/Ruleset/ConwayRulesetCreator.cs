@@ -2,7 +2,6 @@
 using AllChemist.GUI;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace AllChemist.Cells.Ruleset

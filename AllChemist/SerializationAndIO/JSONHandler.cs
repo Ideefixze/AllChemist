@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace AllChemist.Serialization
@@ -14,7 +11,7 @@ namespace AllChemist.Serialization
         public static T Load<T>(string json)
         {
             var trace = new MemoryTraceWriter();
-            
+
             return JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings()
             {
                 TraceWriter = trace,

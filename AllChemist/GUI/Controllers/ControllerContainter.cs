@@ -1,9 +1,6 @@
 ﻿using AllChemist.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows;
 
 namespace AllChemist.GUI.Controllers
 {
@@ -17,12 +14,12 @@ namespace AllChemist.GUI.Controllers
         public ControllerContainter(MainWindow context) : base(context)
         {
             controllers = new List<GUIContextController>();
-           
+
         }
 
         public override void SetUpModel(World world)
         {
-            foreach(GUIContextController c in controllers)
+            foreach (GUIContextController c in controllers)
             {
                 c.SetUpModel(world);
             }

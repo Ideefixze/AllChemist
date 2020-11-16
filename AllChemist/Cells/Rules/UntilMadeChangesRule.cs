@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using AllChemist.Cells.Rules;
-using AllChemist.Model;
+﻿using AllChemist.Model;
 using Newtonsoft.Json;
 
 namespace AllChemist.Cells.Rules
@@ -22,14 +17,14 @@ namespace AllChemist.Cells.Rules
         {
             int k = rulesMadeAnyChangesCountToEnd;
             bool anyTrue = false;
-            foreach(IRule rule in childrenRules)
+            foreach (IRule rule in childrenRules)
             {
                 if (rule.ExecuteRule(world, cell))
                 {
                     k--;
                     anyTrue = true;
                 }
-                 
+
                 if (k == 0)
                     break;
             }

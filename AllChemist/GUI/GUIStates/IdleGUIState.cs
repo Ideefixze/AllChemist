@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace AllChemist.GUI.GUIStates
 {
@@ -16,7 +13,7 @@ namespace AllChemist.GUI.GUIStates
 
         public IdleGUIState(MainWindow context) : base(context)
         {
-            
+
         }
 
         public override void CleanUp()

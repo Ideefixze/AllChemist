@@ -1,15 +1,13 @@
 using AllChemist.Cells;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace AllChemist.Model
 {
     /// <summary>
     /// CellTable that contains a 2D array of ExistingCells
     /// </summary>
- 
+
     public class CellTable
     {
         public Vector2Int Size { get; private set; }
@@ -19,9 +17,9 @@ namespace AllChemist.Model
         public List<ExistingCell> GetNeighbours(Vector2Int position, Func<ExistingCell, bool> predicate = null)
         {
             List<ExistingCell> neighbours = new List<ExistingCell>();
-            if(predicate == null)
+            if (predicate == null)
             {
-                predicate = a => a!=null; 
+                predicate = a => a != null;
             }
             for (int x = position.X - 1; x <= position.X + 1; x++)
             {
@@ -75,7 +73,7 @@ namespace AllChemist.Model
             {
                 for (int j = 0; j < Size.Y; j++)
                 {
-                    PlaceCell(new Vector2Int(i, j), ct.Cells[i,j].CellType);
+                    PlaceCell(new Vector2Int(i, j), ct.Cells[i, j].CellType);
                 }
             }
         }

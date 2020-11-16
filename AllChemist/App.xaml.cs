@@ -1,17 +1,13 @@
-﻿using AllChemist.Properties;
-using AllChemist;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using AllChemist.Model;
-using AllChemist.GUI.Views;
-using AllChemist.GUI.Controllers;
+﻿using AllChemist.Cells;
 using AllChemist.Cells.Ruleset;
-using AllChemist.Cells;
+using AllChemist.GUI.Controllers;
+using AllChemist.GUI.Views;
+using AllChemist.Model;
+using AllChemist.Properties;
+using AllChemist.SerializationAndIO;
+using System;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace AllChemist
 {
@@ -29,7 +25,7 @@ namespace AllChemist
         private World model; //Model
         private DefaultControllerContainer controllerContainer; //Controllers - container and initializer
         private RulesetInterpreter rulesetInterpreter; //Controller that generates ruleset (Strategy Pattern)
-        
+
         private MainWindow mainWindow; //Main GUI container
         private DefaultViewContainer viewContainer; //Views
 
@@ -48,17 +44,23 @@ namespace AllChemist
 
             //Sets up buttons that generate a new model and/or load a new rulesets 
             mainWindow.NewGridButton.Click += (s, e) => { CleanUpModel(); InitializeModel(); };
-            mainWindow.RulesetLoadButton.Click += (s, e) => {
+            mainWindow.RulesetLoadButton.Click += (s, e) =>
+            {
                 rulesetInterpreter = new FromFileRulesetCreator();
                 rulesetInterpreter.LoadRuleset();
                 CleanUpModel();
                 InitializeModel();
             };
-            mainWindow.ConwayRulesetLoadButton.Click += (s, e) => {
+            mainWindow.ConwayRulesetLoadButton.Click += (s, e) =>
+            {
                 rulesetInterpreter = new ConwayRulesetCreator("23/3");
                 rulesetInterpreter.LoadRuleset();
                 CleanUpModel();
                 InitializeModel();
+            };
+            mainWindow.ExportButton.Click += (s, e) =>
+            {
+                BitmapExporter.Export(viewContainer.GetView<BitmapWorldView>().Bitmap, new PngBitmapEncoder());
             };
 
             controllerContainer = new DefaultControllerContainer(mainWindow);
@@ -95,6 +97,7 @@ namespace AllChemist
 
             viewContainer.GetView<BitmapWorldView>().InitModel(model);
             viewContainer.GetView<BitmapWorldView>().FullDraw(this, new DrawWorldArgs(model));
+            viewContainer.Update(this, new DrawWorldArgs(model));
 
             //Sets up basic painter
             viewContainer.GetView<BitmapWorldView>().SetPainter(controllerContainer.GetController<WorldPainterController>());

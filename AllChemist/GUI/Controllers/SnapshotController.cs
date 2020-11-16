@@ -1,26 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using System.Text.RegularExpressions;
-using Xceed.Wpf;
-using Xceed.Wpf.Toolkit;
 using AllChemist.Model;
+using System.Windows;
 
 namespace AllChemist.GUI.Controllers
 {
@@ -41,7 +20,7 @@ namespace AllChemist.GUI.Controllers
         public override void SetUpModel(World w)
         {
             world = w;
-            snapshot = null; 
+            snapshot = null;
         }
 
 
@@ -52,7 +31,7 @@ namespace AllChemist.GUI.Controllers
 
         private void LoadWorld(object sender, RoutedEventArgs e)
         {
-            if(snapshot==null)
+            if (snapshot == null)
             {
                 System.Windows.MessageBox.Show("Create a snapshot first.", "AllChemist", MessageBoxButton.OK, MessageBoxImage.Information);
             }

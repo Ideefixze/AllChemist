@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace AllChemist.GUI.GUIStates
 {
@@ -13,7 +10,7 @@ namespace AllChemist.GUI.GUIStates
         private RoutedEventHandler stopSimulation;
         public SimulatedGUIState(MainWindow context) : base(context)
         {
-            
+
         }
 
         public override void CleanUp()
@@ -21,7 +18,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.ToggleSimulationButton.Click -= stopSimulation;
         }
 
-        public override void StateChanged() 
+        public override void StateChanged()
         {
             stopSimulation = new RoutedEventHandler((s, a) => { mainWindow.GUIStateMachine.GUIState = new IdleGUIState(mainWindow); });
 
@@ -36,7 +33,7 @@ namespace AllChemist.GUI.GUIStates
             mainWindow.DelayTextBox.IsEnabled = false;
             mainWindow.SizeXTextBox.IsEnabled = false;
             mainWindow.SizeYTextBox.IsEnabled = false;
- 
+
             mainWindow.ToggleSimulationButton.Click += stopSimulation;
         }
     }

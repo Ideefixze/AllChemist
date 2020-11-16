@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AllChemist.GUI.Views
+﻿namespace AllChemist.GUI.Views
 {
     public class DefaultViewContainer : ViewContainer
     {

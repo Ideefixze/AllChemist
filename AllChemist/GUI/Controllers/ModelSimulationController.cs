@@ -1,26 +1,8 @@
+using AllChemist.Model;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using System.Text.RegularExpressions;
-using Xceed.Wpf;
-using Xceed.Wpf.Toolkit;
-using AllChemist.Model;
 
 namespace AllChemist.GUI.Controllers
 {
@@ -45,7 +27,7 @@ namespace AllChemist.GUI.Controllers
         public override void SetUpModel(World w)
         {
             simulationLoop = new SimulationLoop();
-            
+
             Thread simulationThread = new Thread(() => { simulationLoop.LoopThread(w); });
             simulationThread.IsBackground = true;
             simulationThread.Name = "Simulation";
@@ -60,14 +42,14 @@ namespace AllChemist.GUI.Controllers
         public void ToggleSimulation(object sender, RoutedEventArgs args)
         {
             simulationLoop.Simulate = !simulationLoop.Simulate;
-            simulationLoop.MilisecondsDelay = Int32.Parse(delayTextBox.Text); 
+            simulationLoop.MilisecondsDelay = Int32.Parse(delayTextBox.Text);
         }
 
         /// <summary>
         /// Cleans up a thread.
         /// </summary>
         public void Dispose()
-        {            
+        {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -78,7 +60,7 @@ namespace AllChemist.GUI.Controllers
             {
                 simulationLoop.RunThread = false;
             }
-            
+
         }
 
 

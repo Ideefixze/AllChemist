@@ -1,9 +1,5 @@
 using AllChemist.Cells.Rules;
 using AllChemist.Model;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace AllChemist.Cells
 {
@@ -14,7 +10,7 @@ namespace AllChemist.Cells
     {
         public CellType CellType { get; protected set; }
 
-        public ExistingCell(CellType cellType, Vector2Int startingPosition=new Vector2Int()) : base(startingPosition)
+        public ExistingCell(CellType cellType, Vector2Int startingPosition = new Vector2Int()) : base(startingPosition)
         {
             CellType = cellType;
         }

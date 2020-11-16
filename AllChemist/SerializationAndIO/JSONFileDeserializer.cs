@@ -1,13 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using AllChemist.Serialization;
+using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Windows;
-using Newtonsoft.Json;
-using AllChemist.Serialization;
 
-namespace AllChemist.Serialization
+namespace AllChemist.SerializationAndIO
 {
     /// <summary>
     /// Deserializes file content to the new object of type T.
@@ -21,11 +17,11 @@ namespace AllChemist.Serialization
         {
             fileDialog = new OpenFileDialog();
             fileDialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + folderName;
-            fileDialog.FileName = fileDialog.InitialDirectory +"\\"+ defaultFileName;
+            fileDialog.FileName = fileDialog.InitialDirectory + "\\" + defaultFileName;
             fileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
         }
 
-        public virtual T GetData() 
+        public virtual T GetData()
         {
             string fileContent = "";
             Stream fileStream = fileDialog.OpenFile();
@@ -35,7 +31,7 @@ namespace AllChemist.Serialization
             {
                 fileContent = reader.ReadToEnd();
             }
-           
+
             fileStream.Close();
             T toBeDeserialized = JSONHandler.Load<T>(fileContent);
             return toBeDeserialized;

@@ -1,10 +1,6 @@
 using AllChemist.Cells;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 
 namespace AllChemist.Model
@@ -24,8 +20,9 @@ namespace AllChemist.Model
         public int Steps;
 
         //We don't use original world because other components may modify it without our knowledge
-        public DrawWorldArgs(World world) { 
-            CellTable = world.CurrentTable; 
+        public DrawWorldArgs(World world)
+        {
+            CellTable = world.CurrentTable;
             Delta = new HashSet<Vector2Int>(world.Delta);
             Steps = world.Steps;
         }
@@ -63,7 +60,7 @@ namespace AllChemist.Model
 
                 //Clears up all naive changes that turned out not to change anything
                 HashSet<Vector2Int> CellTypeChange = new HashSet<Vector2Int>();
-                foreach(Vector2Int change in Delta)
+                foreach (Vector2Int change in Delta)
                 {
                     if (CurrentTable.Cells[change.X, change.Y].CellType != NextIterationTable.Cells[change.X, change.Y].CellType)
                         CellTypeChange.Add(change);
@@ -82,14 +79,14 @@ namespace AllChemist.Model
         }
 
         //Single pixel paint
-        public bool Paint(Vector2Int pos, CellType c, EPaintType paintType=EPaintType.PAINT_NEXT)
+        public bool Paint(Vector2Int pos, CellType c, EPaintType paintType = EPaintType.PAINT_NEXT)
         {
             if (pos.X < 0 || pos.X >= TableSize.X || pos.Y < 0 || pos.Y >= TableSize.Y)
                 return false;
 
             CellType prev = CurrentTable.Cells[pos.X, pos.Y].CellType;
             bool result = false;
-            switch(paintType)
+            switch (paintType)
             {
                 case EPaintType.PAINT_NEXT:
                     result = NextIterationTable.PlaceCell(pos, c);
@@ -99,7 +96,7 @@ namespace AllChemist.Model
                     break;
             }
 
-            if (result && prev!=c)
+            if (result && prev != c)
             {
                 Delta.Add(pos);
             }
@@ -132,7 +129,7 @@ namespace AllChemist.Model
 
         public void RestoreSnapshot(CellTable memento)
         {
-            lock(this)
+            lock (this)
             {
                 Delta.Clear();
                 CurrentTable = memento;

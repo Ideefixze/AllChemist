@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using AllChemist.Cells.Rules;
 using AllChemist.Model;
 using Newtonsoft.Json;
 
@@ -13,7 +8,7 @@ namespace AllChemist.Cells.Rules
     /// </summary>
 
     [JsonObject]
-    public class SwapToRule:IRule
+    public class SwapToRule : IRule
     {
         [JsonProperty]
         private int cellToSwapId;

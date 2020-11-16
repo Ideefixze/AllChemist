@@ -1,11 +1,7 @@
-﻿using System;
+﻿using AllChemist.Model;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using AllChemist.Cells.Rules;
-using AllChemist.Model;
-using Newtonsoft.Json;
 
 namespace AllChemist.Cells.Rules
 {
@@ -19,10 +15,10 @@ namespace AllChemist.Cells.Rules
         public override bool ExecuteRule(World world, Cell cell)
         {
             bool resultFirst = childrenRules[0].ExecuteRule(world, cell);
-            if(resultFirst)
+            if (resultFirst)
             {
                 List<IRule> rest = childrenRules.Skip(1).ToList();
-                foreach(IRule rule in rest)
+                foreach (IRule rule in rest)
                 {
                     rule.ExecuteRule(world, cell);
                 }

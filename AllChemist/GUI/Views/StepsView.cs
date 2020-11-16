@@ -1,9 +1,5 @@
 ﻿using AllChemist.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
-using System.Windows.Threading;
 
 namespace AllChemist.GUI.Views
 {

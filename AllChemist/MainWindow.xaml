@@ -27,6 +27,7 @@
                 <RowDefinition Height="1.5*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Button x:Name="ToggleSimulationButton" Grid.Row="0" Content="Run" Height="32" Width="96" IsEnabled="False" x:FieldModifier="public">
@@ -78,8 +79,9 @@
                 </Grid>
             </StackPanel>
             <Button x:Name="NewGridButton" Grid.Row="8" Height="32" Width="96" Content="New Grid" x:FieldModifier="public"></Button>
-            <TextBlock x:Name="MetadataTextBlock" Grid.Row="9" TextWrapping="WrapWithOverflow">RULESET ruleset by AUTHOR</TextBlock>
-            <TextBlock x:Name="StepsTextBlock" Grid.Row="10" TextWrapping="WrapWithOverflow">Steps: 0</TextBlock>
+            <TextBlock x:Name="MetadataTextBlock" Grid.Row="10" TextWrapping="WrapWithOverflow">RULESET ruleset by AUTHOR</TextBlock>
+            <TextBlock x:Name="StepsTextBlock" Grid.Row="11" TextWrapping="WrapWithOverflow">Steps: 0</TextBlock>
+            <Button x:Name="ExportButton" Grid.Row="9" Height="32" Width="96" Content="Export" x:FieldModifier="public"></Button>
         </Grid>
     </Grid>
 </Window>

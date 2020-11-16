@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using AllChemist.GUI.Controllers;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
 namespace AllChemist.Cells
 {

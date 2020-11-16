@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AllChemist.GUI.GUIStates
+﻿namespace AllChemist.GUI.GUIStates
 {
     /// <summary>
     /// GUIStateMachine has a current state and shared state (memory).
@@ -16,7 +12,7 @@ namespace AllChemist.GUI.GUIStates
         {
             window.GUIStateMachine?.GUISharedState.RemoveAllFlags();
             GUISharedState = new GUISharedState();
-            
+
         }
     }
 }

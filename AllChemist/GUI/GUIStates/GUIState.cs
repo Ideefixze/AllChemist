@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-
-namespace AllChemist.GUI.GUIStates
+﻿namespace AllChemist.GUI.GUIStates
 {
     /// <summary>
     /// Base class for all GUIStates that handle GUI behaviour.

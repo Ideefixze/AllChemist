@@ -1,8 +1,6 @@
 ﻿using AllChemist.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AllChemist.GUI.Views
 {
@@ -16,7 +14,7 @@ namespace AllChemist.GUI.Views
 
         public override void Update(object sender, DrawWorldArgs args)
         {
-            foreach(GUIContextView v in views)
+            foreach (GUIContextView v in views)
             {
                 v.Update(sender, args);
             }

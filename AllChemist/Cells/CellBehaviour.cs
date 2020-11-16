@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using AllChemist.Cells.Rules;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AllChemist.Cells
 {
@@ -28,7 +25,7 @@ namespace AllChemist.Cells
         public override string ToString()
         {
             string s = "";
-            foreach(IRule rule in Rules)
+            foreach (IRule rule in Rules)
             {
                 s += rule.ToString() + "\n";
             }

@@ -1,8 +1,5 @@
 ﻿using AllChemist.Model;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AllChemist.Cells.Rules
 {
@@ -18,7 +15,7 @@ namespace AllChemist.Cells.Rules
         private double chance;
         public bool ExecuteRule(World world, Cell cell)
         {
-            if(App.Random.NextDouble()<=chance)
+            if (App.Random.NextDouble() <= chance)
             {
                 return rule.ExecuteRule(world, cell);
             }

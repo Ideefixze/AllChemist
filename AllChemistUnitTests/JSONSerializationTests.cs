@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AllChemist.Serialization;
+﻿using AllChemist.Serialization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 namespace AllChemistUnitTests
@@ -18,8 +18,8 @@ namespace AllChemistUnitTests
         [TestMethod]
         public void SaveAndLoad()
         {
-            TestStruct testObject1 = new TestStruct{ a = 5, b = 9.9, c = "oh juliet!" };
-            TestStruct testObject2 = new TestStruct{ a = 1, b = 2.1, c = "oh romeo!", d = new List<TestStruct>{ testObject1 }, e = new Dictionary<string, int>{ { "a", 1 }, { "b", 2 } } };
+            TestStruct testObject1 = new TestStruct { a = 5, b = 9.9, c = "oh juliet!" };
+            TestStruct testObject2 = new TestStruct { a = 1, b = 2.1, c = "oh romeo!", d = new List<TestStruct> { testObject1 }, e = new Dictionary<string, int> { { "a", 1 }, { "b", 2 } } };
 
             string saved = JSONHandler.Save<TestStruct>(testObject2);
 

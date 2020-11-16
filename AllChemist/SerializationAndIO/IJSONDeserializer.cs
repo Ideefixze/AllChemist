@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AllChemist.Serialization
+﻿namespace AllChemist.Serialization
 {
     /*
      * Returns some kind of data.

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using AllChemist.Cells.Rules;
 using AllChemist.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AllChemist.Cells.Rules
 {
@@ -13,13 +9,13 @@ namespace AllChemist.Cells.Rules
     /// </summary>
 
     [JsonObject]
-    public abstract class CompositeRule:IRule
+    public abstract class CompositeRule : IRule
     {
         [JsonProperty]
         protected List<IRule> childrenRules;
         public CompositeRule()
         {
-            
+
         }
         public virtual bool ExecuteRule(World world, Cell cell)
         {
@@ -29,7 +25,7 @@ namespace AllChemist.Cells.Rules
         public override string ToString()
         {
             string s = "";
-            childrenRules?.ForEach(rule => s += rule.ToString()+"\n");
+            childrenRules?.ForEach(rule => s += rule.ToString() + "\n");
             return s;
         }
     }

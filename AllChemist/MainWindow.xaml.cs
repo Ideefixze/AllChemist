@@ -1,11 +1,4 @@
-﻿using AllChemist.Cells;
-using AllChemist.Cells.Ruleset;
-using AllChemist.GUI.Controllers;
-using AllChemist.GUI.GUIStates;
-using AllChemist.GUI.Views;
-using AllChemist.Model;
-using AllChemist.Serialization;
-using System;
+﻿using AllChemist.GUI.GUIStates;
 using System.Windows;
 
 namespace AllChemist

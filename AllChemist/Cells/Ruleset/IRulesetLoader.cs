@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AllChemist.Cells.Ruleset
+﻿namespace AllChemist.Cells.Ruleset
 {
- 
+
     /// <summary>
     /// Interface that loads a Ruleset.
     /// </summary>

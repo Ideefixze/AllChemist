@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace AllChemist.GUI.GUIStates
 {
@@ -19,7 +17,7 @@ namespace AllChemist.GUI.GUIStates
 
         public bool AddFlag(string flagName)
         {
-            if(flags.Contains(flagName)==false)
+            if (flags.Contains(flagName) == false)
             {
                 flags.Add(flagName);
                 return true;

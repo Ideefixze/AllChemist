@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Windows.Media;
 using AllChemist.Serialization;
 using Newtonsoft.Json;
+using System;
+using System.Windows.Media;
 
 namespace AllChemist.Cells
 {
@@ -15,13 +11,13 @@ namespace AllChemist.Cells
     [JsonObject(MemberSerialization.Fields)]
     public struct CellType
     {
-       
+
         public readonly int Id;
 
         public readonly string Name;
 
         public readonly Color Color;
-        static private int idCounter=0; //All ids are accordingly set in the order they are initialized
+        static private int idCounter = 0; //All ids are accordingly set in the order they are initialized
 
         public static void ResetCounter()
         {
@@ -66,15 +62,15 @@ namespace AllChemist.Cells
             {
                 CellType ct = (CellType)obj;
                 return ct.Id == this.Id && ct.Color == this.Color;
-            } 
+            }
         }
 
-        public static bool operator==(CellType cta, CellType ctb)
+        public static bool operator ==(CellType cta, CellType ctb)
         {
             return cta.Id == ctb.Id;
         }
 
-        public static bool operator!=(CellType cta, CellType ctb)
+        public static bool operator !=(CellType cta, CellType ctb)
         {
             return cta.Id != ctb.Id;
         }

@@ -1,11 +1,4 @@
-﻿using AllChemist.GUI.Controllers;
-using AllChemist.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Documents;
+﻿using AllChemist.SerializationAndIO;
 
 namespace AllChemist.Cells.Ruleset
 {
@@ -27,7 +20,7 @@ namespace AllChemist.Cells.Ruleset
             JSONFileDeserializer.ShowOpenFileDialog();
         }
         public override Ruleset CreateRuleset()
-        { 
+        {
             return JSONFileDeserializer.GetData();
         }
     }
