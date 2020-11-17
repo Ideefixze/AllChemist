@@ -63,7 +63,7 @@ This is a cell that is Alive and of course it has a behaviour of typical Conway'
 Normally cell dies each step. 
 When there are 2 or 3 neighbours of ID equal to 1 then this cell keeps living.
 
-There are no limits to the types of cells you can create. Rules are predefined, but they are easy to modify or adding new ones is fairly simple.
+There are no limits to the types of cells you can create. Rules are predefined, but they are easy to modify or adding new ones is fairly simple. See example rulesets to see how different rules are used for given type. Also remember that the full list of all rules are in `Cell\Rules`.
 
 # Used Technologies
 C# and WPF
