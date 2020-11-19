@@ -1,5 +1,6 @@
 # AllChemist
 Design Patterns university project. 
+![Example](allchemist1_example.gif)
 
 # Idea
 This is an expanded Conway's Game of Life that supports custom cell types, rules, world editing etc.
