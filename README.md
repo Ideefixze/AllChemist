@@ -67,3 +67,10 @@ There are no limits to the types of cells you can create. Rules are predefined, 
 
 # Used Technologies
 C# and WPF
+
+# TODO:
+- Importing starting cell combinations from a image file.
+- GIF exporting
+- No-GUI execution
+- More rules
+
