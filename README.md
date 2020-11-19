@@ -80,5 +80,7 @@ C# and WPF
 # More examples
 
 ![Example2](allchemist2_example.gif)
+
 ![Example3](allchemist3_example.gif)
+
 Because of gif compression, some colors were lost: green cells have weird black spots.
