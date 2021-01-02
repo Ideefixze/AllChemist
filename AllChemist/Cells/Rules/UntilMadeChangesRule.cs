@@ -1,5 +1,6 @@
 ﻿using AllChemist.Model;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AllChemist.Cells.Rules
 {
@@ -12,6 +13,18 @@ namespace AllChemist.Cells.Rules
     {
         [JsonProperty]
         private int rulesMadeAnyChangesCountToEnd;
+
+        public UntilMadeChangesRule(List<IRule> rules, int count)
+        {
+            childrenRules = rules;
+            rulesMadeAnyChangesCountToEnd = count;
+        }
+
+        //Json constructor because constructor above somehow doesn't like Newtonsoft's Json 
+        public UntilMadeChangesRule()
+        {
+
+        }
 
         public override bool ExecuteRule(World world, Cell cell)
         {

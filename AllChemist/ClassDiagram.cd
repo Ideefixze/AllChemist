@@ -15,7 +15,7 @@
   <Comment CommentText="MainWindow has references to all WPF GUI elements making it a good candidate for contex of our GUIStateMachine.">
     <Position X="11.523" Y="12.426" Height="1.078" Width="1.7" />
   </Comment>
-  <Comment CommentText="RulesetInterpreter Loads a data and turns it into a Ruleset. App has a RulesetInterpreter and changes it according to user preffered way of loading up a Ruleset. (Strategy)">
+  <Comment CommentText="RulesetInterpreter loads a data and turns it into a Ruleset. App has a RulesetInterpreter and changes it according to user preffered way of loading up a Ruleset. (Strategy)">
     <Position X="30.5" Y="13.5" Height="1.558" Width="1.7" />
   </Comment>
   <Comment CommentText="World can create a Snapshot and restore it. (Memento)">
@@ -29,6 +29,9 @@
   </Comment>
   <Comment CommentText="Leafs">
     <Position X="20.796" Y="15.341" Height="0.309" Width="0.7" />
+  </Comment>
+  <Comment CommentText="2D table of ExistingCells.">
+    <Position X="22.838" Y="7.389" Height="0.306" Width="1.7" />
   </Comment>
   <Class Name="AllChemist.Properties.Settings">
     <Position X="15" Y="1.5" Width="1.5" />
