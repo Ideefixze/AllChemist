@@ -1,6 +1,8 @@
 # AllChemist
 Design Patterns university project. 
-![Example](allchemist1_example.gif)
+
+
+![Example1](allchemist1_example.gif)
 
 # Idea
 This is an expanded Conway's Game of Life that supports custom cell types, rules, world editing etc.
@@ -75,3 +77,10 @@ C# and WPF
 - No-GUI execution
 - More rules
 
+# More examples
+
+![Example2](allchemist2_example.gif)
+
+![Example3](allchemist3_example.gif)
+
+Because of gif compression, some colors were lost: green cells have weird black spots.
