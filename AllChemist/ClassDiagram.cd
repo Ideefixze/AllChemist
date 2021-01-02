@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="(Singleton)">
+    <Position X="13.974" Y="1.57" Height="0.346" Width="0.924" />
+  </Comment>
+  <Comment CommentText="Entry point for this app. Has containers for both: views and controllers (for easier initialization etc.) and has a model (World). Controllers use World, while Views receive updates from the Model (Observer). ">
+    <Position X="12.276" Y="8.434" Height="1.169" Width="3.049" />
+  </Comment>
+  <Comment CommentText="CompositeRule can have &quot;childrenRules&quot; and you can create tree-like structures of rule execution. (Composite)">
+    <Position X="17.056" Y="16.653" Height="0.85" Width="2.418" />
+  </Comment>
+  <Comment CommentText="GUIState controlls the behaviour of GUI elements. (State)">
+    <Position X="7.076" Y="15.112" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="MainWindow has references to all WPF GUI elements making it a good candidate for contex of our GUIStateMachine.">
+    <Position X="11.023" Y="14.426" Height="1.078" Width="1.7" />
+  </Comment>
+  <Comment CommentText="RulesetInterpreter Loads a data and turns it into a Ruleset. App has a RulesetInterpreter and changes it according to user preffered way of loading up a Ruleset. (Strategy)">
+    <Position X="30.5" Y="13.5" Height="1.558" Width="1.7" />
+  </Comment>
+  <Comment CommentText="World can create a Snapshot and restore it. (Memento)">
+    <Position X="16.718" Y="9.842" Height="0.798" Width="1.557" />
+  </Comment>
+  <Comment CommentText="On user's input: creates or restores existing snapshot of the World.">
+    <Position X="11.335" Y="3.262" Height="0.718" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Controlles initialize GUI input actions in their constructor.">
+    <Position X="2.003" Y="1.396" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="AllChemist.Properties.Settings">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAABAAAAIAAAAAAJAIAAAAAAABAAAAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="defaultInstance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.CompositeRule">
+    <Position X="14.75" Y="16" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\CompositeRule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="childrenRules" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.384" />
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.IfFirstThenRestRule" Collapsed="true">
+    <Position X="13.75" Y="18.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\IfFirstThenRestRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.NeighbourChangeToRule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="16" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAgAAAAEAAAAAAAAAAAgAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\NeighbourChangeToRule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.NondeterministicRule" BaseTypeListCollapsed="true">
+    <Position X="22" Y="16" Width="1.5" />
+    <AssociationLine Name="rule" Type="AllChemist.Cells.Rules.IRule" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.938" Y="16" />
+        <Point X="22.938" Y="14.875" />
+        <Point X="20.5" Y="14.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAgAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\NondeterministicRule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="rule" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.SwapToRule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\SwapToRule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.Cells.Rules.UntilMadeChangesRule" Collapsed="true">
+    <Position X="16" Y="18.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\UntilMadeChangesRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Cells.Ruleset.ConwayRulesetCreator">
+    <Position X="30.5" Y="11" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\ConwayRulesetCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Cells.Ruleset.FromFileRulesetCreator">
+    <Position X="33.5" Y="11" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="JSONFileDeserializer" Type="AllChemist.SerializationAndIO.JSONFileDeserializer&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.311" Y="0.049" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAgAIgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\FromFileRulesetCreator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="JSONFileDeserializer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.Cells.Ruleset.Ruleset">
+    <Position X="25.25" Y="7.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\Ruleset.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CellTypeBank" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.Cells.Ruleset.RulesetInterpreter">
+    <Position X="31.75" Y="9.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\RulesetInterpreter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.Cells.Cell">
+    <Position X="18.5" Y="10.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Cells\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Cells.CellBehaviour">
+    <Position X="17.5" Y="12.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\CellBehaviour.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Rules" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AllChemist.Cells.CellTypeBank">
+    <Position X="25" Y="10" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\CellTypeBank.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="CellTypes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AllChemist.Cells.ExistingCell">
+    <Position X="20.5" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Cells\ExistingCell.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CellType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.ControllerContainter" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAGAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\ControllerContainter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="controllers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.DefaultControllerContainer" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\DefaultControllerContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.GUIContextController">
+    <Position X="4" Y="0.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\GUIContextController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.ModelSimulationController" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAACAAAAAAAAACBAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\ModelSimulationController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="simulationLoop" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.SimulationLoop" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAgABAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\SimulationLoop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.SnapshotController" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="AllChemist.GUI.Controllers.GUIContextController" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="2.238" />
+        <Point X="6" Y="2.875" />
+        <Point X="6.354" Y="2.875" Type="JumpStart" />
+        <Point X="6.521" Y="2.875" Type="JumpEnd" />
+        <Point X="10.167" Y="2.875" />
+        <Point X="10.167" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="snapshot" Type="AllChemist.Model.CellTable" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.333" Y="3.941" />
+        <Point X="10.333" Y="4.316" />
+        <Point X="22" Y="4.316" />
+        <Point X="22" Y="7.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAECAAAAAAEAAAAAAAABAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\SnapshotController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="snapshot" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.WorldPainterController" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAEAAAAAAAAAAAAEgQAAAAABAAAAAAAIAABAAAAIA=</HashCode>
+      <FileName>GUI\Controllers\WorldPainterController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.GUI.Controllers.WorldSizeController" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABggAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\WorldSizeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.GUIStates.GUISharedState">
+    <Position X="6.25" Y="17" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQCACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>GUI\GUIStates\GUISharedState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.GUIStates.GUIState">
+    <Position X="2.75" Y="17" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAEAAACA=</HashCode>
+      <FileName>GUI\GUIStates\GUIState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.GUIStates.GUIStateMachine">
+    <Position X="4.5" Y="15" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\GUIStates\GUIStateMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="GUISharedState" />
+      <Field Name="GUIState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.GUI.GUIStates.IdleGUIState" Collapsed="true">
+    <Position X="2.25" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACA=</HashCode>
+      <FileName>GUI\GUIStates\IdleGUIState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.GUIStates.SimulatedGUIState" Collapsed="true">
+    <Position X="4.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACA=</HashCode>
+      <FileName>GUI\GUIStates\SimulatedGUIState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.Views.BitmapWorldView" Collapsed="true">
+    <Position X="7.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAAAAAAgAAggAAAAAABAAAAAAIAAoAAA=</HashCode>
+      <FileName>GUI\Views\BitmapWorldView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.GUI.Views.DefaultViewContainer" Collapsed="true">
+    <Position X="5.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Views\DefaultViewContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.Views.GUIContextView">
+    <Position X="4.25" Y="6.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Views\GUIContextView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AllChemist.GUI.Views.StepsView" Collapsed="true">
+    <Position X="3" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Views\StepsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.GUI.Views.ViewContainer" Collapsed="true">
+    <Position X="5.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAA=</HashCode>
+      <FileName>GUI\Views\ViewContainer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="views" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AllChemist.GUI.DialogInput" Collapsed="true">
+    <Position X="16.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>GUI\DialogInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Model.CellTable">
+    <Position X="21.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAAAAAAAgAAAAAAAAACgA=</HashCode>
+      <FileName>Model\CellTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cells" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.Model.DrawWorldArgs" Collapsed="true">
+    <Position X="16.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\World.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.Model.World">
+    <Position X="16.75" Y="6" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAQAAAgAAAgAAAAAAiGAAAAAAAAJAAAAAAIAAA=</HashCode>
+      <FileName>Model\World.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentTable" />
+      <Property Name="NextIterationTable" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.SerializationAndIO.BitmapExporter" Collapsed="true">
+    <Position X="15" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerializationAndIO\BitmapExporter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.SerializationAndIO.JSONFileDeserializer&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="33.75" Y="13.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>SerializationAndIO\JSONFileDeserializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.85" />
+  </Class>
+  <Class Name="AllChemist.Serialization.JSONHandler" Collapsed="true">
+    <Position X="18.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerializationAndIO\JSONHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AllChemist.App">
+    <Position X="12.25" Y="5.75" Width="3.25" />
+    <AssociationLine Name="viewContainer" Type="AllChemist.GUI.Views.DefaultViewContainer" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.75" Y="8.396" />
+        <Point X="13.75" Y="10.096" />
+        <Point X="6.75" Y="10.096" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="mainWindow" Type="AllChemist.MainWindow" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.125" Y="8.396" />
+        <Point X="15.125" Y="14.213" />
+        <Point X="11" Y="14.213" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="rulesetInterpreter" Type="AllChemist.Cells.Ruleset.RulesetInterpreter" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.125" Y="5.75" />
+        <Point X="15.125" Y="5.375" />
+        <Point X="21.917" Y="5.375" Type="JumpStart" />
+        <Point X="22.083" Y="5.375" Type="JumpEnd" />
+        <Point X="31.25" Y="5.375" />
+        <Point X="31.25" Y="9.481" />
+        <Point X="31.75" Y="9.481" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAEAAAAAEAAAEAAAAAAAABAAQBAAAAAAAEAAIAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="model" />
+      <Field Name="viewContainer" />
+      <Field Name="controllerContainer" />
+      <Field Name="mainWindow" />
+      <Field Name="rulesetInterpreter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AllChemist.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="GUIStateMachine" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AllChemist.TextValidator" Collapsed="true">
+    <Position X="20.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TextValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="AllChemist.Cells.CellType" Collapsed="true">
+    <Position X="21" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAgAAAAAAAAEgAAAAAQQAAAAAIAAAAAAgAAAAiA=</HashCode>
+      <FileName>Cells\CellType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CellBehaviour" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="AllChemist.Vector2Int" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAYiA=</HashCode>
+      <FileName>Vector2Int.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="AllChemist.Cells.Rules.IRule">
+    <Position X="17.5" Y="14.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Rules\IRule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.Cells.Ruleset.IRulesetCreator">
+    <Position X="33.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\IRulesetCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.Cells.Ruleset.IRulesetLoader">
+    <Position X="31.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cells\Ruleset\IRulesetLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.GUI.Controllers.IController">
+    <Position X="8.5" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\IController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.GUI.Controllers.IPainter">
+    <Position X="3" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>GUI\Controllers\IPainter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.GUI.Views.IPaintable">
+    <Position X="9.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>GUI\Views\IPaintable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.GUI.Views.IView">
+    <Position X="8.25" Y="6.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GUI\Views\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AllChemist.Serialization.IJSONDeserializer&lt;T&gt;">
+    <Position X="37.5" Y="14" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SerializationAndIO\IJSONDeserializer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AllChemist.Model.EPaintType" Collapsed="true">
+    <Position X="16.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\World.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

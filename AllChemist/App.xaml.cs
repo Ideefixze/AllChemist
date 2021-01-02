@@ -24,7 +24,7 @@ namespace AllChemist
         /// </summary>
         private World model; //Model
         private DefaultControllerContainer controllerContainer; //Controllers - container and initializer
-        private RulesetInterpreter rulesetInterpreter; //Controller that generates ruleset (Strategy Pattern)
+        private RulesetInterpreter rulesetInterpreter; //Generates ruleset (Strategy Pattern)
 
         private MainWindow mainWindow; //Main GUI container
         private DefaultViewContainer viewContainer; //Views
