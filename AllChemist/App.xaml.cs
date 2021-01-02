@@ -107,7 +107,7 @@ namespace AllChemist
         }
 
         /// <summary>
-        /// Cleans up all data that remains after stopping a simmulation.
+        /// Cleans up all data that remains after stopping a simulation.
         /// Prepares enviroment for a new model.
         /// </summary>
         private void CleanUpModel()

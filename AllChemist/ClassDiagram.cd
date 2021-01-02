@@ -10,10 +10,10 @@
     <Position X="17.056" Y="16.653" Height="0.85" Width="2.418" />
   </Comment>
   <Comment CommentText="GUIState controlls the behaviour of GUI elements. (State)">
-    <Position X="7.076" Y="15.112" Height="0.75" Width="1.7" />
+    <Position X="7.576" Y="13.112" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="MainWindow has references to all WPF GUI elements making it a good candidate for contex of our GUIStateMachine.">
-    <Position X="11.023" Y="14.426" Height="1.078" Width="1.7" />
+    <Position X="11.523" Y="12.426" Height="1.078" Width="1.7" />
   </Comment>
   <Comment CommentText="RulesetInterpreter Loads a data and turns it into a Ruleset. App has a RulesetInterpreter and changes it according to user preffered way of loading up a Ruleset. (Strategy)">
     <Position X="30.5" Y="13.5" Height="1.558" Width="1.7" />
@@ -26,6 +26,9 @@
   </Comment>
   <Comment CommentText="Controlles initialize GUI input actions in their constructor.">
     <Position X="2.003" Y="1.396" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Leafs">
+    <Position X="20.796" Y="15.341" Height="0.309" Width="0.7" />
   </Comment>
   <Class Name="AllChemist.Properties.Settings">
     <Position X="15" Y="1.5" Width="1.5" />
@@ -48,7 +51,7 @@
     <Lollipop Position="0.384" />
   </Class>
   <Class Name="AllChemist.Cells.Rules.IfFirstThenRestRule" Collapsed="true">
-    <Position X="13.75" Y="18.5" Width="2" />
+    <Position X="13.75" Y="18" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Cells\Rules\IfFirstThenRestRule.cs</FileName>
@@ -63,11 +66,11 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="AllChemist.Cells.Rules.NondeterministicRule" BaseTypeListCollapsed="true">
-    <Position X="22" Y="16" Width="1.5" />
+    <Position X="22" Y="16" Width="2.25" />
     <AssociationLine Name="rule" Type="AllChemist.Cells.Rules.IRule" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="22.938" Y="16" />
-        <Point X="22.938" Y="14.875" />
+        <Point X="23.407" Y="16" />
+        <Point X="23.407" Y="14.875" />
         <Point X="20.5" Y="14.875" />
       </Path>
     </AssociationLine>
@@ -89,7 +92,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="AllChemist.Cells.Rules.UntilMadeChangesRule" Collapsed="true">
-    <Position X="16" Y="18.5" Width="2" />
+    <Position X="16" Y="18" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Cells\Rules\UntilMadeChangesRule.cs</FileName>
@@ -271,39 +274,39 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AllChemist.GUI.GUIStates.GUISharedState">
-    <Position X="6.25" Y="17" Width="2" />
+    <Position X="6.75" Y="15" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAQCACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>GUI\GUIStates\GUISharedState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AllChemist.GUI.GUIStates.GUIState">
-    <Position X="2.75" Y="17" Width="3" />
+    <Position X="3.25" Y="15" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAEAAACA=</HashCode>
       <FileName>GUI\GUIStates\GUIState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AllChemist.GUI.GUIStates.GUIStateMachine">
-    <Position X="4.5" Y="15" Width="2.5" />
+    <Position X="5" Y="13" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GUI\GUIStates\GUIStateMachine.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="GUISharedState" />
       <Field Name="GUIState" />
+      <Field Name="GUISharedState" />
     </ShowAsAssociation>
   </Class>
   <Class Name="AllChemist.GUI.GUIStates.IdleGUIState" Collapsed="true">
-    <Position X="2.25" Y="19.5" Width="1.5" />
+    <Position X="2.75" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACA=</HashCode>
       <FileName>GUI\GUIStates\IdleGUIState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AllChemist.GUI.GUIStates.SimulatedGUIState" Collapsed="true">
-    <Position X="4.75" Y="19.5" Width="1.5" />
+    <Position X="5.25" Y="17.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACA=</HashCode>
       <FileName>GUI\GUIStates\SimulatedGUIState.cs</FileName>
@@ -397,7 +400,7 @@
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>SerializationAndIO\JSONFileDeserializer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Right" Position="0.85" />
+    <Lollipop Orientation="Right" Position="0.668" />
   </Class>
   <Class Name="AllChemist.Serialization.JSONHandler" Collapsed="true">
     <Position X="18.5" Y="0.75" Width="1.5" />
@@ -408,20 +411,6 @@
   </Class>
   <Class Name="AllChemist.App">
     <Position X="12.25" Y="5.75" Width="3.25" />
-    <AssociationLine Name="viewContainer" Type="AllChemist.GUI.Views.DefaultViewContainer" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="13.75" Y="8.396" />
-        <Point X="13.75" Y="10.096" />
-        <Point X="6.75" Y="10.096" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="mainWindow" Type="AllChemist.MainWindow" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="15.125" Y="8.396" />
-        <Point X="15.125" Y="14.213" />
-        <Point X="11" Y="14.213" />
-      </Path>
-    </AssociationLine>
     <AssociationLine Name="rulesetInterpreter" Type="AllChemist.Cells.Ruleset.RulesetInterpreter" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="15.125" Y="5.75" />
@@ -433,20 +422,34 @@
         <Point X="31.75" Y="9.481" />
       </Path>
     </AssociationLine>
+    <AssociationLine Name="mainWindow" Type="AllChemist.MainWindow" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.125" Y="8.396" />
+        <Point X="15.125" Y="12.213" />
+        <Point X="11.5" Y="12.213" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="viewContainer" Type="AllChemist.GUI.Views.DefaultViewContainer" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.75" Y="8.396" />
+        <Point X="13.75" Y="10.096" />
+        <Point X="6.75" Y="10.096" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>IAAAAEAAAAAEAAAEAAAAAAAABAAQBAAAAAAAEAAIAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="model" />
-      <Field Name="viewContainer" />
       <Field Name="controllerContainer" />
-      <Field Name="mainWindow" />
       <Field Name="rulesetInterpreter" />
+      <Field Name="mainWindow" />
+      <Field Name="viewContainer" />
     </ShowAsAssociation>
   </Class>
   <Class Name="AllChemist.MainWindow" BaseTypeListCollapsed="true">
-    <Position X="9.5" Y="13.5" Width="1.5" />
+    <Position X="10" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
@@ -454,7 +457,7 @@
     <ShowAsAssociation>
       <Field Name="GUIStateMachine" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.1" Collapsed="true" />
   </Class>
   <Class Name="AllChemist.TextValidator" Collapsed="true">
     <Position X="20.25" Y="0.75" Width="1.5" />
