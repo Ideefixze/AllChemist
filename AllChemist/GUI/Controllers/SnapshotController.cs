@@ -23,7 +23,6 @@ namespace AllChemist.GUI.Controllers
             snapshot = null;
         }
 
-
         private void SaveWorld(object sender, RoutedEventArgs e)
         {
             snapshot = world.CreateSnapshot();

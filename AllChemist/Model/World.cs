@@ -74,6 +74,7 @@ namespace AllChemist.Model
                 ApplyChanges();
                 t.Stop();
 
+                //TODO: DEBUG MODE
                 //Console.WriteLine("Model has been updated in " + t.Elapsed.TotalSeconds + "s");
             }
         }
